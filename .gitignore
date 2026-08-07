@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Netlify CLI state and its deploy bundles — build output, regenerated on demand
+.netlify/
+deploy-*.zip
+
+# Stock footage used to generate the site video (15 MB, re-downloadable).
+# Kept out of history deliberately; back it up outside git if it matters.
+_video-source/
+
+# Finder/sync duplicates ("page 2.tsx") — never intentional, never wanted
+* 2.*
