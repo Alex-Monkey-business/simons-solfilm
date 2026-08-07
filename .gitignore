@@ -48,5 +48,7 @@ deploy-*.zip
 # Kept out of history deliberately; back it up outside git if it matters.
 _video-source/
 
-# Finder/sync duplicates ("page 2.tsx") — never intentional, never wanted
-* 2.*
+# No blanket "* 2.*" rule here. It was tried and it silently swallowed
+# public/brand/SS NY LOGO 2.JPG — Simon's original file, named by him, which
+# every logo SVG is derived from. The duplicates it was meant to catch came
+# from the project's stint in iCloud and were a one-off; they are gone.
