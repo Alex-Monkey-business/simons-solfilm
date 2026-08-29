@@ -128,8 +128,7 @@ export function Hero() {
             className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
           >
             Jeg legger solfilm fra verkstedet på Hegdal industriområde —
-            eller hjem til deg. Send meg et bilde, så fikser jeg et tilbud
-            kjapt.
+            eller hjem til deg. Send meg et bilde, så får du pris raskt.
           </motion.p>
 
           <motion.div

@@ -5,11 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "./Footer";
 import { LogoMark } from "./LogoMark";
+import { serviceDetails } from "./serviceDetails";
 import type { ServiceDetail as ServiceDetailData } from "./serviceDetails";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
 export function ServiceDetail({ data }: { data: ServiceDetailData }) {
+  // The other service page. Without this the only way off this page was the
+  // back link or the phone number.
+  const sibling = Object.values(serviceDetails).find(
+    (s) => s.slug !== data.slug,
+  );
+
   return (
     <>
       {/* Sub-page top bar — anchor nav doesn't apply here, so keep it simple */}
@@ -104,10 +111,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         <section className="w-full px-6 py-28 lg:px-10 lg:py-40">
           <div className="mx-auto max-w-[1280px]">
             <h2 className="mb-14 max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-20">
-              Derfor{" "}
-              <span className="font-display-italic text-text-muted">
-                solfilm.
-              </span>
+              Derfor solfilm.
             </h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {data.benefits.map((b, i) => (
@@ -136,10 +140,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
           <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h2 className="mb-10 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
-                Filmtyper jeg{" "}
-                <span className="font-display-italic text-text-muted">
-                  jobber med.
-                </span>
+                Filmtyper jeg jobber med.
               </h2>
               <div className="flex flex-col">
                 {data.filmTypes.map((f, i) => (
@@ -193,8 +194,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         <section className="w-full bg-bg-card/30 px-6 py-28 lg:px-10 lg:py-40">
           <div className="mx-auto max-w-[1280px]">
             <h2 className="mb-14 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-20">
-              Slik gjør jeg{" "}
-              <span className="font-display-italic text-text-muted">det.</span>
+              Slik gjør jeg det.
             </h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {data.process.map((p, i) => (
@@ -223,10 +223,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         <section className="w-full px-6 py-28 lg:px-10 lg:py-40">
           <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 lg:grid-cols-12">
             <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:col-span-4">
-              Ofte{" "}
-              <span className="font-display-italic text-text-muted">
-                spurt.
-              </span>
+              Vanlige spørsmål.
             </h2>
             <div className="flex flex-col lg:col-span-7 lg:col-start-6">
               {data.faq.map((item, i) => (
@@ -256,13 +253,10 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
             <div className="flex flex-col items-start justify-between gap-8 rounded-[2rem] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12">
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
-                  Ring meg, så fikser{" "}
-                  <span className="font-display-italic text-accent">
-                    jeg det.
-                  </span>
+                  Ring meg, så tar vi en prat.
                 </h2>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-text-muted lg:text-base">
-                  Send meg et bilde, så får du et tilbud kjapt.
+                  Send meg et bilde, så får du pris raskt.
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
@@ -285,6 +279,32 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 </Link>
               </div>
             </div>
+
+            {sibling ? (
+              <Link
+                href={`/${sibling.slug}`}
+                className="contact-row group relative mt-14 flex items-baseline justify-between gap-6 py-7 lg:mt-20"
+              >
+                <span className="absolute inset-x-0 top-0 h-px bg-line-strong" />
+                <span>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+                    Neste tjeneste
+                  </span>
+                  <span
+                    className="mt-2 block font-display text-2xl font-medium text-text group-hover:text-accent lg:text-3xl"
+                    style={{ transition: "color 220ms var(--ease-out)" }}
+                  >
+                    {sibling.title} {sibling.titleAccent}
+                  </span>
+                </span>
+                <span
+                  aria-hidden
+                  className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
+                >
+                  →
+                </span>
+              </Link>
+            ) : null}
           </div>
         </section>
       </main>

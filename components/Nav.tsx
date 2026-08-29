@@ -87,7 +87,7 @@ export function Nav() {
           }}
         >
           <motion.a
-            href="#"
+            href="#innhold"
             onClick={() => setOpen(false)}
             aria-label="Simons Solfilm — til toppen"
             whileHover={{ scale: 1.04 }}

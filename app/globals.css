@@ -187,3 +187,111 @@ html,
 body {
   overflow-x: clip;
 }
+
+/* Service "doors" — the two primary cards. All motion gated to real pointers
+   and to users who have not asked for less of it. */
+.door-rule {
+  transform: scaleX(0);
+  transition: transform 520ms var(--ease-out);
+}
+.door-arrow {
+  transition: transform 320ms var(--ease-out), color 320ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .door {
+    transition: border-color 320ms var(--ease-out),
+      background-color 320ms var(--ease-out);
+  }
+  .door:hover {
+    border-color: rgba(254, 120, 24, 0.45);
+    background-color: var(--bg-elev);
+  }
+  .door:hover .door-rule {
+    transform: scaleX(1);
+  }
+  .door:hover .door-arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent);
+  }
+}
+.door:focus-visible .door-rule {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .door-rule {
+    transform: scaleX(1);
+    transition: none;
+  }
+  .door-arrow {
+    transition: none;
+  }
+}
+
+/* Gallery tiles. The old rules lived in an inline <style> and targeted
+   `.group:hover > img`, which never matched — the image sits inside a motion
+   div. These target the image directly. */
+.tile-img,
+.tile-scrim,
+.tile-arrow {
+  transition: transform 900ms var(--ease-out), background-color 500ms ease,
+    color 320ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tile [data-detail] {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 360ms var(--ease-out), transform 360ms var(--ease-out);
+  }
+  .tile:hover [data-detail],
+  .tile:focus-within [data-detail] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tile:hover .tile-img,
+  .tile:focus-within .tile-img {
+    transform: scale(1.04);
+  }
+  .tile:hover .tile-scrim,
+  .tile:focus-within .tile-scrim {
+    background-color: rgba(0, 0, 0, 0.22);
+  }
+  .tile:hover .tile-arrow,
+  .tile:focus-within .tile-arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile-img,
+  .tile-scrim,
+  .tile-arrow {
+    transition: none;
+  }
+}
+
+/* Contact rows — no box, so the arrow carries the affordance. */
+.contact-arrow {
+  transition: transform 320ms var(--ease-out), color 320ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .contact-row:hover .contact-arrow,
+  .contact-row:focus-visible .contact-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-arrow {
+    transition: none;
+  }
+}
+
+/* Hover-revealed gallery captions need a fallback: a mouse user who has asked
+   for reduced motion would otherwise never see the detail text at all. */
+@media (prefers-reduced-motion: reduce) {
+  .tile [data-detail] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

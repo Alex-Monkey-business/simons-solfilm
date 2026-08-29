@@ -22,13 +22,13 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     title: "Solfilm til",
     titleAccent: "bil",
     intro:
-      "Jeg legger høykvalitets solfilm på bil for deg som vil ha mindre varme, et interiør som holder seg og et penere uttrykk. Vi finner riktig filmtype sammen — tilpasset bilen, bruken din og hvor mørkt du vil ha det. Send meg gjerne et bilde av bilen, så fikser jeg et tilbud kjapt.",
+      "Jeg legger solfilm på bil for deg som vil ha mindre varme, et interiør som holder seg og et penere uttrykk. Vi finner filmtypen sammen — tilpasset bilen, bruken din og hvor mørkt du vil ha det. Send meg gjerne et bilde av bilen, så får du pris raskt.",
     heroImage: "/brand/pics_work/blue_mercedes.webp",
     heroAlt: "Bil med solfilm montert av Simon",
     benefits: [
       {
         title: "Mindre varme",
-        body: "Høykvalitets, metallisert film tar mye av varmen og demper blendingen — behagelig for både folk, hund og utstyr i baksetet.",
+        body: "Metallisert film tar mye av varmen og demper blendingen — bedre for både folk, hund og utstyr i baksetet.",
       },
       {
         title: "Beskyttelse mot innsyn",
@@ -113,7 +113,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     benefits: [
       {
         title: "Reduserer varme",
-        body: "Solfilm demper varmen fra sola, så inneklimaet blir jevnere — fint for både stuer, kontorlandskap og møterom.",
+        body: "Solfilm demper varmen fra sola, så det blir jevnere inne — i stua, i kontorlandskapet og på møterommet.",
       },
       {
         title: "Demper innsyn",
@@ -121,17 +121,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
       {
         title: "Mindre blending",
-        body: "Skjermer mot generende sol på skjermer og arbeidsplasser.",
+        body: "Skjermer mot sol som blender på skjermen og arbeidsplassen.",
       },
       {
         title: "Slipper å bytte vinduer",
-        body: "En rimeligere løsning enn nye vinduer eller utvendig solskjerming — montert på eksisterende glass.",
+        body: "Rimeligere enn nye vinduer eller utvendig solskjerming, og monteres på glasset du allerede har.",
       },
     ],
     filmTypes: [
       {
         name: "Solfilm / varmedempende film",
-        body: "Reduserer varmen fra sola og jevner ut inneklimaet i bolig og næringsbygg.",
+        body: "Demper varmen fra sola og jevner ut temperaturen i bolig og næringsbygg.",
       },
       {
         name: "Frostet personvernfilm",
@@ -153,7 +153,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         step: "01",
         title: "Befaring eller bilde",
-        body: "Jeg kan komme på befaring, eller du sender meg bilder og mål — så gir jeg deg et tilbud.",
+        body: "Jeg kan komme på befaring, eller du sender meg bilder og mål — så gir jeg deg pris.",
       },
       {
         step: "02",
@@ -163,12 +163,12 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         step: "03",
         title: "Montering på stedet",
-        body: "Jeg kommer ut og monterer på eksisterende glass — ryddig og effektivt.",
+        body: "Jeg kommer ut og monterer på glasset som står der. Ryddig, og uten at dere må flytte ut.",
       },
       {
         step: "04",
         title: "Bedre inneklima",
-        body: "Du sitter igjen med mindre varme, mer privatliv og et bedre inneklima.",
+        body: "Mindre varme, mer privatliv, og bedre å være i.",
       },
     ],
     faq: [

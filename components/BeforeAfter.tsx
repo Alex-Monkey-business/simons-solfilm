@@ -9,9 +9,13 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { SectionHeading } from "./SectionHeading";
 
-const BEFORE = "/brand/pics_work/frosted_terrase.webp";
-const AFTER = "/brand/pics_work/frosted_terasse_before.webp";
+// The filenames lie: "frosted_terasse_before" is the untreated railing (you
+// can see the furniture through the glass), "frosted_terrase" is the finished
+// job. Mapped by what the photos actually show, not by what they are called.
+const BEFORE = "/brand/pics_work/frosted_terasse_before.webp";
+const AFTER = "/brand/pics_work/frosted_terrase.webp";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -62,45 +66,19 @@ export function BeforeAfter() {
   };
 
   return (
-    <section className="relative w-full bg-bg px-6 py-14 lg:px-10 lg:py-28">
+    <section className="relative w-full bg-bg px-6 py-12 lg:px-10 lg:py-24">
       <div className="mx-auto max-w-[1280px]">
-        {/* Header */}
-        <div className="mb-10 grid grid-cols-1 gap-10 lg:mb-14 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted"
-            >
-              <span className="size-1.5 rounded-full bg-accent" />
-              <span>Før / etter</span>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease }}
-              className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02]"
-            >
-              Dra for å se{" "}
-              <span className="font-display-italic text-text-muted">
-                forskjellen.
-              </span>
-            </motion.h2>
-          </div>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease, delay: 0.15 }}
-            className="max-w-sm text-balance leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9"
-          >
-            Samme terrasse — uten og med personvernsfilm. Innsyn dempes uten
-            å gi avkall på lyset.
-          </motion.p>
-        </div>
+        <SectionHeading
+          className="mb-12 lg:mb-16"
+          support={
+            <>
+              Samme terrasse — uten og med personvernfilm. Innsynet forsvinner,
+              lyset blir igjen.
+            </>
+          }
+        >
+          Dra for å se forskjellen.
+        </SectionHeading>
 
         {/* Slider */}
         <motion.div
@@ -166,8 +144,8 @@ export function BeforeAfter() {
         </motion.div>
 
         <div className="mt-5 flex flex-wrap items-center justify-between gap-y-2 font-mono text-[10px] uppercase tracking-[0.18em] text-text-faint lg:text-[11px]">
-          <span>Klart glass — fri innsyn</span>
-          <span>Personvernsfilm — bevart lys</span>
+          <span>Uten film — fritt innsyn</span>
+          <span>Med film — lyset slipper inn</span>
         </div>
       </div>
     </section>
