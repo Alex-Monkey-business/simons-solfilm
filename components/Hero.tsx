@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import { useRef } from "react";
 import { MagneticLink } from "./MagneticLink";
 
@@ -44,14 +43,30 @@ export function Hero() {
             WebkitMaskImage: PHOTO_MASK,
           }}
         >
-          <Image
-            src="/brand/hero-neon.webp"
-            alt="Mørk sportsbil med solfilm i verkstedet, under neonskiltet til Simons Solfilm"
-            fill
-            priority
-            sizes="(max-width: 1024px) 0px, 100vw"
-            className="object-cover object-[25%_62%] lg:object-center"
-          />
+          {/* Two compositions, not one crop. A phone sees a 35% wide slice of
+              the wide shot, which puts the signage straight behind the
+              headline; the portrait frame is built for the overlay instead —
+              sign up top, quiet wall through the middle, car along the bottom.
+              <picture> rather than Next's Image so the browser fetches only
+              the one that matches: images are unoptimized here anyway, so
+              there is nothing to give up. */}
+          <picture>
+            <source
+              media="(min-width: 1024px)"
+              srcSet="/brand/hero-neon.webp"
+              width={2880}
+              height={1621}
+            />
+            <img
+              src="/brand/hero-neon-portrait.webp"
+              alt="Mørk sportsbil med solfilm i verkstedet, under neonskiltet til Simons Solfilm"
+              width={941}
+              height={1672}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover object-center"
+            />
+          </picture>
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
           <div className="absolute inset-0 bg-bg/62 lg:bg-bg/50" />
         </motion.div>
