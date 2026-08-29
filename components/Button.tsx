@@ -37,7 +37,7 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   md: "px-6 py-4 text-sm lg:text-base",
-  sm: "px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em]",
+  sm: "px-4 py-2 font-mono text-[12px] uppercase tracking-[0.16em]",
 };
 
 export function buttonClass({

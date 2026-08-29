@@ -49,7 +49,7 @@ export function About() {
             {facts.map((f, i) => {
               const body = (
                 <>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+                  <dt className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                     {f.label}
                   </dt>
                   <dd className="mt-1.5 text-base text-text">{f.value}</dd>

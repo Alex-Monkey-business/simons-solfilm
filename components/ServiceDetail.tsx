@@ -33,7 +33,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               color="var(--color-accent, #FE7818)"
               className="h-6 w-auto sm:h-7"
             />
-            <span className="hidden font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted sm:inline">
+            <span className="hidden font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted sm:inline">
               ← Tilbake
             </span>
           </Link>
@@ -56,7 +56,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease, delay: 0.1 }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted"
+              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3 py-1.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted"
             >
               <span className="size-1.5 rounded-full bg-accent" />
               <span>{data.eyebrow}</span>
@@ -163,7 +163,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
             <div className="lg:col-span-4 lg:col-start-9">
               <div className="lg:sticky lg:top-28">
                 <div className="rounded-[var(--r-card)] border border-line bg-bg-card p-7 lg:p-8">
-                  <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+                  <div className="mb-6 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                     Kort fortalt
                   </div>
                   <dl className="flex flex-col">
@@ -172,7 +172,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                         key={sp.label}
                         className="flex items-baseline justify-between gap-4 border-t border-line py-3.5 first:border-t-0 first:pt-0"
                       >
-                        <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-faint">
+                        <dt className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-faint">
                           {sp.label}
                         </dt>
                         <dd className="text-right text-sm text-text">
@@ -274,7 +274,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               >
                 <span className="absolute inset-x-0 top-0 h-px bg-line-strong" />
                 <span>
-                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+                  <span className="block font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                     Neste tjeneste
                   </span>
                   <span

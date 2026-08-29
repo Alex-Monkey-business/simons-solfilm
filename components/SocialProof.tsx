@@ -45,23 +45,28 @@ const proofs: Proof[] = [
   },
 ];
 
+/**
+ * The container animates, not the stars. Giving each star its own whileInView
+ * meant some never fired on a phone and sat at opacity 0 — the rating rendered
+ * as two stars out of five. Same failure the phone number had: a star count is
+ * content, and content must never animate in per-glyph.
+ */
 function Stars() {
   return (
-    <span className="inline-flex gap-0.5" aria-hidden>
+    <motion.span
+      className="inline-flex gap-0.5"
+      aria-hidden
+      initial={{ opacity: 0, y: 6 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, ease, delay: 0.2 }}
+    >
       {Array.from({ length: 5 }).map((_, i) => (
-        <motion.svg
-          key={i}
-          viewBox="0 0 24 24"
-          className="size-4 fill-accent"
-          initial={{ opacity: 0, scale: 0.6 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.4, ease, delay: 0.35 + i * 0.07 }}
-        >
+        <svg key={i} viewBox="0 0 24 24" className="size-4 fill-accent">
           <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </motion.svg>
+        </svg>
       ))}
-    </span>
+    </motion.span>
   );
 }
 
@@ -91,7 +96,7 @@ export function SocialProof() {
               className="press lift group flex flex-col justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10"
             >
               <div className="flex items-center justify-between gap-4">
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
+                <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted">
                   {r.source}
                 </span>
                 <span
@@ -117,14 +122,14 @@ export function SocialProof() {
                   >
                     {r.value}
                   </motion.span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted">
                     {r.unit}
                   </span>
                 </div>
 
                 <div className="mt-5 flex items-center gap-3">
                   {r.stars ? <Stars /> : null}
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-faint">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                     {r.meta}
                   </span>
                 </div>
@@ -152,7 +157,7 @@ export function SocialProof() {
           <figcaption className="mt-8 flex items-center gap-4">
             <Stars />
             <span className="text-sm text-text">Gunnar Brenne</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Google · Local Guide
             </span>
           </figcaption>
@@ -179,7 +184,7 @@ export function SocialProof() {
           <figcaption className="mt-4 flex items-center gap-4">
             <Stars />
             <span className="text-sm text-text">Hans Erik Høiby Jondahl</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Google
             </span>
           </figcaption>

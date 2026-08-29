@@ -19,7 +19,7 @@ export default function NotFound() {
         className="h-10 w-auto sm:h-12"
       />
 
-      <p className="mt-12 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted">
+      <p className="mt-12 inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
         <span className="size-1.5 rounded-full bg-accent" />
         <span>404</span>
       </p>

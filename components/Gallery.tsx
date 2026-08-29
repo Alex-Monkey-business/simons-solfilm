@@ -145,7 +145,7 @@ function Tile({
       </motion.div>
       <div className="tile-scrim pointer-events-none absolute inset-0 bg-black/35" />
 
-      <div className="pointer-events-none absolute left-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
+      <div className="pointer-events-none absolute left-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/40 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
         <span className="size-1 rounded-full bg-accent" />
         {item.label}
       </div>

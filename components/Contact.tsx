@@ -90,7 +90,7 @@ export function Contact() {
               {/* Solid knock-back behind the caption — the address sat on his
                   shirt with nothing behind it and barely read. */}
               <div className="absolute inset-x-0 bottom-0 bg-bg/70 px-5 py-4 backdrop-blur-sm lg:px-7 lg:py-5">
-                <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-faint">
+                <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
                   Simon
                 </div>
                 <a
@@ -118,7 +118,7 @@ export function Contact() {
             href={site.phone.href}
             className="press lift group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[300px] lg:p-12"
           >
-            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted">
+            <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
               Ring meg
             </div>
             {/* Animated as one block, deliberately. A per-character stagger
@@ -134,7 +134,7 @@ export function Contact() {
             >
               {PHONE_DISPLAY}
             </motion.div>
-            <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted">
+            <div className="flex items-center justify-between font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
               <span>Hverdager · Etter avtale</span>
               <span
                 aria-hidden
@@ -169,7 +169,7 @@ export function Contact() {
                   className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
                 />
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-text-faint">
+                  <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
                     {l.label}
                   </div>
                   <div

@@ -155,7 +155,7 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
         <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted">
           {s.description}
         </p>
-        <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint lg:text-[11px]">
+        <p className="mt-6 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
           {s.points.join(" · ")}
         </p>
       </div>
@@ -195,7 +195,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease }}
-            className="mb-8 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted lg:mb-10"
+            className="mb-8 inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted lg:mb-10"
           >
             <span className="h-px w-8 bg-line-strong" />
             <span>Andre tjenester</span>
@@ -235,7 +235,7 @@ export function Services() {
                   Tryggere og billigere enn lift.
                 </p>
               </div>
-              <div className="shrink-0 font-mono text-[10px] uppercase tracking-[0.2em] text-text/70 lg:text-[11px]">
+              <div className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-text/90">
                 Tak &amp; solcelle
               </div>
             </div>
@@ -269,7 +269,7 @@ export function Services() {
                   <h3 className="font-display text-xl font-medium leading-tight lg:text-2xl">
                     {s.title}
                   </h3>
-                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-text-faint">
+                  <span className="shrink-0 font-mono text-[12px] uppercase tracking-[0.18em] text-text-faint">
                     {s.tag}
                   </span>
                 </div>

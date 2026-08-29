@@ -121,11 +121,11 @@ export function BeforeAfter() {
             />
           </div>
 
-          <div className="pointer-events-none absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
+          <div className="pointer-events-none absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/50 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
             <span className="size-1 rounded-full bg-text-muted" />
             Før
           </div>
-          <div className="pointer-events-none absolute right-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
+          <div className="pointer-events-none absolute right-5 top-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/50 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
             <span className="size-1 rounded-full bg-accent" />
             Etter
           </div>
@@ -143,7 +143,7 @@ export function BeforeAfter() {
           </motion.div>
         </motion.div>
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-y-2 font-mono text-[10px] uppercase tracking-[0.18em] text-text-faint lg:text-[11px]">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-y-2 font-mono text-[12px] uppercase tracking-[0.18em] text-text-faint">
           <span>Uten film — fritt innsyn</span>
           <span>Med film — lyset slipper inn</span>
         </div>

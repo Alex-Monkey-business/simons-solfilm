@@ -151,7 +151,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.2 }}
-            className="mb-8 hidden items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted lg:mb-10 lg:inline-flex"
+            className="mb-8 hidden items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted lg:mb-10 lg:inline-flex"
           >
             <span className="size-1.5 rounded-full bg-accent" />
             <span>Solfilm · PPF · Drone</span>

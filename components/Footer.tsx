@@ -31,7 +31,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Tjenester">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Tjenester
             </div>
             <ul className="mt-4 flex flex-col gap-2.5">
@@ -50,7 +50,7 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Sosiale medier">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Følg
             </div>
             <ul className="mt-4 flex flex-col gap-2.5">
@@ -71,7 +71,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Kontakt
             </div>
             <ul className="mt-4 flex flex-col gap-2.5">
@@ -97,7 +97,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint sm:flex-row sm:items-center sm:justify-between lg:mt-16">
+        <div className="mt-14 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint sm:flex-row sm:items-center sm:justify-between lg:mt-16">
           <span>Simons Solfilm · Larvik</span>
           <span>© {new Date().getFullYear()}</span>
         </div>

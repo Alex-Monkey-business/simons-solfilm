@@ -112,7 +112,7 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-underline font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted hover:text-text"
+                className="link-underline font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-text"
                 style={{ transition: "color 220ms var(--ease-out)" }}
               >
                 {link.label}
@@ -226,7 +226,7 @@ export function Nav() {
                   <span>Ring meg</span>
                   <span className="font-mono text-sm">{site.phone.display}</span>
                 </a>
-                <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
+                <div className="text-center font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                   Simons Solfilm · Hegdal industriområde · Larvik
                 </div>
               </motion.div>
