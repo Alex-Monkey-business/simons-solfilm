@@ -123,7 +123,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   <h3 className="font-display text-xl font-medium lg:text-2xl">
                     {b.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted lg:text-base">
+                  <p className="mt-3 text-base leading-relaxed text-text-muted">
                     {b.body}
                   </p>
                 </motion.div>
@@ -152,7 +152,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                     <h3 className="font-display text-lg font-medium sm:w-1/3 sm:shrink-0 lg:text-xl">
                       {f.name}
                     </h3>
-                    <p className="text-sm leading-relaxed text-text-muted lg:text-base">
+                    <p className="text-base leading-relaxed text-text-muted">
                       {f.body}
                     </p>
                   </motion.div>
@@ -207,7 +207,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   <h3 className="mt-4 font-display text-lg font-medium lg:text-xl">
                     {p.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-text-muted">
+                  <p className="mt-2.5 text-base leading-relaxed text-text-muted">
                     {p.body}
                   </p>
                 </motion.div>
@@ -235,7 +235,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   <h3 className="font-display text-lg font-medium lg:text-xl">
                     {item.q}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted lg:text-base">
+                  <p className="mt-3 text-base leading-relaxed text-text-muted">
                     {item.a}
                   </p>
                 </motion.div>
@@ -252,7 +252,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
                   Ring meg, så tar vi en prat.
                 </h2>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-text-muted lg:text-base">
+                <p className="mt-4 max-w-md text-base leading-relaxed text-text-muted">
                   Send meg et bilde, så får du pris raskt.
                 </p>
               </div>

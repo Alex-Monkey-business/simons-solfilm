@@ -152,7 +152,7 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
           aria-hidden
           className="door-rule mt-5 block h-px w-full origin-left bg-accent"
         />
-        <p className="mt-5 max-w-md text-sm leading-relaxed text-text-muted lg:text-base">
+        <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted">
           {s.description}
         </p>
         <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint lg:text-[11px]">
@@ -230,7 +230,7 @@ export function Services() {
                 <h3 className="font-display text-2xl font-medium leading-tight lg:text-3xl">
                   Dronebefaring
                 </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-text/85">
+                <p className="mt-3 max-w-md text-base leading-relaxed text-text/85">
                   Befaring av tak, fasade og steder du ikke kommer til.
                   Tryggere og billigere enn lift.
                 </p>
@@ -273,7 +273,7 @@ export function Services() {
                     {s.tag}
                   </span>
                 </div>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-text-muted">
+                <p className="mt-3 max-w-md text-base leading-relaxed text-text-muted">
                   {s.description}
                 </p>
               </motion.div>

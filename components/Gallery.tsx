@@ -157,7 +157,7 @@ function Tile({
           </div>
           <p
             data-detail
-            className="mt-1.5 max-w-md text-sm leading-snug text-text/85 lg:mt-2"
+            className="mt-1.5 max-w-md text-base leading-snug text-text/85 lg:mt-2"
           >
             {item.detail}
           </p>
