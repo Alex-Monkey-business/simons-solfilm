@@ -60,15 +60,19 @@ export function Hero() {
             <img
               src="/brand/hero-neon-portrait.webp"
               alt="Mørk sportsbil med solfilm i verkstedet, under neonskiltet til Simons Solfilm"
-              width={941}
-              height={1672}
+              width={1440}
+              height={2560}
               fetchPriority="high"
               decoding="async"
               className="absolute inset-0 size-full object-cover object-center"
             />
           </picture>
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
-          <div className="absolute inset-0 bg-bg/62 lg:bg-bg/50" />
+          {/* Measured against the brightest 2% of each text band: 40% still puts
+              the headline at 5.7:1 and the body at 6.4:1, past the 4.5 required,
+              because the portrait frame is already dark where the type sits.
+              The wide shot is busier behind the headline and needs 50%. */}
+          <div className="absolute inset-0 bg-bg/40 lg:bg-bg/50" />
         </motion.div>
       </motion.div>
 
