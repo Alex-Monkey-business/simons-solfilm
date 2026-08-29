@@ -68,11 +68,12 @@ export function Hero() {
             />
           </picture>
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
-          {/* Measured against the brightest 2% of each text band: 40% still puts
-              the headline at 5.7:1 and the body at 6.4:1, past the 4.5 required,
+          {/* Measured against the brightest 2% of each text band: 48% puts the
+              headline at 5.1:1 and the body at 7.2:1 once the source shadows are
+              lifted (gamma 1.45), past the 4.5 required,
               because the portrait frame is already dark where the type sits.
               The wide shot is busier behind the headline and needs 50%. */}
-          <div className="absolute inset-0 bg-bg/40 lg:bg-bg/50" />
+          <div className="absolute inset-0 bg-bg/48 lg:bg-bg/50" />
         </motion.div>
       </motion.div>
 
