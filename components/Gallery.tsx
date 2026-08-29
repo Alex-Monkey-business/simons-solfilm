@@ -67,7 +67,7 @@ const items: Item[] = [
   {
     src: "/brand/pics_work/tinted_winter_garden_sanden.webp",
     alt: "Leilighetsbygg med mørktonede innglassede balkonger",
-    label: "Personvernfilm",
+    label: "Innsynsfilm",
     caption: "Leilighetsbygg",
     detail: "Mørktonet innglasset balkong — privatliv uten å miste lyset.",
     href: "/solfilm-bygg",

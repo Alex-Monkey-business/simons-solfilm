@@ -117,7 +117,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
       {
         title: "Demper innsyn",
-        body: "Personvernsfilm gir deg privatliv mot innsyn uten at du mister dagslyset.",
+        body: "Frostet film demper innsyn uten at du mister dagslyset.",
       },
       {
         title: "Mindre blending",
@@ -134,7 +134,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         body: "Demper varmen fra sola og jevner ut temperaturen i bolig og næringsbygg.",
       },
       {
-        name: "Frostet personvernfilm",
+        name: "Frostet innsynsfilm",
         body: "Stort utvalg — gir privatliv på balkong, bad, møterom og fasade uten å miste lyset.",
       },
       {
@@ -145,7 +145,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     specs: [
       { label: "Bruksområder", value: "Bolig, kontor, butikk, næringsbygg" },
       { label: "Varmeavvisning", value: "Reduserer varme merkbart" },
-      { label: "Personvern", value: "Frostet film i stort utvalg" },
+      { label: "Innsyn", value: "Frostet film i stort utvalg" },
       { label: "Montering", value: "Hos deg / på byggeplass" },
       { label: "Dekningsområde", value: "Hele Vestfold" },
     ],
@@ -158,7 +158,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         step: "02",
         title: "Vi velger film",
-        body: "Vi finner riktig film for behovet — varmedemping, personvern eller dekor.",
+        body: "Vi finner riktig film for behovet — varmedemping, innsyn eller dekor.",
       },
       {
         step: "03",
@@ -177,8 +177,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         a: "Ja. Privatkunder i nærområdet og næringskunder over hele Vestfold — jeg kommer ut og monterer på stedet.",
       },
       {
-        q: "Mister jeg dagslyset med personvernfilm?",
-        a: "Nei. Frostet personvernfilm demper innsyn, men slipper fortsatt inn lyset.",
+        q: "Mister jeg dagslyset med innsynsfilm?",
+        a: "Nei. Frostet film demper innsyn, men slipper fortsatt inn lyset.",
       },
       {
         q: "Må jeg bytte vinduer?",

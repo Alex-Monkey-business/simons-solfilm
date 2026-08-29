@@ -72,7 +72,7 @@ export function BeforeAfter() {
           className="mb-12 lg:mb-16"
           support={
             <>
-              Samme terrasse — uten og med personvernfilm. Innsynet forsvinner,
+              Samme terrasse — uten og med frostet film. Innsynet forsvinner,
               lyset blir igjen.
             </>
           }
