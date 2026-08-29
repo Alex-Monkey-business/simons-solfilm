@@ -175,7 +175,7 @@ export function Gallery() {
   return (
     <section
       id="galleri"
-      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28"
+      className="relative w-full bg-bg px-6 py-14 lg:px-10 lg:py-28"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* Header */}

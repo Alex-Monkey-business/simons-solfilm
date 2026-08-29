@@ -21,8 +21,32 @@ const ease = [0.23, 1, 0.32, 1] as const;
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // On a phone the call button in the hero and the one up here are the same
+  // action a couple of centimetres apart. This one earns its place only once
+  // the hero's has scrolled away, so the threshold is measured from that
+  // button rather than guessed.
+  const [ctaBottom, setCtaBottom] = useState(560);
+  const [pastCta, setPastCta] = useState(false);
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
+  useMotionValueEvent(scrollY, "change", (v) => {
+    setScrolled(v > 40);
+    setPastCta(v > ctaBottom);
+  });
+
+  useEffect(() => {
+    const measure = () => {
+      const el = document.querySelector<HTMLElement>(
+        'main section:first-of-type a[href^="tel:"]',
+      );
+      if (el) {
+        const r = el.getBoundingClientRect();
+        setCtaBottom(r.bottom + window.scrollY - 24);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   // Body scroll lock + Esc to close
   useEffect(() => {
@@ -97,7 +121,9 @@ export function Nav() {
           <div className="flex items-center gap-2">
             <a
               href="tel:+4797474347"
-              className="press inline-flex items-center gap-2 rounded-full bg-text px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-bg hover:bg-accent"
+              className={`press items-center gap-2 rounded-full bg-text px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-bg hover:bg-accent sm:inline-flex ${
+                pastCta ? "inline-flex" : "hidden"
+              }`}
               style={{
                 transition:
                   "background-color 220ms var(--ease-out), transform 160ms var(--ease-out)",

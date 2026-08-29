@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative w-full overflow-hidden bg-bg pt-28 lg:min-h-[min(92svh,880px)] lg:pt-32"
+      className="relative w-full overflow-hidden bg-bg pt-40 lg:min-h-[min(92svh,880px)] lg:pt-32"
     >
       <motion.div
         style={{ y: photoY }}
@@ -85,7 +85,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.2 }}
-            className="mb-8 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted lg:mb-10"
+            className="mb-8 hidden items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted lg:mb-10 lg:inline-flex"
           >
             <span className="size-1.5 rounded-full bg-accent" />
             <span>Solfilm · PPF · Drone</span>
@@ -157,7 +157,7 @@ export function Hero() {
             </MagneticLink>
             <a
               href="#tjenester"
-              className="press group inline-flex items-center justify-center gap-3 rounded-full border border-line-strong bg-bg/60 px-7 py-4 text-sm font-medium tracking-tight text-text backdrop-blur-sm hover:border-text"
+              className="press group hidden items-center justify-center gap-3 rounded-full border border-line-strong bg-bg/60 px-7 py-4 text-sm font-medium tracking-tight text-text backdrop-blur-sm hover:border-text lg:inline-flex"
               style={{
                 transition:
                   "border-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
