@@ -149,3 +149,32 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Keyboard focus. The site had no focus indicator at all, which leaves anyone
+   navigating by keyboard with nothing to follow — and a visible indicator is
+   required of Norwegian commercial sites (WCAG 2.1 AA, 2.4.7). :focus-visible
+   keeps it off mouse clicks, so nothing changes for pointer users. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Skip link — off-screen until it takes focus, then the first stop on the page.
+   Sits above the splash (z 100) so it is reachable even during the intro. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform: translateY(-130%);
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #0a0a0a;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-bottom-right-radius: var(--r-sm);
+  transition: transform 200ms var(--ease-out);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}

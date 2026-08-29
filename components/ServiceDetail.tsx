@@ -44,7 +44,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </div>
       </header>
 
-      <main className="bg-bg">
+      <main id="innhold" className="bg-bg">
         {/* Hero */}
         <section className="relative w-full overflow-hidden px-6 pt-32 lg:px-10 lg:pt-40">
           <div className="mx-auto max-w-[1280px]">

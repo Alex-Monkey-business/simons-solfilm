@@ -3,6 +3,7 @@ import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { MotionProvider } from "@/components/MotionProvider";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -28,6 +29,69 @@ export const metadata: Metadata = {
   description:
     "Lokal håndverker i Larvik. Solfilm til bil, bygg og hytte. Lakkbeskyttelse (PPF), lyktefolie og takbefaring med drone. 100% anbefaling på Facebook.",
   metadataBase: new URL("https://simonssolfilm.no"),
+  // No title/description here on purpose: Next falls back to each page's own
+  // title and description, so the service pages share correctly too.
+  openGraph: {
+    type: "website",
+    locale: "nb_NO",
+    siteName: "Simons Solfilm",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Porsche 911 med solfilm i Simons verksted i Larvik",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.jpg"],
+  },
+};
+
+// Everything here is taken from the page itself — nothing invented. Opening
+// hours are deliberately absent ("hverdager, etter avtale" has no schema
+// equivalent), and so is aggregateRating: Google disallows a business marking
+// up its own review scores.
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Simons Solfilm",
+  description:
+    "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, dronebefaring, trykk på klær og kurs i solfilm.",
+  url: "https://simonssolfilm.no",
+  image: "https://simonssolfilm.no/og.jpg",
+  telephone: "+4797474347",
+  email: "post@simonssolfilm.no",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hegdalveien 65c",
+    postalCode: "3261",
+    addressLocality: "Larvik",
+    addressCountry: "NO",
+  },
+  areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
+  sameAs: [
+    "https://www.instagram.com/simonssolfilm/",
+    "https://www.facebook.com/profile.php?id=100054592143676",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Tjenester",
+    itemListElement: [
+      "Solfilm til bil",
+      "Solfilm til bygg",
+      "Lakkbeskyttelse / PPF",
+      "Lyktefolie",
+      "Dronebefaring",
+      "Trykk på klær",
+      "Kurs i solfilm",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name },
+    })),
+  },
 };
 
 export default function RootLayout({
@@ -41,8 +105,15 @@ export default function RootLayout({
       className={`${fraunces.variable} ${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-bg text-text">
+        <a href="#innhold" className="skip-link">
+          Hopp til innhold
+        </a>
         <SmoothScroll />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        />
       </body>
     </html>
   );
