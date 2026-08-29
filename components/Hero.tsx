@@ -7,12 +7,13 @@ import { MagneticLink } from "./MagneticLink";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
-// The photo is a backdrop, not a card: it fills the right of the hero and is
-// masked away toward the headline so the type still sits on clean black. Two
-// masks — one horizontal, one vertical — are intersected so it also dissolves
-// into the section below instead of ending on a hard edge.
+// A composed full-bleed backdrop. Measured against the headline area, a solid
+// 50% knock-back puts even the brightest 2% of pixels at 6.6:1 against the
+// cream — past the 4.5 body text requires — so no horizontal mask is needed
+// and the composition survives intact. The vertical fade only dissolves the
+// image into the section below instead of ending it on a hard edge.
 const PHOTO_MASK =
-  "linear-gradient(to right, transparent 0%, transparent 30%, #000 72%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 54%, transparent 96%)";
+  "linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%)";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export function Hero() {
     >
       <motion.div
         style={{ y: photoY }}
-        className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[64%] select-none lg:block"
+        className="pointer-events-none absolute inset-0 z-0 hidden select-none lg:block"
       >
         <motion.div
           className="absolute inset-0"
@@ -41,17 +42,15 @@ export function Hero() {
           style={{
             maskImage: PHOTO_MASK,
             WebkitMaskImage: PHOTO_MASK,
-            maskComposite: "intersect",
-            WebkitMaskComposite: "source-in",
           }}
         >
           <Image
-            src="/brand/pics_work/blue_mercedes.webp"
-            alt="Mercedes AMG med solfilm ferdig montert i Simons verksted"
+            src="/brand/hero-neon.webp"
+            alt="Mørk sportsbil med solfilm i verkstedet, under neonskiltet til Simons Solfilm"
             fill
             priority
-            sizes="(max-width: 1024px) 0px, 64vw"
-            className="object-cover object-[60%_center]"
+            sizes="(max-width: 1024px) 0px, 100vw"
+            className="object-cover object-center"
           />
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
           <div className="absolute inset-0 bg-bg/50" />
