@@ -32,7 +32,7 @@ export function Hero() {
     >
       <motion.div
         style={{ y: photoY }}
-        className="pointer-events-none absolute inset-0 z-0 hidden select-none lg:block"
+        className="pointer-events-none absolute inset-0 z-0 select-none"
       >
         <motion.div
           className="absolute inset-0"
@@ -50,10 +50,10 @@ export function Hero() {
             fill
             priority
             sizes="(max-width: 1024px) 0px, 100vw"
-            className="object-cover object-center"
+            className="object-cover object-[25%_62%] lg:object-center"
           />
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
-          <div className="absolute inset-0 bg-bg/50" />
+          <div className="absolute inset-0 bg-bg/62 lg:bg-bg/50" />
         </motion.div>
       </motion.div>
 

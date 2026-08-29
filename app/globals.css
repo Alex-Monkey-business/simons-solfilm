@@ -178,3 +178,12 @@ body {
 .skip-link:focus-visible {
   transform: translateY(0);
 }
+
+/* Entrance animations translate horizontally before they trigger — the second
+   service card sits 48px to the right until it scrolls into view — which gives
+   the page real horizontal scroll on phones. `clip` rather than `hidden` so it
+   cannot create a scroll container and break sticky positioning. */
+html,
+body {
+  overflow-x: clip;
+}
