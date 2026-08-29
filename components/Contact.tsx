@@ -2,34 +2,32 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
-const PHONE_DISPLAY = "974 74 347";
+const PHONE_DISPLAY = site.phone.display;
 
 const links = [
   {
     label: "E-post",
-    value: "post@simonssolfilm.no",
-    href: "mailto:post@simonssolfilm.no",
+    value: site.email,
+    href: `mailto:${site.email}`,
     external: false,
   },
   {
     label: "Instagram",
     value: "@simonssolfilm",
-    href: "https://www.instagram.com/simonssolfilm/",
+    href: site.social.instagram,
     external: true,
   },
   {
     label: "Facebook",
     value: "Simons Solfilm",
-    href: "https://www.facebook.com/profile.php?id=100054592143676",
+    href: site.social.facebook,
     external: true,
   },
 ];
-
-const MAPS =
-  "https://www.google.com/maps/search/?api=1&query=Hegdalveien+65c+3261+Larvik";
 
 export function Contact() {
   return (
@@ -54,7 +52,7 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, ease, delay: 0.08 }}
-              className="font-display text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[1]"
+              className="font-display text-[clamp(2.5rem,6.5vw,5.5rem)] font-normal leading-[1]"
             >
               Ta kontakt, så{" "}
               <span className="font-display-italic text-accent">fikser</span>{" "}
@@ -96,13 +94,13 @@ export function Contact() {
                   Simon
                 </div>
                 <a
-                  href={MAPS}
+                  href={site.address.maps}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="press link-underline mt-1 inline-block font-display text-xl font-medium text-text hover:text-accent lg:text-2xl"
                   style={{ transition: "color 220ms var(--ease-out)" }}
                 >
-                  Hegdalveien 65c, Larvik
+                  {site.address.street}, {site.address.city}
                 </a>
               </div>
             </div>
@@ -117,7 +115,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.25 }}
-            href="tel:+4797474347"
+            href={site.phone.href}
             className="press lift group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[300px] lg:p-12"
           >
             <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted">
@@ -132,7 +130,7 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, ease, delay: 0.3 }}
-              className="font-display text-[clamp(2.25rem,6vw,5rem)] font-medium leading-none tracking-tight text-text"
+              className="font-display text-[clamp(2.25rem,6vw,5rem)] font-normal leading-none tracking-tight text-text"
             >
               {PHONE_DISPLAY}
             </motion.div>

@@ -1,90 +1,69 @@
 "use client";
 
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useTransform,
-  animate,
-} from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
-const GOOGLE_URL =
-  "https://www.google.com/search?q=Simons+Solfilm+Larvik+anmeldelser";
-const FACEBOOK_URL =
-  "https://www.facebook.com/profile.php?id=100054592143676";
+import { site } from "@/lib/site";
 
-function CountUp({
-  to,
-  decimals = 0,
-  suffix = "",
-}: {
-  to: number;
-  decimals?: number;
-  suffix?: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => v.toFixed(decimals).replace(".", ","));
+/**
+ * These are two different measurements from two different platforms, and the
+ * old card pair rendered them as twins: "5,0" and "100%" in identical display
+ * type, both under five gold stars.
+ *
+ * Facebook has not had star ratings since 2018 — it asks whether you would
+ * recommend a business, yes or no. "100% anbefaling" is that recommendation
+ * rate, and the five stars underneath it were a rating that does not exist.
+ * Google does use stars, so it keeps them.
+ */
+type Proof = {
+  source: string;
+  value: string;
+  unit: string;
+  meta: string;
+  stars: boolean;
+  href: string;
+};
 
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(mv, to, { duration: 1.6, ease });
-    return controls.stop;
-  }, [inView, mv, to]);
+const proofs: Proof[] = [
+  {
+    source: "Google",
+    value: "5,0",
+    unit: "av 5",
+    meta: "4 anmeldelser",
+    stars: true,
+    href: site.social.googleMaps,
+  },
+  {
+    source: "Facebook",
+    value: "100 %",
+    unit: "vil anbefale",
+    meta: "37 anbefalinger",
+    stars: false,
+    href: site.social.facebook,
+  },
+];
 
-  useEffect(() => {
-    return rounded.on("change", (v) => {
-      if (ref.current) ref.current.textContent = `${v}${suffix}`;
-    });
-  }, [rounded, suffix]);
-
+function Stars() {
   return (
-    <span ref={ref} className="tabular-nums">
-      {(0).toFixed(decimals).replace(".", ",")}
-      {suffix}
-    </span>
-  );
-}
-
-function Stars({ className = "" }: { className?: string }) {
-  return (
-    <span className={`inline-flex gap-0.5 ${className}`} aria-hidden>
+    <span className="inline-flex gap-0.5" aria-hidden>
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 24 24" className="size-4 fill-accent">
+        <motion.svg
+          key={i}
+          viewBox="0 0 24 24"
+          className="size-4 fill-accent"
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.4, ease, delay: 0.35 + i * 0.07 }}
+        >
           <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
+        </motion.svg>
       ))}
     </span>
   );
 }
-
-// The Google card carried "4 anmeldelser" next to Facebook's 37. The small
-// number pulled the big one down, so the score stands on its own.
-const ratings = [
-  {
-    source: "Google",
-    value: 5,
-    decimals: 1,
-    suffix: "",
-    scoreLabel: "av 5",
-    count: null,
-    href: GOOGLE_URL,
-  },
-  {
-    source: "Facebook",
-    value: 100,
-    decimals: 0,
-    suffix: "%",
-    scoreLabel: "anbefaling",
-    count: "37 anmeldelser",
-    href: FACEBOOK_URL,
-  },
-];
 
 export function SocialProof() {
   return (
@@ -96,10 +75,10 @@ export function SocialProof() {
           Dette sier kundene mine.
         </SectionHeading>
 
-        {/* The only boxes in this section — so they read as data panels
-            against the borderless quotes underneath. */}
+        {/* Platform name leads and the arrow sits with it, so the card has a
+            header instead of two labels floating in a right-hand column. */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {ratings.map((r, i) => (
+          {proofs.map((r, i) => (
             <motion.a
               key={r.source}
               href={r.href}
@@ -109,37 +88,46 @@ export function SocialProof() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, ease, delay: i * 0.1 }}
-              className="press lift group flex items-center justify-between gap-6 rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10"
+              className="press lift group flex flex-col justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10"
             >
-              <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-[clamp(3rem,7vw,5.5rem)] font-medium leading-none tracking-tight text-accent">
-                    <CountUp to={r.value} decimals={r.decimals} suffix={r.suffix} />
-                  </span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-faint">
-                    {r.scoreLabel}
-                  </span>
-                </div>
-                <div className="mt-4 flex items-center gap-3">
-                  <Stars />
-                  {r.count ? (
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
-                      {r.count}
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-              <div className="flex flex-col items-end gap-3">
+              <div className="flex items-center justify-between gap-4">
                 <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
                   {r.source}
                 </span>
                 <span
                   aria-hidden
-                  className="font-mono text-sm text-text-muted transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-accent"
+                  className="font-mono text-sm text-text-faint transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-accent"
                   style={{ transitionTimingFunction: "var(--ease-out)" }}
                 >
                   ↗
                 </span>
+              </div>
+
+              <div>
+                {/* The number rises into place rather than counting up from
+                    zero: this is the proof, and its first frame should never
+                    read "0,0 av 5". The stars carry the motion instead. */}
+                <div className="flex items-baseline gap-3">
+                  <motion.span
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.7, ease, delay: 0.15 }}
+                    className="font-display text-[clamp(3rem,7vw,5.5rem)] font-normal leading-none tracking-tight text-accent"
+                  >
+                    {r.value}
+                  </motion.span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
+                    {r.unit}
+                  </span>
+                </div>
+
+                <div className="mt-5 flex items-center gap-3">
+                  {r.stars ? <Stars /> : null}
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-faint">
+                    {r.meta}
+                  </span>
+                </div>
               </div>
             </motion.a>
           ))}

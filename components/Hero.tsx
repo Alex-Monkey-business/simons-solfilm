@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { MagneticLink } from "./MagneticLink";
 import { buttonClass } from "./Button";
+import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -93,7 +94,7 @@ export function Hero() {
             <span>Solfilm · PPF · Drone</span>
           </motion.div>
 
-          <h1 className="font-display text-balance text-[clamp(2.75rem,7.5vw,6.5rem)] font-medium leading-[1] text-text">
+          <h1 className="font-display text-balance text-[clamp(2.75rem,7.5vw,6.5rem)] font-normal leading-[1] text-text">
             <span className="block overflow-hidden pb-[0.08em]">
               <motion.span
                 initial={{ y: "110%" }}
@@ -139,7 +140,7 @@ export function Hero() {
             className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:col-start-7"
           >
             <MagneticLink
-              href="tel:+4797474347"
+              href={site.phone.href}
               strength={0.4}
               radius={160}
               className={buttonClass({ variant: "primary", className: "group" })}

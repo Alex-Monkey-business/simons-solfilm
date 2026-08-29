@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { LogoMark } from "@/components/LogoMark";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Fant ikke siden — Simons Solfilm",
@@ -23,7 +24,7 @@ export default function NotFound() {
         <span>404</span>
       </p>
 
-      <h1 className="mt-6 font-display text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] text-text">
+      <h1 className="mt-6 font-display text-[clamp(2.25rem,6vw,4.5rem)] font-normal leading-[1.05] text-text">
         Denne siden{" "}
         <span className="font-display-italic text-text-muted">finnes ikke.</span>
       </h1>
@@ -34,9 +35,9 @@ export default function NotFound() {
       </p>
 
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Button href="tel:+4797474347" variant="primary" className="group">
+        <Button href={site.phone.href} variant="primary" className="group">
           <span>Ring meg</span>
-          <span aria-hidden>974 74 347</span>
+          <span aria-hidden>{site.phone.display}</span>
         </Button>
         <Button href="/" variant="secondary">
           <span aria-hidden className="text-text-muted">

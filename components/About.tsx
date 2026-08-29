@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -8,12 +9,9 @@ const ease = [0.23, 1, 0.32, 1] as const;
 // a 2×2 grid, and it said the same thing as "Dekker / Hele Vestfold".
 const facts = [
   { label: "Erfaring", value: "20+ år" },
-  { label: "Verksted", value: "Hegdalveien 65c, Larvik" },
+  { label: "Verksted", value: `${site.address.street}, ${site.address.city}` },
   { label: "Dekker", value: "Hele Vestfold" },
 ];
-
-const MAPS =
-  "https://www.google.com/maps/search/?api=1&query=Hegdalveien+65c+3261+Larvik";
 
 export function About() {
   return (
@@ -37,7 +35,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease, delay: 0.08 }}
-            className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02]"
+            className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-normal leading-[1.02]"
           >
             Én håndverker,{" "}
             <span className="font-display-italic text-text-muted">
@@ -80,7 +78,7 @@ export function About() {
                   />
                   {f.label === "Verksted" ? (
                     <a
-                      href={MAPS}
+                      href={site.address.maps}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link-underline block hover:text-accent"

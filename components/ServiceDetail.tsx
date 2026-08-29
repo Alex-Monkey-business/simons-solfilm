@@ -8,6 +8,7 @@ import { Footer } from "./Footer";
 import { LogoMark } from "./LogoMark";
 import { serviceDetails } from "./serviceDetails";
 import type { ServiceDetail as ServiceDetailData } from "./serviceDetails";
+import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -38,10 +39,10 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
           </Link>
 
           <a
-            href="tel:+4797474347"
+            href={site.phone.href}
             className={buttonClass({ variant: "primary", size: "sm" })}
           >
-            <span className="hidden sm:inline">974 74 347</span>
+            <span className="hidden sm:inline">{site.phone.display}</span>
             <span className="sm:hidden">Ring</span>
           </a>
         </div>
@@ -61,7 +62,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               <span>{data.eyebrow}</span>
             </motion.div>
 
-            <h1 className="max-w-3xl font-display text-[clamp(2.75rem,7.5vw,6rem)] font-medium leading-[1] text-text">
+            <h1 className="max-w-3xl font-display text-[clamp(2.75rem,7.5vw,6rem)] font-normal leading-[1] text-text">
               <motion.span
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -256,7 +257,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-                <Button href="tel:+4797474347" variant="primary">
+                <Button href={site.phone.href} variant="primary">
                   <span>Ring meg</span>
                   <span aria-hidden>→</span>
                 </Button>

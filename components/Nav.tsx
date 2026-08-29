@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { buttonClass } from "./Button";
+import { site } from "@/lib/site";
 
 const links = [
   { label: "Tjenester", href: "#tjenester" },
@@ -121,14 +122,14 @@ export function Nav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+4797474347"
+              href={site.phone.href}
               className={buttonClass({
                 variant: "primary",
                 size: "sm",
                 className: `sm:inline-flex ${pastCta ? "inline-flex" : "hidden"}`,
               })}
             >
-              <span className="hidden sm:inline">974 74 347</span>
+              <span className="hidden sm:inline">{site.phone.display}</span>
               <span className="sm:hidden">Ring</span>
             </a>
 
@@ -215,7 +216,7 @@ export function Nav() {
                 className="flex flex-col gap-3"
               >
                 <a
-                  href="tel:+4797474347"
+                  href={site.phone.href}
                   onClick={() => setOpen(false)}
                   className={buttonClass({
                     variant: "primary",
@@ -223,7 +224,7 @@ export function Nav() {
                   })}
                 >
                   <span>Ring meg</span>
-                  <span className="font-mono text-sm">974 74 347</span>
+                  <span className="font-mono text-sm">{site.phone.display}</span>
                 </a>
                 <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
                   Simons Solfilm · Hegdal industriområde · Larvik

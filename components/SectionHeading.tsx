@@ -37,7 +37,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease, delay: 0.08 }}
-          className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-medium leading-[1.02] text-balance"
+          className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-normal leading-[1.02] text-balance"
         >
           {children}
         </motion.h2>

@@ -4,6 +4,7 @@ import "./globals.css";
 import "lenis/dist/lenis.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { MotionProvider } from "@/components/MotionProvider";
+import { site } from "@/lib/site";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   title: "Simons Solfilm — Solfilm, lakkbeskyttelse & drone i Larvik",
   description:
     "Lokal håndverker i Larvik. Solfilm til bil, bygg og hytte. Lakkbeskyttelse (PPF), lyktefolie og takbefaring med drone. 100% anbefaling på Facebook.",
-  metadataBase: new URL("https://simonssolfilm.no"),
+  metadataBase: new URL(site.url),
   // No title/description here on purpose: Next falls back to each page's own
   // title and description, so the service pages share correctly too.
   openGraph: {
@@ -60,22 +61,19 @@ const localBusiness = {
   name: "Simons Solfilm",
   description:
     "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, dronebefaring, trykk på klær og kurs i solfilm.",
-  url: "https://simonssolfilm.no",
-  image: "https://simonssolfilm.no/og.jpg",
-  telephone: "+4797474347",
-  email: "post@simonssolfilm.no",
+  url: site.url,
+  image: `${site.url}/og.jpg`,
+  telephone: site.phone.e164,
+  email: site.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Hegdalveien 65c",
-    postalCode: "3261",
-    addressLocality: "Larvik",
+    streetAddress: site.address.street,
+    postalCode: site.address.postal,
+    addressLocality: site.address.city,
     addressCountry: "NO",
   },
   areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
-  sameAs: [
-    "https://www.instagram.com/simonssolfilm/",
-    "https://www.facebook.com/profile.php?id=100054592143676",
-  ],
+  sameAs: [site.social.instagram, site.social.facebook],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Tjenester",

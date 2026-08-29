@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 /**
- * One button, three roles.
+ * One button, two roles.
  *
  * The shape system is borrowed from Wispr Flow and nothing else is: buttons
  * are 12px rectangles, badges stay full pills, cards stay 2rem. Shape tells
@@ -14,7 +14,7 @@ import type { ReactNode } from "react";
  * edge is drawn in our own palette (accent-deep on accent, line-strong on
  * transparent), so the geometry travels and the colour does not.
  */
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary";
 type Size = "md" | "sm";
 
 const base =
@@ -33,9 +33,6 @@ const variants: Record<Variant, string> = {
   // a transparent one would ride whatever is behind it.
   secondary:
     "bg-bg-card/90 border-line-strong text-text hover:border-text hover:bg-bg-elev",
-  // No border, no fill. Tertiary actions and inline links.
-  ghost:
-    "border-transparent text-text-muted hover:text-text px-0 py-0 link-underline",
 };
 
 const sizes: Record<Size, string> = {
@@ -52,9 +49,7 @@ export function buttonClass({
   size?: Size;
   className?: string;
 } = {}) {
-  return `${base} ${variants[variant]} ${
-    variant === "ghost" ? "" : sizes[size]
-  } ${className}`;
+  return `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 }
 
 export function Button({

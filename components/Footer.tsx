@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { LogoMark } from "./LogoMark";
+import { site } from "@/lib/site";
 
 const socials = [
-  { label: "Instagram", href: "https://www.instagram.com/simonssolfilm/" },
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=100054592143676",
-  },
+  { label: "Instagram", href: site.social.instagram },
+  { label: "Facebook", href: site.social.facebook },
 ];
 
 const pages = [
@@ -26,9 +24,9 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <LogoMark className="h-7 w-auto" color="var(--accent)" />
             <address className="mt-5 text-sm not-italic leading-relaxed text-text-muted">
-              Hegdalveien 65c
+              {site.address.street}
               <br />
-              3261 Larvik
+              {site.address.postal} {site.address.city}
             </address>
           </div>
 
@@ -79,20 +77,20 @@ export function Footer() {
             <ul className="mt-4 flex flex-col gap-2.5">
               <li>
                 <a
-                  href="tel:+4797474347"
+                  href={site.phone.href}
                   className="link-underline text-sm text-text-muted hover:text-text"
                   style={{ transition: "color 220ms var(--ease-out)" }}
                 >
-                  974 74 347
+                  {site.phone.display}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:post@simonssolfilm.no"
+                  href={`mailto:${site.email}`}
                   className="link-underline text-sm text-text-muted hover:text-text"
                   style={{ transition: "color 220ms var(--ease-out)" }}
                 >
-                  post@simonssolfilm.no
+                  {site.email}
                 </a>
               </li>
             </ul>
