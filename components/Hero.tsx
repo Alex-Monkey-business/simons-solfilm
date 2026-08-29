@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MagneticLink } from "./MagneticLink";
 import { buttonClass } from "./Button";
 import { site } from "@/lib/site";
@@ -13,11 +13,52 @@ const ease = [0.23, 1, 0.32, 1] as const;
 // cream — past the 4.5 body text requires — so no horizontal mask is needed
 // and the composition survives intact. The vertical fade only dissolves the
 // image into the section below instead of ending it on a hard edge.
+// 1 = as encoded. The slow motion is baked into the file now (real
+// interpolated in-between frames), so slowing playback here would only bring
+// back the frame-holding judder it was built to avoid.
+const HERO_LOOP_SPEED = 1;
+
 const PHOTO_MASK =
   "linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%)";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  // The loop is 1.5 MB against the portrait still's 177 kB, so a phone never
+  // fetches it: the <video> is only mounted once we know we are on a wide
+  // viewport, and never for someone who asked for less motion. The still
+  // underneath is the poster either way, so there is no empty frame to cover.
+  // Two encodes, not one crop. A phone shows roughly the middle 35% of a 16:9
+  // frame, so the mobile file is cropped to 448x720 in the encode itself and
+  // spends none of its bits on pixels the viewport throws away — 1.2 MB
+  // instead of the 2.6 MB desktop file.
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () =>
+      setVideoSrc(
+        still.matches
+          ? null
+          : wide.matches
+            ? "/brand/videoes/hero-loop.mp4"
+            : "/brand/videoes/hero-loop-mobil.mp4",
+      );
+    update();
+    wide.addEventListener("change", update);
+    still.addEventListener("change", update);
+    return () => {
+      wide.removeEventListener("change", update);
+      still.removeEventListener("change", update);
+    };
+  }, []);
+
+  // Kept as a single knob, but it should stay at 1: see HERO_LOOP_SPEED.
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = HERO_LOOP_SPEED;
+  }, [videoSrc]);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -69,6 +110,28 @@ export function Hero() {
               className="absolute inset-0 size-full object-cover object-center"
             />
           </picture>
+          {videoSrc ? (
+            <video
+              key={videoSrc}
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden
+              tabIndex={-1}
+              onCanPlay={() => setVideoReady(true)}
+              className="absolute inset-0 size-full object-cover object-center"
+              style={{
+                opacity: videoReady ? 1 : 0,
+                transition: "opacity 900ms var(--ease-out)",
+              }}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          ) : null}
+
           {/* Solid knock-back so the headline always wins. No gradient fill. */}
           {/* Measured against the brightest 2% of each text band: 48% puts the
               headline at 5.1:1 and the body at 7.2:1 once the source shadows are
