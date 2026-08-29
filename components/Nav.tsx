@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { buttonClass } from "./Button";
 
 const links = [
   { label: "Tjenester", href: "#tjenester" },
@@ -121,15 +122,12 @@ export function Nav() {
           <div className="flex items-center gap-2">
             <a
               href="tel:+4797474347"
-              className={`press items-center gap-2 rounded-full bg-text px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-bg hover:bg-accent sm:inline-flex ${
-                pastCta ? "inline-flex" : "hidden"
-              }`}
-              style={{
-                transition:
-                  "background-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
-              }}
+              className={buttonClass({
+                variant: "primary",
+                size: "sm",
+                className: `sm:inline-flex ${pastCta ? "inline-flex" : "hidden"}`,
+              })}
             >
-              <span className="size-1.5 rounded-full bg-accent" />
               <span className="hidden sm:inline">974 74 347</span>
               <span className="sm:hidden">Ring</span>
             </a>
@@ -219,7 +217,10 @@ export function Nav() {
                 <a
                   href="tel:+4797474347"
                   onClick={() => setOpen(false)}
-                  className="press inline-flex items-center justify-between gap-3 rounded-full bg-accent px-6 py-4 text-base font-medium tracking-tight text-bg"
+                  className={buttonClass({
+                    variant: "primary",
+                    className: "w-full justify-between",
+                  })}
                 >
                   <span>Ring meg</span>
                   <span className="font-mono text-sm">974 74 347</span>

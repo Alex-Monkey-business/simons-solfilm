@@ -109,7 +109,7 @@ export function SocialProof() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, ease, delay: i * 0.1 }}
-              className="press lift group flex items-center justify-between gap-6 rounded-3xl border border-line bg-bg-card p-8 lg:p-10"
+              className="press lift group flex items-center justify-between gap-6 rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10"
             >
               <div>
                 <div className="flex items-baseline gap-2">

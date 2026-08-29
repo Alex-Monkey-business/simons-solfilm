@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Button } from "@/components/Button";
 import { LogoMark } from "@/components/LogoMark";
 
 export const metadata: Metadata = {
@@ -34,27 +34,16 @@ export default function NotFound() {
       </p>
 
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <a
-          href="tel:+4797474347"
-          className="press group inline-flex items-center justify-center gap-3 rounded-full bg-accent px-7 py-4 text-sm font-medium tracking-tight text-bg hover:bg-accent-warm"
-          style={{ transition: "background-color 220ms var(--ease-out)" }}
-        >
+        <Button href="tel:+4797474347" variant="primary" className="group">
           <span>Ring meg</span>
           <span aria-hidden>974 74 347</span>
-        </a>
-        <Link
-          href="/"
-          className="press inline-flex items-center justify-center gap-3 rounded-full border border-line-strong px-7 py-4 text-sm font-medium tracking-tight text-text hover:border-text"
-          style={{
-            transition:
-              "border-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
-          }}
-        >
+        </Button>
+        <Button href="/" variant="secondary">
           <span aria-hidden className="text-text-muted">
             ←
           </span>
           <span>Til forsiden</span>
-        </Link>
+        </Button>
       </div>
     </main>
   );

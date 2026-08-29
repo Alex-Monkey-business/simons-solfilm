@@ -81,7 +81,7 @@ export function Contact() {
             transition={{ duration: 1, ease, delay: 0.2 }}
             className="relative lg:col-span-5 lg:-mt-12"
           >
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[2rem] border border-line bg-bg-card">
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card">
               <Image
                 src="/brand/simon-transparent.webp"
                 alt="Simon — håndverkeren bak Simons Solfilm"
@@ -118,7 +118,7 @@ export function Contact() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.25 }}
             href="tel:+4797474347"
-            className="press lift group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[2rem] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[300px] lg:p-12"
+            className="press lift group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[300px] lg:p-12"
           >
             <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted">
               Ring meg

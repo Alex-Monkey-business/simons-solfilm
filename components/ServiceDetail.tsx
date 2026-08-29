@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, buttonClass } from "./Button";
 import { Footer } from "./Footer";
 import { LogoMark } from "./LogoMark";
 import { serviceDetails } from "./serviceDetails";
@@ -38,13 +39,8 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
           <a
             href="tel:+4797474347"
-            className="press inline-flex items-center gap-2 rounded-full bg-text px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-bg hover:bg-accent"
-            style={{
-              transition:
-                "background-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
-            }}
+            className={buttonClass({ variant: "primary", size: "sm" })}
           >
-            <span className="size-1.5 rounded-full bg-accent" />
             <span className="hidden sm:inline">974 74 347</span>
             <span className="sm:hidden">Ring</span>
           </a>
@@ -93,7 +89,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, ease, delay: 0.45 }}
-              className="relative mt-14 aspect-[16/10] w-full overflow-hidden rounded-3xl border border-line bg-bg-card md:aspect-[21/9]"
+              className="relative mt-14 aspect-[16/10] w-full overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:aspect-[21/9]"
             >
               <Image
                 src={data.heroImage}
@@ -121,7 +117,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.7, ease, delay: (i % 2) * 0.08 }}
-                  className="rounded-3xl border border-line bg-bg-card p-7 lg:p-9"
+                  className="rounded-[var(--r-card)] border border-line bg-bg-card p-7 lg:p-9"
                 >
                   <h3 className="font-display text-xl font-medium lg:text-2xl">
                     {b.title}
@@ -165,7 +161,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
             <div className="lg:col-span-4 lg:col-start-9">
               <div className="lg:sticky lg:top-28">
-                <div className="rounded-3xl border border-line bg-bg-card p-7 lg:p-8">
+                <div className="rounded-[var(--r-card)] border border-line bg-bg-card p-7 lg:p-8">
                   <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-text-faint">
                     Kort fortalt
                   </div>
@@ -204,7 +200,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, ease, delay: i * 0.08 }}
-                  className="rounded-2xl border border-line bg-bg p-6 lg:p-7"
+                  className="rounded-[var(--r-card)] border border-line bg-bg p-6 lg:p-7"
                 >
                   <div className="font-mono text-sm text-accent">{p.step}</div>
                   <h3 className="mt-4 font-display text-lg font-medium lg:text-xl">
@@ -250,7 +246,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         {/* CTA */}
         <section className="w-full px-6 pb-28 lg:px-10 lg:pb-40">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col items-start justify-between gap-8 rounded-[2rem] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12">
+            <div className="flex flex-col items-start justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12">
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
                   Ring meg, så tar vi en prat.
@@ -260,23 +256,13 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-                <a
-                  href="tel:+4797474347"
-                  className="press inline-flex items-center justify-center gap-3 rounded-full bg-accent px-7 py-4 text-sm font-medium tracking-tight text-bg hover:bg-accent-warm"
-                  style={{
-                    transition: "background-color 220ms var(--ease-out)",
-                  }}
-                >
+                <Button href="tel:+4797474347" variant="primary">
                   <span>Ring meg</span>
                   <span aria-hidden>→</span>
-                </a>
-                <Link
-                  href="/#kontakt"
-                  className="press inline-flex items-center justify-center gap-3 rounded-full border border-line-strong px-7 py-4 text-sm font-medium tracking-tight text-text hover:border-text"
-                  style={{ transition: "border-color 220ms var(--ease-out)" }}
-                >
+                </Button>
+                <Button href="/#kontakt" variant="secondary">
                   <span>Kontakt</span>
-                </Link>
+                </Button>
               </div>
             </div>
 

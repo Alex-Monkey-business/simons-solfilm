@@ -88,7 +88,7 @@ export function BeforeAfter() {
           transition={{ duration: 0.9, ease }}
           ref={containerRef}
           {...dragHandlers}
-          className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-3xl border border-line bg-bg-card md:aspect-[16/9]"
+          className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:aspect-[16/9]"
           role="slider"
           aria-label="Før og etter — dra for å sammenligne"
           aria-valuemin={0}

@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { MagneticLink } from "./MagneticLink";
+import { buttonClass } from "./Button";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -141,10 +142,7 @@ export function Hero() {
               href="tel:+4797474347"
               strength={0.4}
               radius={160}
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-accent px-7 py-4 text-sm font-medium tracking-tight text-bg hover:bg-accent-warm"
-              style={{
-                transition: "background-color 220ms var(--ease-out)",
-              }}
+              className={buttonClass({ variant: "primary", className: "group" })}
             >
               <span>Ring meg</span>
               <span
@@ -157,11 +155,11 @@ export function Hero() {
             </MagneticLink>
             <a
               href="#tjenester"
-              className="press group hidden items-center justify-center gap-3 rounded-full border border-line-strong bg-bg/60 px-7 py-4 text-sm font-medium tracking-tight text-text backdrop-blur-sm hover:border-text lg:inline-flex"
-              style={{
-                transition:
-                  "border-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
-              }}
+              className={buttonClass({
+                variant: "secondary",
+                className:
+                  "group hidden backdrop-blur-sm lg:inline-flex",
+              })}
             >
               <span>Se tjenester</span>
               <span aria-hidden className="text-text-muted">

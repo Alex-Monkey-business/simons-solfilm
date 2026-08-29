@@ -23,7 +23,11 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  /* Radii — softer overall */
+  /* Radii — shape encodes role. Buttons are rectangles, badges are pills,
+     cards are one size. Borrowed geometry from the Wispr Flow system; the
+     colours above stay ours. */
+  --r-btn: 0.75rem;
+  --r-card: 2rem;
   --r-sm: 0.5rem;
   --r-md: 0.875rem;
   --r-lg: 1.25rem;

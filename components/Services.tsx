@@ -128,7 +128,7 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
             }
           : undefined
       }
-      className="door group relative flex min-h-[300px] flex-col justify-between rounded-[2rem] border border-line bg-bg-card p-8 md:min-h-[420px] lg:min-h-[480px] lg:p-10"
+      className="door group relative flex min-h-[300px] flex-col justify-between rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:min-h-[420px] lg:min-h-[480px] lg:p-10"
     >
       <div className="flex items-start justify-between">
         <span className="font-mono text-xs text-text-faint lg:text-sm">
@@ -208,7 +208,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.85, ease }}
-            className="group relative flex min-h-[200px] items-end overflow-hidden rounded-3xl border border-line bg-bg-card lg:min-h-[240px]"
+            className="group relative flex min-h-[200px] items-end overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card lg:min-h-[240px]"
           >
             <video
               autoPlay

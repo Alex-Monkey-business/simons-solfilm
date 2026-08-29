@@ -123,7 +123,7 @@ function Tile({
       viewport={{ once: true, margin: "-60px" }}
       variants={zoomOnEnter ? undefined : cardVariants}
       transition={zoomOnEnter ? { duration: 0.9, ease } : undefined}
-      className={`tile group relative overflow-hidden rounded-3xl border border-line bg-bg-card ${item.className}`}
+      className={`tile group relative overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card ${item.className}`}
     >
       <Link
         href={item.href}
