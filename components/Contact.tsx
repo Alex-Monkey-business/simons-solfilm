@@ -30,7 +30,7 @@ export function Contact() {
   return (
     <section
       id="kontakt"
-      className="relative w-full bg-bg px-6 py-32 lg:px-10 lg:py-48"
+      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28"
     >
       <div className="relative z-10 mx-auto max-w-[1280px]">
         {/* Header row with portrait */}
@@ -107,7 +107,7 @@ export function Contact() {
         </div>
 
         {/* Action grid */}
-        <div className="mt-16 grid grid-cols-1 gap-6 lg:mt-24 lg:grid-cols-12 lg:gap-8">
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:mt-16 lg:grid-cols-12 lg:gap-8">
           {/* Phone card — big primary CTA */}
           <motion.a
             initial={{ opacity: 0, y: 16 }}

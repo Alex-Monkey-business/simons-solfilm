@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Precision trace</title>
+  <desc id="desc">An abstract, animated line study suggesting measured application of window film.</desc>
+  <defs>
+    <linearGradient id="trace" x1="175" y1="246" x2="1425" y2="246" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FE7818" stop-opacity="0"/>
+      <stop offset=".16" stop-color="#FE7818" stop-opacity=".9"/>
+      <stop offset=".5" stop-color="#FFB27A"/>
+      <stop offset=".84" stop-color="#FE7818" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FE7818" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ghost" x1="75" y1="0" x2="1525" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F1EA" stop-opacity="0"/>
+      <stop offset=".23" stop-color="#F4F1EA" stop-opacity=".14"/>
+      <stop offset=".78" stop-color="#F4F1EA" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#F4F1EA" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-80%" width="140%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .ghost { stroke-dasharray: 3 16; animation: drift 14s linear infinite; }
+      .trace { stroke-dasharray: 1260; stroke-dashoffset: 1260; animation: draw 3.6s cubic-bezier(.23,1,.32,1) .35s forwards; }
+      .node { animation: breathe 4.8s ease-in-out infinite; transform-origin: center; }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      @keyframes drift { to { stroke-dashoffset: -190; } }
+      @keyframes breathe { 0%,100% { opacity: .55; transform: scale(.82); } 50% { opacity: 1; transform: scale(1); } }
+      @media (prefers-reduced-motion: reduce) {
+        .ghost, .trace, .node { animation: none; }
+        .trace { stroke-dashoffset: 0; }
+      }
+    </style>
+  </defs>
+
+  <path d="M80 260C278 260 341 155 548 155C739 155 802 365 1011 365C1218 365 1275 260 1520 260" stroke="url(#ghost)" stroke-width="1"/>
+  <path d="M185 260C358 260 400 195 549 195C696 195 817 325 1013 325C1193 325 1244 260 1415 260" stroke="url(#trace)" stroke-width="1.5" filter="url(#glow)" class="trace"/>
+  <path d="M185 260H1415" stroke="url(#ghost)" stroke-width="1" opacity=".5"/>
+  <circle cx="185" cy="260" r="3" fill="#FE7818" class="node"/>
+  <circle cx="1415" cy="260" r="3" fill="#FE7818" class="node"/>
+  <circle cx="549" cy="195" r="2" fill="#F4F1EA" fill-opacity=".48"/>
+  <circle cx="1013" cy="325" r="2" fill="#F4F1EA" fill-opacity=".38"/>
+</svg>

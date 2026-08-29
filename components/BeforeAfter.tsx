@@ -62,10 +62,10 @@ export function BeforeAfter() {
   };
 
   return (
-    <section className="relative w-full bg-bg px-6 py-32 lg:px-10 lg:py-48">
+    <section className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1280px]">
         {/* Header */}
-        <div className="mb-20 grid grid-cols-1 gap-10 lg:mb-28 lg:grid-cols-12 lg:items-end">
+        <div className="mb-10 grid grid-cols-1 gap-10 lg:mb-14 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 8 }}

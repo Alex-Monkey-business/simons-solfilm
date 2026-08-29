@@ -62,7 +62,7 @@ const items: Item[] = [
     caption: "Leilighetsbygg",
     detail:
       "Mørktonet innglasset balkong — privatliv uten å miste lyset.",
-    className: "md:col-span-7 aspect-[16/10]",
+    className: "md:col-span-7 aspect-[16/10] md:aspect-auto",
   },
   {
     src: "/brand/pics_work/stainless_steel_office_building.webp",
@@ -175,11 +175,11 @@ export function Gallery() {
   return (
     <section
       id="galleri"
-      className="relative w-full bg-bg px-6 py-32 lg:px-10 lg:py-48"
+      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* Header */}
-        <div className="mb-20 grid grid-cols-1 gap-10 lg:mb-32 lg:grid-cols-12 lg:items-end">
+        <div className="mb-10 grid grid-cols-1 gap-10 lg:mb-14 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 8 }}

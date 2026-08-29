@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 // Exact paths from public/brand/logo-full-transparent.svg, kept inline so the
 // mark can be stroke-drawn and the wordmark faded in within one coordinate system.
@@ -32,12 +32,15 @@ const WORDMARK = "#F1F2F2";
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
 // Timeline: the mark draws on, then each letter traces its own outline and fills.
-const MARK_DRAW = 1.15; // seconds per mark half
-const MARK_STAGGER = 0.18;
-const WORDMARK_DELAY = 1.3; // seconds before the first letter starts drawing
-const GLYPH_DRAW = 0.5; // seconds to trace one glyph's outline
-const GLYPH_STAGGER = 0.085; // seconds between each letter starting
-const MIN_DISPLAY = 3200; // hold long enough for the last letter to finish
+const MARK_DRAW = 0.55; // seconds per mark half
+const MARK_STAGGER = 0.09;
+const WORDMARK_DELAY = 0.6; // seconds before the first letter starts drawing
+const GLYPH_DRAW = 0.28; // seconds to trace one glyph's outline
+const GLYPH_STAGGER = 0.04; // seconds between each letter starting
+const MIN_DISPLAY = 1500; // hold long enough for the last letter to finish
+// Shown once per browser session. A returning visitor — or anyone coming back
+// from a service page — goes straight to the content.
+const SEEN_KEY = "ss-splash-seen";
 const REDUCED_DISPLAY = 500;
 
 // The glyphs are stored in arbitrary order; sort into reading order (top row
@@ -49,44 +52,74 @@ const ORDERED_WORDMARK = [...WORDMARK_PATHS]
   })
   .sort((a, b) => a.row - b.row || a.x - b.x);
 
+// The splash is decided before the first paint so a returning visitor never
+// sees a frame of it. useLayoutEffect has no server counterpart, so fall back
+// to useEffect during the static export's render pass.
+const useIsoLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export function BrandLoader() {
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(true);
+  const [skip, setSkip] = useState(false);
+
+  useIsoLayoutEffect(() => {
+    try {
+      if (window.sessionStorage.getItem(SEEN_KEY) === "1") setSkip(true);
+    } catch {
+      // Private mode or blocked storage — fall through and show the splash.
+    }
+  }, []);
 
   // Dismiss once both the animation has had time to play and the page is ready,
   // capped so a stalled load event can never leave the splash up forever.
   useEffect(() => {
+    if (skip) return;
+
     const minDisplay = reduce ? REDUCED_DISPLAY : MIN_DISPLAY;
     const start = performance.now();
     let timer: number;
 
+    const dismiss = () => {
+      try {
+        window.sessionStorage.setItem(SEEN_KEY, "1");
+      } catch {
+        // Nothing to do — the splash simply plays again next load.
+      }
+      setVisible(false);
+    };
+
     const finish = () => {
       const elapsed = performance.now() - start;
-      timer = window.setTimeout(() => setVisible(false), Math.max(0, minDisplay - elapsed));
+      timer = window.setTimeout(dismiss, Math.max(0, minDisplay - elapsed));
     };
 
     if (document.readyState === "complete") {
       finish();
     } else {
       window.addEventListener("load", finish, { once: true });
-      timer = window.setTimeout(() => setVisible(false), minDisplay + 3000);
+      timer = window.setTimeout(dismiss, minDisplay + 3000);
     }
 
     return () => {
       window.clearTimeout(timer);
       window.removeEventListener("load", finish);
     };
-  }, [reduce]);
+  }, [reduce, skip]);
 
   // Lock scroll while the splash covers the page.
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || skip) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [visible]);
+  }, [visible, skip]);
+
+  // Unmounting outright — rather than letting AnimatePresence play its exit —
+  // is what keeps the second visit free of any fade at all.
+  if (skip) return null;
 
   return (
     <AnimatePresence>
@@ -96,13 +129,13 @@ export function BrandLoader() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-bg"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+          transition={{ duration: 0.45, ease: [0.77, 0, 0.175, 1] }}
           aria-hidden
         >
           <motion.div
             className="flex flex-col items-center gap-5 sm:flex-row sm:gap-8"
             exit={{ scale: 1.05, opacity: 0 }}
-            transition={{ duration: 0.5, ease: EASE_OUT }}
+            transition={{ duration: 0.4, ease: EASE_OUT }}
           >
             {/* Mark — stroke-drawn, then filled. */}
             <svg

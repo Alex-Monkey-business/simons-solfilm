@@ -21,6 +21,7 @@ type Secondary = {
   description: string;
   tag: string;
   video?: string;
+  poster?: string;
 };
 
 const primary: Primary[] = [
@@ -66,7 +67,8 @@ const secondary: Secondary[] = [
     description:
       "Enkel og effektiv befaring av tak, fasade og vanskelig tilgjengelige områder med drone. Tryggere og billigere enn lift.",
     tag: "Tak & solcelle",
-    video: "/brand/videoes/drone-540.mp4",
+    video: "/brand/videoes/drone.mp4",
+    poster: "/brand/videoes/drone-poster.webp",
   },
   {
     title: "Trykk på klær",
@@ -232,11 +234,11 @@ export function Services() {
   return (
     <section
       id="tjenester"
-      className="relative w-full bg-bg px-6 py-32 lg:px-10 lg:py-48"
+      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* Section header */}
-        <div className="mb-16 grid grid-cols-1 gap-10 lg:mb-24 lg:grid-cols-12 lg:items-end">
+        <div className="mb-10 grid grid-cols-1 gap-10 lg:mb-14 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -281,7 +283,7 @@ export function Services() {
         </div>
 
         {/* Secondary services */}
-        <div className="mt-24 lg:mt-32">
+        <div className="mt-14 lg:mt-20">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -293,7 +295,7 @@ export function Services() {
             <span>Andre tjenester</span>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-6 md:gap-4">
             {secondary.map((s, i) =>
               s.video ? (
                 <motion.div
@@ -304,7 +306,7 @@ export function Services() {
                   whileHover={{ y: -4 }}
                   viewport={{ once: true, margin: "-60px" }}
                   variants={cardVariants}
-                  className="group relative flex min-h-[240px] flex-col justify-end overflow-hidden rounded-2xl border border-line bg-bg-card transition-colors duration-300 hover:border-accent/40 lg:min-h-[260px]"
+                  className="group relative flex min-h-[240px] flex-col justify-end overflow-hidden rounded-2xl border border-line bg-bg-card transition-colors duration-300 hover:border-accent/40 md:col-span-2 md:row-span-2 lg:min-h-[260px]"
                   style={{ transitionTimingFunction: "var(--ease-out)" }}
                 >
                   <video
@@ -313,6 +315,7 @@ export function Services() {
                     loop
                     playsInline
                     preload="metadata"
+                    poster={s.poster}
                     aria-label={s.title}
                     className="absolute inset-0 size-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
                     style={{ transitionTimingFunction: "var(--ease-out)" }}
@@ -343,7 +346,7 @@ export function Services() {
                   whileHover={{ y: -4 }}
                   viewport={{ once: true, margin: "-60px" }}
                   variants={cardVariants}
-                  className="group relative rounded-2xl border border-line bg-bg-card/40 p-6 transition-colors duration-300 hover:bg-bg-card lg:p-7"
+                  className="group relative rounded-2xl border border-line bg-bg-card/40 p-6 transition-colors duration-300 hover:bg-bg-card md:col-span-2 lg:p-7"
                   style={{ transitionTimingFunction: "var(--ease-out)" }}
                 >
                   <AnimatedBorder radius={16} />

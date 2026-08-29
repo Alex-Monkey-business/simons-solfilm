@@ -15,7 +15,7 @@ export function About() {
   return (
     <section
       id="om"
-      className="relative w-full bg-bg px-6 py-32 lg:px-10 lg:py-48"
+      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-28"
     >
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-16 lg:grid-cols-12 lg:items-start lg:gap-12">
         <div className="lg:sticky lg:top-32 lg:col-span-5 lg:self-start">

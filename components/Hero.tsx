@@ -1,10 +1,18 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
 import { MagneticLink } from "./MagneticLink";
 
 const ease = [0.23, 1, 0.32, 1] as const;
+
+// The photo is a backdrop, not a card: it fills the right of the hero and is
+// masked away toward the headline so the type still sits on clean black. Two
+// masks — one horizontal, one vertical — are intersected so it also dissolves
+// into the section below instead of ending on a hard edge.
+const PHOTO_MASK =
+  "linear-gradient(to right, transparent 0%, transparent 30%, #000 72%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 54%, transparent 96%)";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,23 +21,53 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  // The photo travels slower than the text, so the two separate as you scroll.
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
     <section
       ref={ref}
-      className="relative w-full overflow-hidden bg-bg pt-28 lg:min-h-[100svh] lg:pt-32"
+      className="relative w-full overflow-hidden bg-bg pt-28 lg:min-h-[min(92svh,880px)] lg:pt-32"
     >
       <motion.div
-        style={{ y: contentY }}
-        className="relative z-10 mx-auto flex max-w-[1280px] flex-col justify-between gap-12 px-6 pb-14 lg:min-h-[calc(100svh-7rem)] lg:gap-0 lg:px-10"
+        style={{ y: photoY }}
+        className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[64%] select-none lg:block"
       >
-        {/* Headline */}
-        <div className="mt-12 max-w-4xl lg:mt-24">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.06 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2.4, ease, delay: 0.2 }}
+          style={{
+            maskImage: PHOTO_MASK,
+            WebkitMaskImage: PHOTO_MASK,
+            maskComposite: "intersect",
+            WebkitMaskComposite: "source-in",
+          }}
+        >
+          <Image
+            src="/brand/pics_work/blue_mercedes.webp"
+            alt="Mercedes AMG med solfilm ferdig montert i Simons verksted"
+            fill
+            priority
+            sizes="(max-width: 1024px) 0px, 64vw"
+            className="object-cover object-[60%_center]"
+          />
+          {/* Solid knock-back so the headline always wins. No gradient fill. */}
+          <div className="absolute inset-0 bg-bg/50" />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        style={{ y: contentY }}
+        className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-12 px-6 pb-20 lg:min-h-[calc(min(92svh,880px)-8rem)] lg:justify-center lg:gap-14 lg:px-10 lg:pb-28"
+      >
+        <div className="mt-8 max-w-4xl lg:mt-0">
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.2 }}
-            className="mb-10 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted lg:mb-14"
+            className="mb-8 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted lg:mb-10"
           >
             <span className="size-1.5 rounded-full bg-accent" />
             <span>Solfilm · PPF · Drone</span>
@@ -63,13 +101,12 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Bottom row */}
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:mt-0 lg:grid-cols-12 lg:items-end">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.85 }}
-            className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-6 lg:text-lg"
+            className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
           >
             Jeg legger solfilm fra verkstedet på Hegdal industriområde —
             eller hjem til deg. Send meg et bilde, så fikser jeg et tilbud
@@ -80,7 +117,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.95 }}
-            className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:col-start-8 lg:justify-end"
+            className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:col-start-7"
           >
             <MagneticLink
               href="tel:+4797474347"
@@ -88,8 +125,7 @@ export function Hero() {
               radius={160}
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-accent px-7 py-4 text-sm font-medium tracking-tight text-bg hover:bg-accent-warm"
               style={{
-                transition:
-                  "background-color 220ms var(--ease-out)",
+                transition: "background-color 220ms var(--ease-out)",
               }}
             >
               <span>Ring meg</span>
@@ -103,7 +139,7 @@ export function Hero() {
             </MagneticLink>
             <a
               href="#tjenester"
-              className="press group inline-flex items-center justify-center gap-3 rounded-full border border-line-strong px-7 py-4 text-sm font-medium tracking-tight text-text hover:border-text"
+              className="press group inline-flex items-center justify-center gap-3 rounded-full border border-line-strong bg-bg/60 px-7 py-4 text-sm font-medium tracking-tight text-text backdrop-blur-sm hover:border-text"
               style={{
                 transition:
                   "border-color 220ms var(--ease-out), transform 160ms var(--ease-out)",
@@ -116,7 +152,6 @@ export function Hero() {
             </a>
           </motion.div>
         </div>
-
       </motion.div>
     </section>
   );
