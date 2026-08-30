@@ -97,15 +97,15 @@ export function Hero() {
           <picture>
             <source
               media="(min-width: 1024px)"
-              srcSet="/brand/hero-neon.webp"
-              width={2880}
-              height={1621}
+              srcSet="/brand/hero-still.webp"
+              width={1600}
+              height={900}
             />
             <img
-              src="/brand/hero-neon-portrait.webp"
-              alt="Mørk sportsbil med solfilm i verkstedet, under neonskiltet til Simons Solfilm"
-              width={1440}
-              height={2560}
+              src="/brand/hero-still-portrait.webp"
+              alt="Mørk sportsbil i verkstedet, under skiltene til Simons Solfilm og XPEL"
+              width={900}
+              height={1600}
               fetchPriority="high"
               decoding="async"
               className="absolute inset-0 size-full object-cover object-center"
