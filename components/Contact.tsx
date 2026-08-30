@@ -10,8 +10,10 @@ const PHONE_DISPLAY = site.phone.display;
 
 const links = [
   {
+    // Same number as the big card right above it, so repeating the digits
+    // here said nothing. The row now carries what SMS is actually for.
     label: "SMS",
-    value: site.phone.display,
+    value: "Send meg et bilde av bilen",
     href: `sms:${site.phone.e164}`,
     external: false,
   },
