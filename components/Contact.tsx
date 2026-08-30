@@ -27,6 +27,12 @@ const links = [
     href: site.social.facebook,
     external: true,
   },
+  {
+    label: "YouTube",
+    value: "@Simonssolfilm",
+    href: site.social.youtube,
+    external: true,
+  },
 ];
 
 export function Contact() {

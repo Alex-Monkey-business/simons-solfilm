@@ -105,8 +105,9 @@ export function About() {
               className="text-text"
             >
               Jeg har drevet med solfilm i over 20 år, og gjør jobben selv fra
-              start til slutt. Verkstedet mitt holder til i et nytt bygg på
-              Hegdal industriområde i Larvik.
+              start til slutt. Jeg holder også kurs for XPEL, så det er faget
+              jeg lærer bort til andre montører. Verkstedet mitt holder til i et
+              nytt bygg på Hegdal industriområde i Larvik.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

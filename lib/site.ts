@@ -23,6 +23,7 @@ export const site = {
   social: {
     instagram: "https://www.instagram.com/simonssolfilm/",
     facebook: "https://www.facebook.com/profile.php?id=100054592143676",
+    youtube: "https://www.youtube.com/@Simonssolfilm",
     // A web-search URL is fragile and does not necessarily land on the
     // reviews. Maps does.
     googleMaps:

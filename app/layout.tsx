@@ -60,7 +60,7 @@ const localBusiness = {
   "@type": "LocalBusiness",
   name: "Simons Solfilm",
   description:
-    "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, dronebefaring, trykk på klær og kurs i solfilm.",
+    "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, dronebefaring og trykk på klær.",
   url: site.url,
   image: `${site.url}/og.jpg`,
   telephone: site.phone.e164,
@@ -73,7 +73,11 @@ const localBusiness = {
     addressCountry: "NO",
   },
   areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
-  sameAs: [site.social.instagram, site.social.facebook],
+  sameAs: [
+    site.social.instagram,
+    site.social.facebook,
+    site.social.youtube,
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Tjenester",
@@ -84,7 +88,6 @@ const localBusiness = {
       "Lyktefolie",
       "Dronebefaring",
       "Trykk på klær",
-      "Kurs i solfilm",
     ].map((name) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name },

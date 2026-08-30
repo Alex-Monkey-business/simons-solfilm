@@ -66,12 +66,6 @@ const secondary: Secondary[] = [
       "Trykk på arbeidstøy, profilklær og T-skjorter til bedrifter, lag og privatpersoner.",
     tag: "Bedrift & privat",
   },
-  {
-    title: "Kurs i solfilm",
-    description:
-      "For deg som vil lære faget. Du står med filmen i hånda, og jeg står ved siden av.",
-    tag: "Praktisk",
-  },
 ];
 
 const ease = [0.23, 1, 0.32, 1] as const;

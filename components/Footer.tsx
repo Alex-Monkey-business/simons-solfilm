@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 const socials = [
   { label: "Instagram", href: site.social.instagram },
   { label: "Facebook", href: site.social.facebook },
+  { label: "YouTube", href: site.social.youtube },
 ];
 
 const pages = [
