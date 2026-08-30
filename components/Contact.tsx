@@ -127,16 +127,22 @@ export function Contact() {
           </motion.div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:mt-20 lg:grid-cols-12 lg:gap-10">
+        <div className="mt-16 grid grid-cols-1 gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-10">
           {/* The heaviest object on the page, and the only box left in this
-              section. That is the point — it is the one thing to press. */}
+              section. That is the point — it is the one thing to press.
+              justify-between belongs to the tall desktop card only: on a
+              phone it tore the three lines apart and parked the meta line
+              closer to the SMS row below than to the number it describes.
+              self-start stops the grid stretching the card to the height of
+              the links column — 743px of card with justify-between left a
+              264px void on either side of the number. */}
           <motion.a
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.25 }}
             href={site.phone.href}
-            className="press lift group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[300px] lg:p-12"
+            className="press lift group relative flex flex-col justify-start gap-6 overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[420px] lg:justify-between lg:gap-0 lg:self-start lg:p-12"
           >
             <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
               Ring meg
