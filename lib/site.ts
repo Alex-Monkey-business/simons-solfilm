@@ -14,7 +14,7 @@ export const site = {
   },
   email: "post@simonssolfilm.no",
   address: {
-    street: "Hegdalveien 65c",
+    street: "Hegdalveien 65C",
     postal: "3261",
     city: "Larvik",
     lat: 59.053407,

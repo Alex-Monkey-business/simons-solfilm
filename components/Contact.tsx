@@ -164,7 +164,9 @@ export function Contact() {
             </div>
           </motion.a>
 
-          {/* Three hairline rows, no boxes. */}
+          {/* Google routes visitors the long way round because the access
+              road is not in its map data. The coordinates put the pin in the
+              right place; this line does the rest, because no link can. */}
           <div className="lg:col-span-5">
             {links.map((l, i) => (
               <motion.a
@@ -205,6 +207,18 @@ export function Contact() {
                 </span>
               </motion.a>
             ))}
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, ease, delay: 0.7 }}
+              className="mt-7 border-t border-line pt-6 text-base leading-relaxed text-text-muted"
+            >
+              Adressen er {site.address.street}, {site.address.postal}{" "}
+              {site.address.city}. Veien inn er privat, men åpen for alle — kjør
+              inn fra Hegdalveien. Google sender deg av og til rundt kvartalet.
+            </motion.p>
           </div>
         </div>
       </div>
