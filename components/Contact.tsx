@@ -18,6 +18,10 @@ const links = [
     value: `${site.address.street}, ${site.address.city}`,
     href: site.address.maps,
     external: true,
+    // Footnote to this row, not to the list. It used to sit at the bottom
+    // behind its own rule, which read as a section about driving that arrived
+    // from nowhere. It only ever explained this one link.
+    note: "Veien inn er privat, men åpen for alle — kjør inn fra Hegdalveien. Google sender deg av og til rundt kvartalet.",
   },
   {
     label: "E-post",
@@ -106,14 +110,16 @@ export function Contact() {
               closer to the SMS row below than to the number it describes.
               self-start stops the grid stretching the card to the height of
               the links column — 743px of card with justify-between left a
-              264px void on either side of the number. */}
+              264px void on either side of the number. The height is set
+              here rather than taken from the links column: matching that
+              column is what produced the 743px card in the first place. */}
           <motion.a
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.25 }}
             href={site.phone.href}
-            className="press lift group relative flex flex-col justify-start gap-6 overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[420px] lg:justify-between lg:gap-0 lg:self-start lg:p-12"
+            className="press lift group relative flex flex-col justify-start gap-6 overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[380px] lg:justify-between lg:gap-0 lg:self-start lg:p-12"
           >
             <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
               Ring meg
@@ -131,8 +137,11 @@ export function Contact() {
             >
               {PHONE_DISPLAY}
             </motion.div>
-            <div className="flex items-center justify-between font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
-              <span>Hverdager · Etter avtale</span>
+            {/* No hours line. "Hverdager · Etter avtale" said two things that
+                cancel each other out, and neither was a fact anyone here had
+                checked. If Simon has real opening hours they belong here — as
+                the hours they actually are. */}
+            <div className="flex items-center justify-end font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
               <span
                 aria-hidden
                 className="text-accent transition-transform duration-300 group-hover:translate-x-1"
@@ -145,46 +154,59 @@ export function Contact() {
 
           {/* Google routes visitors the long way round because the access
               road is not in its map data. The coordinates put the pin in the
-              right place; this line does the rest, because no link can. */}
+              right place; the note under Adresse does the rest, because no
+              link can. */}
           <div className="lg:col-span-5">
             {links.map((l, i) => (
-              <motion.a
-                key={l.label}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, ease, delay: 0.35 + i * 0.09 }}
-                href={l.href}
-                target={l.external ? "_blank" : undefined}
-                rel={l.external ? "noopener noreferrer" : undefined}
-                className="contact-row group relative flex items-baseline justify-between gap-4 py-6"
-              >
-                <motion.span
-                  aria-hidden
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
+              <div key={l.label}>
+                <motion.a
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.8, ease, delay: 0.4 + i * 0.09 }}
-                  className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-                />
-                <div>
-                  <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
-                    {l.label}
-                  </div>
-                  <div
-                    className="mt-1.5 text-base text-text group-hover:text-accent lg:text-lg"
-                    style={{ transition: "color 220ms var(--ease-out)" }}
-                  >
-                    {l.value}
-                  </div>
-                </div>
-                <span
-                  aria-hidden
-                  className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
+                  transition={{ duration: 0.6, ease, delay: 0.35 + i * 0.09 }}
+                  href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
+                  className="contact-row group relative flex items-baseline justify-between gap-4 py-6"
                 >
-                  {l.external ? "↗" : "→"}
-                </span>
-              </motion.a>
+                  <motion.span
+                    aria-hidden
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.8, ease, delay: 0.4 + i * 0.09 }}
+                    className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+                  />
+                  <div>
+                    <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
+                      {l.label}
+                    </div>
+                    <div
+                      className="mt-1.5 text-base text-text group-hover:text-accent lg:text-lg"
+                      style={{ transition: "color 220ms var(--ease-out)" }}
+                    >
+                      {l.value}
+                    </div>
+                  </div>
+                  <span
+                    aria-hidden
+                    className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
+                  >
+                    {l.external ? "↗" : "→"}
+                  </span>
+                </motion.a>
+                {l.note ? (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.6, ease, delay: 0.5 + i * 0.09 }}
+                    className="-mt-3 pb-6 text-sm leading-relaxed text-text-faint"
+                  >
+                    {l.note}
+                  </motion.p>
+                ) : null}
+              </div>
             ))}
 
             <motion.div
@@ -223,17 +245,6 @@ export function Contact() {
                 ))}
               </div>
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease, delay: 0.7 }}
-              className="mt-7 border-t border-line pt-6 text-base leading-relaxed text-text-muted"
-            >
-              Veien inn er privat, men åpen for alle — kjør inn fra Hegdalveien.
-              Google sender deg av og til rundt kvartalet.
-            </motion.p>
           </div>
         </div>
       </div>
