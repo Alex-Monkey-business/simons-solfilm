@@ -1,17 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
-
-// Three facts, not four. "Også / Mobilt oppmøte" was padding invented to fill
-// a 2×2 grid, and it said the same thing as "Dekker / Hele Vestfold".
-const facts = [
-  { label: "Erfaring", value: "20+ år" },
-  { label: "Verksted", value: `${site.address.street}, ${site.address.city}` },
-  { label: "Dekker", value: "Hele Vestfold" },
-];
 
 export function About() {
   return (
@@ -43,56 +34,34 @@ export function About() {
             </span>
           </motion.h2>
 
-          {/* Hairline rows rather than four little boxes — same facts, no
-              chrome, and the rules draw in one after the other. */}
-          <dl className="mt-12 lg:mt-14">
-            {facts.map((f, i) => {
-              const body = (
-                <>
-                  <dt className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
-                    {f.label}
-                  </dt>
-                  <dd className="mt-1.5 text-base text-text">{f.value}</dd>
-                </>
-              );
-              return (
-                <motion.div
-                  key={f.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.6, ease, delay: 0.15 + i * 0.09 }}
-                  className="relative py-5"
-                >
-                  <motion.span
-                    aria-hidden
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{
-                      duration: 0.8,
-                      ease,
-                      delay: 0.2 + i * 0.09,
-                    }}
-                    className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-                  />
-                  {f.label === "Verksted" ? (
-                    <a
-                      href={site.address.maps}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-underline block hover:text-accent"
-                      style={{ transition: "color 220ms var(--ease-out)" }}
-                    >
-                      {body}
-                    </a>
-                  ) : (
-                    body
-                  )}
-                </motion.div>
-              );
-            })}
-          </dl>
+          {/* One number, not a list. It began as four rows, then three. Each
+              of the others said something the paragraphs beside it already
+              said with more in them — the workshop's address, which is also
+              in the contact list and the footer, and the area covered, which
+              the last paragraph states as a promise rather than a fact. What
+              is left is the one thing the prose never says. */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease, delay: 0.15 }}
+            className="relative mt-12 py-6 lg:mt-14"
+          >
+            <motion.span
+              aria-hidden
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, ease, delay: 0.2 }}
+              className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+            />
+            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+              Erfaring
+            </div>
+            <div className="mt-2 font-display text-4xl font-normal leading-none text-text lg:text-5xl">
+              20+ år
+            </div>
+          </motion.div>
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
@@ -104,10 +73,10 @@ export function About() {
               transition={{ duration: 0.8, ease }}
               className="text-text"
             >
-              Jeg har drevet med solfilm i over 20 år, og gjør jobben selv fra
-              start til slutt. Jeg holder også kurs for XPEL, så det er faget
-              jeg lærer bort til andre montører. Verkstedet mitt holder til i et
-              nytt bygg på Hegdal industriområde i Larvik.
+              Jeg gjør jobben selv, fra start til slutt. Jeg holder også kurs
+              for XPEL, så det er faget jeg lærer bort til andre montører.
+              Verkstedet mitt holder til i et nytt bygg på Hegdal industriområde
+              i Larvik.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

@@ -29,8 +29,8 @@ export default function XpelPage() {
               Folien jeg bruker.
             </h1>
             <p className="mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg">
-              Jeg monterer XPEL både som solfilm og lakkbeskyttelse — og
-              holder kurs for dem. Her er det korte om hva det er.
+              Jeg monterer XPEL både som solfilm og lakkbeskyttelse. Her er det
+              korte om hva det er.
             </p>
           </div>
         </section>
@@ -72,24 +72,24 @@ export default function XpelPage() {
                     Hva jeg bruker den til
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-text-muted">
-                    Både solfilm og lakkbeskyttelse. Lakkbeskyttelsen er
-                    gjennomsiktig film som tar steinsprut, slitasje og
-                    småskader for lakken. Jeg jobber jevnlig med Mercedes AMG,
-                    Porsche og Ferrari.
+                    Solfilm på rutene, lakkbeskyttelse på lakken.
+                    Lakkbeskyttelsen er gjennomsiktig film som tar steinsprut,
+                    slitasje og småskader for lakken. Jeg jobber jevnlig med
+                    Mercedes AMG, Porsche og Ferrari.
                   </p>
                 </div>
               </div>
 
-                <div className="border-t border-line py-7">
-                  <h2 className="font-display text-xl font-medium lg:text-2xl">
-                    Bilpleieproduktene står på verkstedet
-                  </h2>
-                  <p className="mt-3 text-base leading-relaxed text-text-muted">
-                    Jeg har fått inn XPEL sine bilpleieprodukter — vask,
-                    interiør og lakkpleie. Jeg selger dem ikke på nett, men står
-                    du på Hegdal er det bare å komme innom og prøve dem.
-                  </p>
-                </div>
+              <div className="border-t border-line py-7">
+                <h2 className="font-display text-xl font-medium lg:text-2xl">
+                  Bilpleieproduktene står på verkstedet
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-text-muted">
+                  Jeg har fått inn XPEL sine bilpleieprodukter — vask, interiør
+                  og lakkpleie. Jeg selger dem ikke på nett, men står du på
+                  Hegdal er det bare å komme innom og prøve dem.
+                </p>
+              </div>
 
               <a
                 href={XPEL_URL}
