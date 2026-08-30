@@ -87,8 +87,7 @@ export function Contact() {
               className="mt-8 max-w-md text-balance text-lg leading-relaxed text-text-muted"
             >
               Fortell meg hva du trenger hjelp med — bil, bygg eller noe av det
-              andre. Usikker? Slå på tråden, send en SMS eller bare et bilde, så
-              tar vi det derfra.
+              andre.
             </motion.p>
           </div>
 
@@ -107,22 +106,6 @@ export function Contact() {
                 sizes="(min-width: 1024px) 420px, 100vw"
                 className="object-cover object-bottom"
               />
-              {/* Solid knock-back behind the caption — the address sat on his
-                  shirt with nothing behind it and barely read. */}
-              <div className="absolute inset-x-0 bottom-0 bg-bg/70 px-5 py-4 backdrop-blur-sm lg:px-7 lg:py-5">
-                <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
-                  Simon
-                </div>
-                <a
-                  href={site.address.maps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="press link-underline mt-1 inline-block font-display text-xl font-medium text-text hover:text-accent lg:text-2xl"
-                  style={{ transition: "color 220ms var(--ease-out)" }}
-                >
-                  {site.address.street}, {site.address.city}
-                </a>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -223,9 +206,8 @@ export function Contact() {
               transition={{ duration: 0.6, ease, delay: 0.7 }}
               className="mt-7 border-t border-line pt-6 text-base leading-relaxed text-text-muted"
             >
-              Adressen er {site.address.street}, {site.address.postal}{" "}
-              {site.address.city}. Veien inn er privat, men åpen for alle — kjør
-              inn fra Hegdalveien. Google sender deg av og til rundt kvartalet.
+              Veien inn er privat, men åpen for alle — kjør inn fra Hegdalveien.
+              Google sender deg av og til rundt kvartalet.
             </motion.p>
           </div>
         </div>
