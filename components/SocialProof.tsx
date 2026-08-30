@@ -45,6 +45,19 @@ const proofs: Proof[] = [
   },
 ];
 
+const quotes = [
+  {
+    text: "Var nesten litt skeptisk i forkant grunnet den lave prisen, men han brukte skikkelig metallisert film som tar mye av varmen for hunden, man ser ikke noe som helst inn i bilen, og kvaliteten på arbeidet er helt prima! Kunne ikke vært mer fornøyd!",
+    name: "Gunnar Brenne",
+    source: "Google · Local Guide",
+  },
+  {
+    text: "Topp service og rimelige priser. Anbefales.",
+    name: "Hans Erik Høiby Jondahl",
+    source: "Google",
+  },
+];
+
 /**
  * The container animates, not the stars. Giving each star its own whileInView
  * meant some never fired on a phone and sat at opacity 0 — the rating rendered
@@ -138,57 +151,44 @@ export function SocialProof() {
           ))}
         </div>
 
-        {/* Two quotes of very different length were two same-sized boxes, one
-            of them half empty. Now the long one is a pull-quote and the short
-            one is a line — the difference in scale is the hierarchy. */}
-        <motion.figure
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.85, ease }}
-          className="mt-20 lg:mt-28"
-        >
-          <blockquote className="max-w-4xl text-balance font-display-italic text-[clamp(1.35rem,3vw,2.25rem)] leading-[1.35] text-text">
-            Var nesten litt skeptisk i forkant grunnet den lave prisen, men han
-            brukte skikkelig metallisert film som tar mye av varmen for hunden,
-            man ser ikke noe som helst inn i bilen, og kvaliteten på arbeidet er
-            helt prima! Kunne ikke vært mer fornøyd!
-          </blockquote>
-          <figcaption className="mt-8 flex items-center gap-4">
-            <Stars />
-            <span className="text-sm text-text">Gunnar Brenne</span>
-            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
-              Google · Local Guide
-            </span>
-          </figcaption>
-        </motion.figure>
-
-        <motion.figure
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease, delay: 0.1 }}
-          className="relative mt-12 pt-8 lg:mt-14"
-        >
-          <motion.span
-            aria-hidden
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, ease, delay: 0.15 }}
-            className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-          />
-          <blockquote className="font-display-italic text-lg leading-snug text-text-muted lg:text-xl">
-            Topp service og rimelige priser. Anbefales.
-          </blockquote>
-          <figcaption className="mt-4 flex items-center gap-4">
-            <Stars />
-            <span className="text-sm text-text">Hans Erik Høiby Jondahl</span>
-            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
-              Google
-            </span>
-          </figcaption>
-        </motion.figure>
+        {/* Same size, same colour, same rule above each. They were 36px in
+            full white and 20px in grey, which was left over from when they
+            sat in boxes: a short quote in a box the size of a long one leaves
+            the box half empty, so one was scaled down. The boxes are gone and
+            the problem went with them — an unboxed short quote is simply a
+            short line. What the old scale said instead was that one customer
+            counted and the other was small print, and both are real five-star
+            reviews. 28px rather than 36 also stops the quote competing with
+            the two numbers above, which are the thing to look at. */}
+        {quotes.map((q, i) => (
+          <motion.figure
+            key={q.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease, delay: i * 0.1 }}
+            className={`relative pt-8 ${i === 0 ? "mt-20 lg:mt-28" : "mt-12 lg:mt-14"}`}
+          >
+            <motion.span
+              aria-hidden
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.9, ease, delay: 0.15 + i * 0.1 }}
+              className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+            />
+            <blockquote className="max-w-4xl text-balance font-display-italic text-[clamp(1.25rem,2.4vw,1.75rem)] leading-[1.4] text-text">
+              {q.text}
+            </blockquote>
+            <figcaption className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Stars />
+              <span className="text-sm text-text">{q.name}</span>
+              <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+                {q.source}
+              </span>
+            </figcaption>
+          </motion.figure>
+        ))}
       </div>
     </section>
   );
