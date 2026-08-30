@@ -186,12 +186,17 @@ export function Hero() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+        {/* One left edge, shared with the headline. This was a 12-column
+            split — text in 1-5, buttons in 7-11 — which collapses to a single
+            column on a phone and therefore looked right there, but on a wide
+            screen it left the call button floating mid-frame, aligned to
+            nothing. */}
+        <div className="flex flex-col gap-10 lg:max-w-2xl lg:gap-8">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.85 }}
-            className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
+            className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:text-lg"
           >
             Send meg et bilde, så får du pris raskt.
           </motion.p>
@@ -200,7 +205,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.95 }}
-            className="flex flex-col gap-4 lg:col-span-5 lg:col-start-7"
+            className="flex flex-col items-start gap-4"
           >
             <div className="flex flex-col gap-3 sm:flex-row">
             <MagneticLink
