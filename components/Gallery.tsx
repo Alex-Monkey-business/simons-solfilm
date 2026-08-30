@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "./SectionHeading";
 
 type Item = {
@@ -185,6 +185,31 @@ function Tile({
 }
 
 export function Gallery() {
+  // The rail needs a visible sign that it scrolls. 42px of the next photo is
+  // not enough on its own — a dark frame edge reads as page background. This
+  // is the same hairline the section headings and contact rows use, with the
+  // travelled part in the accent.
+  const railRef = useRef<HTMLDivElement>(null);
+  const [rail, setRail] = useState({ width: 1, offset: 0 });
+  useEffect(() => {
+    const el = railRef.current;
+    if (!el) return;
+    const update = () => {
+      const span = el.scrollWidth - el.clientWidth;
+      setRail({
+        width: el.clientWidth / el.scrollWidth,
+        offset: span > 0 ? el.scrollLeft / span : 0,
+      });
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   // Scroll velocity leans every image a degree or two, then settles. Spring-
   // smoothed so it never jitters.
   const { scrollY } = useScroll();
@@ -222,7 +247,14 @@ export function Gallery() {
             against the 257px it had stacked, so nothing is smaller; six of
             them just occupy one row instead of six. Every source frame is
             4:3, so the rail crops nothing. */}
-        <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-1 scroll-px-6 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-12 md:gap-5 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+        {/* overflow-y-hidden is not decoration: with only overflow-x set, the
+            browser computes the other axis to auto as well, and the rail
+            became a scroll box in both directions — 24px of vertical slack
+            you could drag inside the carousel. */}
+        <div
+          ref={railRef}
+          className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto overflow-y-hidden px-6 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-12 md:gap-5 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
+        >
           {items.map((item, i) => (
             <Tile
               key={item.src}
@@ -232,6 +264,20 @@ export function Gallery() {
               zoomOnEnter={i === 0}
             />
           ))}
+        </div>
+
+        <div
+          aria-hidden
+          className="relative mt-6 h-0.5 w-full overflow-hidden rounded-full bg-line-strong md:hidden"
+        >
+          <div
+            className="absolute inset-y-0 rounded-full bg-accent"
+            style={{
+              width: `${rail.width * 100}%`,
+              left: `${rail.offset * (100 - rail.width * 100)}%`,
+              transition: "left 90ms linear",
+            }}
+          />
         </div>
       </div>
     </section>
