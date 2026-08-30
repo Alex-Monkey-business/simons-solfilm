@@ -23,10 +23,11 @@ const ease = [0.23, 1, 0.32, 1] as const;
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  // On a phone the call button in the hero and the one up here are the same
-  // action a couple of centimetres apart. This one earns its place only once
-  // the hero's has scrolled away, so the threshold is measured from that
-  // button rather than guessed.
+  // The call button in the hero and the one up here are the same action on the
+  // same screen. This one earns its place only once the hero's has scrolled
+  // away, so the threshold is measured from that button rather than guessed.
+  // It used to carry an sm:inline-flex override, which switched the rule off
+  // at exactly the widths where both buttons fit on screen at once.
   const [ctaBottom, setCtaBottom] = useState(560);
   const [pastCta, setPastCta] = useState(false);
   const { scrollY } = useScroll();
@@ -120,10 +121,13 @@ export function Nav() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <span
-              className={`${pastCta ? "inline-flex" : "hidden"} sm:inline-flex`}
-            >
+          {/* The pill's slot is held open from md up, where the nav links sit:
+              letting it collapse slid them 52.5px sideways and back again as
+              you scrolled. On a phone there are no centre links to move, and
+              the burger should stay hard against the edge, so it collapses
+              there. 105px pill + the 8px gap. */}
+          <div className="flex items-center gap-2 md:min-w-[113px] md:justify-end">
+            <span className={pastCta ? "inline-flex" : "hidden"}>
               <a
                 href={site.phone.href}
                 className={buttonClass({ variant: "primary", size: "sm" })}

@@ -207,7 +207,6 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.95 }}
             className="flex flex-col items-start gap-4"
           >
-            <div className="flex flex-col gap-3 sm:flex-row">
             <MagneticLink
               href={site.phone.href}
               strength={0.4}
@@ -223,24 +222,6 @@ export function Hero() {
                 →
               </span>
             </MagneticLink>
-            {/* The wrapper owns visibility. Putting `hidden` on the button
-                itself lost to the `inline-flex` in the shared button base —
-                two display utilities on one element is a coin toss. */}
-            <span className="hidden lg:inline-flex">
-            <a
-              href="#tjenester"
-              className={buttonClass({
-                variant: "secondary",
-                className: "group backdrop-blur-sm",
-              })}
-            >
-              <span>Se tjenester</span>
-              <span aria-hidden className="text-text-muted">
-                ↓
-              </span>
-            </a>
-            </span>
-            </div>
 
             <QuickActions />
           </motion.div>
