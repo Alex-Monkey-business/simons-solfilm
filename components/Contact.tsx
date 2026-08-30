@@ -25,24 +25,16 @@ const links = [
     href: `mailto:${site.email}`,
     external: false,
   },
-  {
-    label: "Instagram",
-    value: "@simonssolfilm",
-    href: site.social.instagram,
-    external: true,
-  },
-  {
-    label: "Facebook",
-    value: "Simons Solfilm",
-    href: site.social.facebook,
-    external: true,
-  },
-  {
-    label: "YouTube",
-    value: "@Simonssolfilm",
-    href: site.social.youtube,
-    external: true,
-  },
+];
+
+// The three social rows each had a value that was the label again — a handle
+// nobody types and, on Facebook, the company name. Adresse and E-post keep
+// theirs because those are worth copying. These three only need a name, so
+// they share one row.
+const socials = [
+  { label: "Instagram", href: site.social.instagram },
+  { label: "Facebook", href: site.social.facebook },
+  { label: "YouTube", href: site.social.youtube },
 ];
 
 export function Contact() {
@@ -194,6 +186,43 @@ export function Contact() {
                 </span>
               </motion.a>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, ease, delay: 0.53 }}
+              className="relative py-4"
+            >
+              <motion.span
+                aria-hidden
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.8, ease, delay: 0.58 }}
+                className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+              />
+              <div className="pt-2 font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
+                Følg
+              </div>
+              {/* -mx-2 pulls the padded hit areas back onto the row's left
+                  edge, so each link clears 44px without the text drifting
+                  out of line with the rows above. */}
+              <div className="-mx-2 mt-0.5 flex flex-wrap">
+                {socials.map((sm) => (
+                  <a
+                    key={sm.label}
+                    href={sm.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline inline-flex min-h-[44px] items-center px-2 text-base text-text hover:text-accent lg:text-lg"
+                    style={{ transition: "color 220ms var(--ease-out)" }}
+                  >
+                    {sm.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 10 }}
