@@ -129,7 +129,7 @@ function Tile({
       viewport={{ once: true, amount: 0.12 }}
       variants={zoomOnEnter ? undefined : cardVariants}
       transition={zoomOnEnter ? { duration: 0.9, ease } : undefined}
-      className={`tile group relative aspect-[4/3] w-[80vw] shrink-0 snap-start overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:w-auto md:shrink ${item.className}`}
+      className={`tile group relative aspect-[4/3] w-[72vw] max-w-[420px] shrink-0 snap-start overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:w-auto md:shrink ${item.className}`}
     >
       <Link
         href={item.href}
@@ -246,7 +246,10 @@ export function Gallery() {
             largest section on the site. At 80vw each photo is 234px tall
             against the 257px it had stacked, so nothing is smaller; six of
             them just occupy one row instead of six. Every source frame is
-            4:3, so the rail crops nothing. */}
+            4:3, so the rail crops nothing. 72vw rather than 80: at 80 the
+            next photo showed 42px, which is a sliver you read as background
+            when its edge happens to be dark. At 72 it is 73px on a 390px
+            screen — a recognisable piece of the next card. */}
         {/* overflow-y-hidden is not decoration: with only overflow-x set, the
             browser computes the other axis to auto as well, and the rail
             became a scroll box in both directions — 24px of vertical slack
