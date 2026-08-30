@@ -192,8 +192,7 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.85 }}
             className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
           >
-            Jeg legger solfilm fra verkstedet på Hegdal industriområde —
-            eller hjem til deg. Send meg et bilde, så får du pris raskt.
+            Send meg et bilde, så får du pris raskt.
           </motion.p>
 
           <motion.div
@@ -217,12 +216,15 @@ export function Hero() {
                 →
               </span>
             </MagneticLink>
+            {/* The wrapper owns visibility. Putting `hidden` on the button
+                itself lost to the `inline-flex` in the shared button base —
+                two display utilities on one element is a coin toss. */}
+            <span className="hidden lg:inline-flex">
             <a
               href="#tjenester"
               className={buttonClass({
                 variant: "secondary",
-                className:
-                  "group hidden backdrop-blur-sm lg:inline-flex",
+                className: "group backdrop-blur-sm",
               })}
             >
               <span>Se tjenester</span>
@@ -230,6 +232,7 @@ export function Hero() {
                 ↓
               </span>
             </a>
+            </span>
           </motion.div>
         </div>
       </motion.div>

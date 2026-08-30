@@ -121,17 +121,17 @@ export function Nav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a
-              href={site.phone.href}
-              className={buttonClass({
-                variant: "primary",
-                size: "sm",
-                className: `sm:inline-flex ${pastCta ? "inline-flex" : "hidden"}`,
-              })}
+            <span
+              className={`${pastCta ? "inline-flex" : "hidden"} sm:inline-flex`}
             >
-              <span className="hidden sm:inline">{site.phone.display}</span>
-              <span className="sm:hidden">Ring</span>
-            </a>
+              <a
+                href={site.phone.href}
+                className={buttonClass({ variant: "primary", size: "sm" })}
+              >
+                <span className="hidden sm:inline">{site.phone.display}</span>
+                <span className="sm:hidden">Ring</span>
+              </a>
+            </span>
 
             <button
               type="button"
