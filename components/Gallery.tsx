@@ -26,15 +26,18 @@ type Item = {
 
 // Labels describe the job, not a tier. Two tiles both saying "Premium" was a
 // claim the photos had to carry on their own; "Solfilm + PPF" is just true.
+// The detail line must not restate the label sitting above it in the same
+// frame — four of the six opened with the words already in the pill. It says
+// where the film went, or what it does for whoever uses the thing.
 const items: Item[] = [
   {
     src: "/brand/pics_work/porche_behind.webp",
     alt: "Sølvgrå Porsche 911 i Simons verksted med orange SS-logo på vegg",
     label: "Solfilm + PPF",
     caption: "Porsche 911",
-    detail: "Solfilm og lakkbeskyttelse — diskret beskyttelse på premium-bil.",
+    detail: "Rutene tonet, fronten beskyttet mot steinsprut.",
     href: "/solfilm-bil",
-    className: "md:col-span-7 md:row-span-2 aspect-[4/5] md:aspect-auto",
+    className: "md:col-span-7 md:row-span-2 md:aspect-auto",
     priority: true,
   },
   {
@@ -42,45 +45,45 @@ const items: Item[] = [
     alt: "Rød Ferrari F12 i sideprofil foran Simons Solfilm-banner",
     label: "Solfilm",
     caption: "Ferrari F12",
-    detail: "Solfilm montert på en premium-bil.",
+    detail: "Tonet uten at bilen mister linjene.",
     href: "/solfilm-bil",
-    className: "md:col-span-5 aspect-[4/3]",
+    className: "md:col-span-5 md:aspect-[4/3]",
   },
   {
     src: "/brand/pics_work/blue_mercedes.webp",
     alt: "Blå Mercedes AMG ferdig montert med solfilm under XPEL-skilt",
     label: "Solfilm + PPF",
     caption: "Mercedes AMG",
-    detail: "Solfilm og XPEL-godkjent folie for varig kvalitet.",
+    detail: "Film på rutene, XPEL på lakken.",
     href: "/solfilm-bil",
-    className: "md:col-span-5 aspect-[4/3]",
+    className: "md:col-span-5 md:aspect-[4/3]",
   },
   {
     src: "/brand/pics_work/dumper_tinted.webp",
     alt: "Volvo A45 dumper med solfilm på førerhuset",
     label: "Solfilm",
     caption: "Volvo A45",
-    detail: "Solfilm i førerhuset — bedre å sitte i under lange skift.",
+    detail: "Bedre å sitte i under lange skift.",
     href: "/solfilm-bil",
-    className: "md:col-span-5 aspect-[4/3]",
+    className: "md:col-span-5 md:aspect-[4/3]",
   },
   {
     src: "/brand/pics_work/tinted_winter_garden_sanden.webp",
     alt: "Leilighetsbygg med mørktonede innglassede balkonger",
     label: "Innsynsfilm",
     caption: "Leilighetsbygg",
-    detail: "Mørktonet innglasset balkong — privatliv uten å miste lyset.",
+    detail: "Privatliv uten å miste lyset.",
     href: "/solfilm-bygg",
-    className: "md:col-span-7 aspect-[16/10] md:aspect-auto",
+    className: "md:col-span-7 md:aspect-auto",
   },
   {
     src: "/brand/pics_work/stainless_steel_office_building.webp",
     alt: "Næringsbygg med solfilm — Simons servicebil parkert foran",
     label: "Solfilm",
     caption: "Mobilt oppmøte",
-    detail: "Næringskunder i hele Vestfold — jeg kommer ut til deg.",
+    detail: "Jeg kommer ut til deg.",
     href: "/solfilm-bygg",
-    className: "md:col-span-12 aspect-[21/9]",
+    className: "md:col-span-12 md:aspect-[21/9]",
   },
 ];
 
@@ -120,10 +123,13 @@ function Tile({
       custom={index}
       initial={zoomOnEnter ? { opacity: 0 } : "hidden"}
       whileInView={zoomOnEnter ? { opacity: 1 } : "visible"}
-      viewport={{ once: true, margin: "-60px" }}
+      // amount, not margin: a -60px inset meant the card peeking 42px into
+      // the rail never counted as in view, so it sat at opacity 0 and the
+      // only hint that the row scrolls was invisible.
+      viewport={{ once: true, amount: 0.12 }}
       variants={zoomOnEnter ? undefined : cardVariants}
       transition={zoomOnEnter ? { duration: 0.9, ease } : undefined}
-      className={`tile group relative overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card ${item.className}`}
+      className={`tile group relative aspect-[4/3] w-[80vw] shrink-0 snap-start overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:w-auto md:shrink ${item.className}`}
     >
       <Link
         href={item.href}
@@ -143,26 +149,34 @@ function Tile({
           priority={item.priority}
         />
       </motion.div>
-      <div className="tile-scrim pointer-events-none absolute inset-0 bg-black/35" />
+      {/* 20%, not 35%. Nothing sits on the bare photo any more, so the veil
+          only has to seat the image against the page — the work shows
+          brighter than it did. */}
+      <div className="tile-scrim pointer-events-none absolute inset-0 bg-black/20" />
 
-      <div className="pointer-events-none absolute left-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-bg/40 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.18em] text-text backdrop-blur-md">
-        <span className="size-1 rounded-full bg-accent" />
-        {item.label}
-      </div>
-
-      <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-6 lg:p-7">
-        <div className="min-w-0 flex-1">
-          <div className="font-display text-xl font-medium leading-tight text-text lg:text-2xl">
+      {/* One solid plate, and nothing else on the photo. Set straight on the
+          image, the title measured 2.6-3.3:1 against the brightest band
+          behind it on every desktop tile — under the 4.5 it needs — and no
+          veil dark enough to fix that leaves a portfolio worth looking at.
+          The category pill that used to sit top-left folds in here, so each
+          photo carries one object instead of three.
+          The detail line is gone: hidden until hover on a pointer device, so
+          most people never read it, and worse than the title on a phone. It
+          survives in the link's accessible name, where it is actually used. */}
+      <figcaption className="pointer-events-none absolute bottom-4 left-4 z-10 flex max-w-[calc(100%-2rem)] items-end gap-4 rounded-[var(--r-lg)] border border-white/10 bg-bg/75 px-4 py-3 backdrop-blur-md lg:bottom-5 lg:left-5 lg:px-5 lg:py-4">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted">
+            <span className="size-1 shrink-0 rounded-full bg-accent" />
+            {item.label}
+          </div>
+          <div className="mt-1 font-display text-xl font-medium leading-tight text-text lg:text-2xl">
             {item.caption}
           </div>
-          <p
-            data-detail
-            className="mt-1.5 max-w-md text-base leading-snug text-text/85 lg:mt-2"
-          >
-            {item.detail}
-          </p>
         </div>
-        <span aria-hidden className="tile-arrow shrink-0 font-mono text-xs text-text">
+        <span
+          aria-hidden
+          className="tile-arrow shrink-0 pb-1 font-mono text-xs text-text-muted"
+        >
           ↗
         </span>
       </figcaption>
@@ -202,7 +216,13 @@ export function Gallery() {
           Jobber jeg har gjort.
         </SectionHeading>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-12 md:gap-5">
+        {/* A rail on a phone, the composed grid from md up. Stacked full
+            width, the six tiles ran 1560px — 21% of the whole page, the
+            largest section on the site. At 80vw each photo is 234px tall
+            against the 257px it had stacked, so nothing is smaller; six of
+            them just occupy one row instead of six. Every source frame is
+            4:3, so the rail crops nothing. */}
+        <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-1 scroll-px-6 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-12 md:gap-5 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
           {items.map((item, i) => (
             <Tile
               key={item.src}
