@@ -9,7 +9,6 @@ import { SocialProof } from "@/components/SocialProof";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { BrandLoader } from "@/components/BrandLoader";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -18,7 +17,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <BrandLoader />
       <ScrollProgress />
       <Nav />
       <main id="innhold">
