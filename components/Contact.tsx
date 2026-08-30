@@ -10,6 +10,18 @@ const PHONE_DISPLAY = site.phone.display;
 
 const links = [
   {
+    label: "SMS",
+    value: site.phone.display,
+    href: `sms:${site.phone.e164}`,
+    external: false,
+  },
+  {
+    label: "Veibeskrivelse",
+    value: `${site.address.street}, ${site.address.city}`,
+    href: site.address.maps,
+    external: true,
+  },
+  {
     label: "E-post",
     value: site.email,
     href: `mailto:${site.email}`,

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { MagneticLink } from "./MagneticLink";
 import { buttonClass } from "./Button";
+import { QuickActions } from "./QuickActions";
 import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
@@ -192,31 +193,16 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.85 }}
             className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
           >
-            Send meg et bilde på{" "}
-            <a
-              href={`sms:${site.phone.e164}`}
-              className="link-underline text-text hover:text-accent"
-              style={{ transition: "color 220ms var(--ease-out)" }}
-            >
-              SMS
-            </a>{" "}
-            eller{" "}
-            <a
-              href={`mailto:${site.email}`}
-              className="link-underline text-text hover:text-accent"
-              style={{ transition: "color 220ms var(--ease-out)" }}
-            >
-              e-post
-            </a>
-            , så får du pris raskt.
+            Send meg et bilde, så får du pris raskt.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.95 }}
-            className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:col-start-7"
+            className="flex flex-col gap-4 lg:col-span-5 lg:col-start-7"
           >
+            <div className="flex flex-col gap-3 sm:flex-row">
             <MagneticLink
               href={site.phone.href}
               strength={0.4}
@@ -249,6 +235,9 @@ export function Hero() {
               </span>
             </a>
             </span>
+            </div>
+
+            <QuickActions />
           </motion.div>
         </div>
       </motion.div>
