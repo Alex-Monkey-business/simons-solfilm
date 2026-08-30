@@ -17,8 +17,13 @@ export const site = {
     street: "Hegdalveien 65c",
     postal: "3261",
     city: "Larvik",
-    // Same query shape as the other map links on the site.
-    maps: "https://www.google.com/maps/search/?api=1&query=Hegdalveien+65c+3261+Larvik",
+    lat: 59.053407,
+    lng: 10.078789,
+    // Exact coordinates, not the address string. Google geocoded the address
+    // to a point that routed visitors the long way round the block; this pins
+    // the entrance itself. It does not fix the route — that needs the access
+    // road added to Google's own map data.
+    maps: "https://www.google.com/maps/search/?api=1&query=59.053407,10.078789",
   },
   social: {
     instagram: "https://www.instagram.com/simonssolfilm/",

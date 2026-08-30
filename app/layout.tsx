@@ -72,6 +72,12 @@ const localBusiness = {
     addressLocality: site.address.city,
     addressCountry: "NO",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.address.lat,
+    longitude: site.address.lng,
+  },
+  hasMap: site.address.maps,
   areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
   sameAs: [
     site.social.instagram,
