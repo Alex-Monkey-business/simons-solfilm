@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "XPEL — folien jeg bruker | Simons Solfilm",
   description:
-    "Jeg monterer XPEL både som solfilm og lakkbeskyttelse. Kort om hva XPEL er, og om bilpleieproduktene du kan prøve på verkstedet.",
+    "Jeg monterer XPEL både som solfilm og lakkbeskyttelse, og holder kurs for dem. Kort om hva XPEL er, og om bilpleieproduktene du kan prøve på verkstedet.",
   alternates: { canonical: "/xpel" },
 };
 
@@ -29,8 +29,8 @@ export default function XpelPage() {
               Folien jeg bruker.
             </h1>
             <p className="mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg">
-              Jeg monterer XPEL både som solfilm og lakkbeskyttelse. Her er
-              det korte om hva det er.
+              Jeg monterer XPEL både som solfilm og lakkbeskyttelse — og
+              holder kurs for dem. Her er det korte om hva det er.
             </p>
           </div>
         </section>
@@ -61,7 +61,9 @@ export default function XpelPage() {
                     En film er ikke bedre enn den som legger den. Kanter som
                     slipper, bobler under folien eller skjæremerker i lakken
                     ødelegger resultatet uansett hvor god folien er. Derfor gjør
-                    jeg hele jobben selv, fra start til slutt.
+                    jeg hele jobben selv, fra start til slutt — og jeg holder
+                    kurs for XPEL, så det er faget jeg lærer bort til andre
+                    montører.
                   </p>
                 </div>
 
