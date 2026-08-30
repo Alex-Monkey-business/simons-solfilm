@@ -10,6 +10,7 @@ const socials = [
 const pages = [
   { label: "Solfilm til bil", href: "/solfilm-bil" },
   { label: "Solfilm til bygg", href: "/solfilm-bygg" },
+  { label: "XPEL", href: "/xpel" },
 ];
 
 export function Footer() {

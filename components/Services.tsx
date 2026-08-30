@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 import { SectionHeading } from "./SectionHeading";
 
@@ -17,6 +18,7 @@ type Secondary = {
   title: string;
   description: string;
   tag: string;
+  href?: string;
 };
 
 // No photography here on purpose. Both of these images also carry the gallery
@@ -50,6 +52,7 @@ const secondary: Secondary[] = [
     description:
       "Usynlig film som tar støtene for lakken — steinsprut, slitasje og småskader. Jobber jevnlig med Mercedes AMG, Porsche og Ferrari.",
     tag: "XPEL-godkjent",
+    href: "/xpel",
   },
   {
     title: "Lyktefolie",
@@ -269,9 +272,19 @@ export function Services() {
                   <h3 className="font-display text-xl font-medium leading-tight lg:text-2xl">
                     {s.title}
                   </h3>
-                  <span className="shrink-0 font-mono text-[12px] uppercase tracking-[0.18em] text-text-faint">
-                    {s.tag}
-                  </span>
+                  {s.href ? (
+                    <Link
+                      href={s.href}
+                      className="link-underline shrink-0 font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted hover:text-accent"
+                      style={{ transition: "color 220ms var(--ease-out)" }}
+                    >
+                      {s.tag} ↗
+                    </Link>
+                  ) : (
+                    <span className="shrink-0 font-mono text-[12px] uppercase tracking-[0.18em] text-text-faint">
+                      {s.tag}
+                    </span>
+                  )}
                 </div>
                 <p className="mt-3 max-w-md text-base leading-relaxed text-text-muted">
                   {s.description}

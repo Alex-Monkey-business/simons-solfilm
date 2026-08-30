@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, buttonClass } from "./Button";
 import { Footer } from "./Footer";
-import { LogoMark } from "./LogoMark";
+import { SubPageHeader } from "./SubPageHeader";
 import { serviceDetails } from "./serviceDetails";
 import type { ServiceDetail as ServiceDetailData } from "./serviceDetails";
 import { site } from "@/lib/site";
@@ -21,32 +21,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
   return (
     <>
-      {/* Sub-page top bar — anchor nav doesn't apply here, so keep it simple */}
-      <header className="fixed inset-x-0 top-4 z-50 px-4 lg:top-6 lg:px-8">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between rounded-full border border-line-strong bg-bg/80 px-4 py-2.5 backdrop-blur-xl lg:px-6 lg:py-3">
-          <Link
-            href="/"
-            aria-label="Simons Solfilm — til forsiden"
-            className="press inline-flex items-center gap-3"
-          >
-            <LogoMark
-              color="var(--color-accent, #FE7818)"
-              className="h-6 w-auto sm:h-7"
-            />
-            <span className="hidden font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted sm:inline">
-              ← Tilbake
-            </span>
-          </Link>
-
-          <a
-            href={site.phone.href}
-            className={buttonClass({ variant: "primary", size: "sm" })}
-          >
-            <span className="hidden sm:inline">{site.phone.display}</span>
-            <span className="sm:hidden">Ring</span>
-          </a>
-        </div>
-      </header>
+      <SubPageHeader />
 
       <main id="innhold" className="bg-bg">
         {/* Hero */}

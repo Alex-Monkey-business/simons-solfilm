@@ -192,7 +192,23 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.85 }}
             className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:col-span-5 lg:text-lg"
           >
-            Send meg et bilde, så får du pris raskt.
+            Send meg et bilde på{" "}
+            <a
+              href={`sms:${site.phone.e164}`}
+              className="link-underline text-text hover:text-accent"
+              style={{ transition: "color 220ms var(--ease-out)" }}
+            >
+              SMS
+            </a>{" "}
+            eller{" "}
+            <a
+              href={`mailto:${site.email}`}
+              className="link-underline text-text hover:text-accent"
+              style={{ transition: "color 220ms var(--ease-out)" }}
+            >
+              e-post
+            </a>
+            , så får du pris raskt.
           </motion.p>
 
           <motion.div
