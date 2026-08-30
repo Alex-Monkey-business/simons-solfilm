@@ -9,16 +9,12 @@ const ease = [0.23, 1, 0.32, 1] as const;
 const PHONE_DISPLAY = site.phone.display;
 
 const links = [
+  // Every row is `what it is / the identifier`. A texting row broke that
+  // twice over: a phone number is already textable, and it sits in 80px serif
+  // directly above, so the row carried an instruction where a value belongs.
+  // The hero keeps an explicit Send SMS button for anyone who wants it there.
   {
-    // Same number as the big card right above it, so repeating the digits
-    // here said nothing. The row now carries what SMS is actually for.
-    label: "SMS",
-    value: "Send meg et bilde av bilen",
-    href: `sms:${site.phone.e164}`,
-    external: false,
-  },
-  {
-    label: "Veibeskrivelse",
+    label: "Adresse",
     value: `${site.address.street}, ${site.address.city}`,
     href: site.address.maps,
     external: true,
