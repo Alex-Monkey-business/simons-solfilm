@@ -120,7 +120,14 @@ body {
   }
 }
 
-/* Link underline draw */
+/* Link underline draw.
+   Streken er posisjonert mot ELEMENTETS boks. Sitter link-underline på en
+   lenke som er gjort 44 px høy for treffområdets skyld, faller streken til
+   bunnen av boksen — målt 8-11 px under teksten på åtte lenker. Derfor skal
+   link-underline alltid ligge på et element som klemmer teksten: gi lenka
+   høyden, og legg link-underline på en <span> rundt teksten inni.
+   :has-regelen under er et sikkerhetsnett: er klassen satt på en boks som er
+   høyere enn linjehøyden, sentreres streken mot teksten i stedet. */
 .link-underline {
   position: relative;
 }
@@ -135,6 +142,11 @@ body {
   transform-origin: right;
   transform: scaleX(0);
   transition: transform 380ms var(--ease-out);
+}
+/* Sikkerhetsnett for lenker der klassen står på en padded boks: legg streken
+   ved tekstens grunnlinje i stedet for boksens bunn. lh = linjehøyden. */
+.link-underline.is-boxed::after {
+  bottom: calc((100% - 1lh) / 2 - 3px);
 }
 @media (hover: hover) and (pointer: fine) {
   .link-underline:hover::after {

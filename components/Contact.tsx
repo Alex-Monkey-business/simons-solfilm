@@ -169,7 +169,7 @@ export function Contact() {
                     href={sm.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-underline inline-flex min-h-[44px] items-center px-2 text-base text-text hover:text-accent lg:text-lg"
+                    className="link-underline is-boxed inline-flex min-h-[44px] items-center px-2 text-base text-text hover:text-accent lg:text-lg"
                     style={{ transition: "color 220ms var(--ease-out)" }}
                   >
                     {sm.label}

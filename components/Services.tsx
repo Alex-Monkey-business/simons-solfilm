@@ -300,7 +300,7 @@ export function Services() {
                       // 44 px, men den grafiske plasseringen står stille, så
                       // grunnlinja mot h3-en ikke flytter seg. Samme grep som
                       // de sosiale lenkene i Contact alt bruker.
-                      className="link-underline -my-3 inline-flex shrink-0 items-center font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted hover:text-accent min-h-[44px]"
+                      className="link-underline is-boxed -my-3 inline-flex shrink-0 items-center font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted hover:text-accent min-h-[44px]"
                       style={{ transition: "color 220ms var(--ease-out)" }}
                     >
                       {s.tag} ↗

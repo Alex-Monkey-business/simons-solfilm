@@ -43,7 +43,7 @@ export function Footer() {
                 <li key={p.href}>
                   <Link
                     href={p.href}
-                    className="link-underline -mx-2 inline-flex min-h-[44px] items-center px-2 text-sm text-text-muted hover:text-text"
+                    className="link-underline is-boxed -mx-2 inline-flex min-h-[44px] items-center px-2 text-sm text-text-muted hover:text-text"
                     style={{ transition: "color 220ms var(--ease-out)" }}
                   >
                     {p.label}
