@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import { buttonClass } from "./Button";
 import { site } from "@/lib/site";
 
@@ -25,7 +26,15 @@ const actions = [
     href: `mailto:${site.email}`,
     icon: (
       <>
-        <rect x="2.5" y="4.5" width="13" height="9.5" rx="1" fill="none" strokeWidth="1.4" />
+        <rect
+          x="2.5"
+          y="4.5"
+          width="13"
+          height="9.5"
+          rx="1"
+          fill="none"
+          strokeWidth="1.4"
+        />
         <path d="M2.5 6l6.5 4.5L15.5 6" fill="none" strokeWidth="1.4" />
       </>
     ),
@@ -36,16 +45,34 @@ const actions = [
     external: true,
     icon: (
       <>
-        <path d="M9 2.5c2.5 0 4.5 2 4.5 4.5 0 3.2-4.5 8-4.5 8S4.5 10.2 4.5 7c0-2.5 2-4.5 4.5-4.5z" fill="none" strokeWidth="1.4" />
+        <path
+          d="M9 2.5c2.5 0 4.5 2 4.5 4.5 0 3.2-4.5 8-4.5 8S4.5 10.2 4.5 7c0-2.5 2-4.5 4.5-4.5z"
+          fill="none"
+          strokeWidth="1.4"
+        />
         <circle cx="9" cy="7" r="1.6" fill="none" strokeWidth="1.4" />
       </>
     ),
   },
 ];
 
-export function QuickActions({ className = "" }: { className?: string }) {
+/**
+ * `lead` sits inside the same wrapping row rather than above it, so the call
+ * button and its three alternatives share one set of gaps and wrap as one
+ * group. The call button used to be its own block above this row; the row is
+ * framed as "Kontakt meg" now, and four buttons of the same height under one
+ * label is what that framing means.
+ */
+export function QuickActions({
+  className = "",
+  lead,
+}: {
+  className?: string;
+  lead?: ReactNode;
+}) {
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
+      {lead}
       {actions.map((a, i) => (
         <motion.a
           key={a.label}
