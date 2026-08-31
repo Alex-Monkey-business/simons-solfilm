@@ -163,7 +163,11 @@ export function Hero() {
               <motion.span
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
-                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+                transition={{
+                  duration: 1.1,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.35,
+                }}
                 className="block"
               >
                 Solfilm til bil,
@@ -173,7 +177,11 @@ export function Hero() {
               <motion.span
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
-                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+                transition={{
+                  duration: 1.1,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.5,
+                }}
                 className="block"
               >
                 <span className="font-display-italic">bolig</span> og{" "}
@@ -201,26 +209,44 @@ export function Hero() {
             Send meg et bilde, så får du pris raskt.
           </motion.p>
 
+          {/* items-stretch, and the group shrinks to its widest child — so
+              the call button takes exactly the width of the three buttons
+              below it rather than a hardcoded number. It used to be 146px
+              wide against a 376px row: the one thing to press was the
+              smallest object in the block, 8.7k px against the row's 16.5k.
+              Full width on a phone, where it is a thumb target. */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.95 }}
-            className="flex flex-col items-start gap-4"
+            className="flex w-full flex-col items-stretch gap-4 sm:w-fit"
           >
             <MagneticLink
               href={site.phone.href}
               strength={0.4}
               radius={160}
-              className={buttonClass({ variant: "primary", className: "group" })}
+              className={buttonClass({
+                variant: "primary",
+                className: "group w-full",
+              })}
             >
-              <span>Ring meg</span>
-              <span
+              {/* A handset, not an arrow. An arrow promises navigation; this
+                  starts a call. It was also the only glyph of the four here
+                  that did not describe its own action — the three below all
+                  carry one, in the same 1.4 stroke. */}
+              <svg
+                viewBox="0 0 18 18"
                 aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
+                className="size-[17px] shrink-0 stroke-current transition-transform duration-300 group-hover:-rotate-12"
+                fill="none"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 style={{ transitionTimingFunction: "var(--ease-out)" }}
               >
-                →
-              </span>
+                <path d="M5.6 2.6h2.1l1.1 2.7-1.5 1.1a8.2 8.2 0 0 0 4.2 4.2l1.1-1.5 2.7 1.1v2.1a1.5 1.5 0 0 1-1.6 1.5C7.9 13.5 4.5 10.1 4.1 4.2a1.5 1.5 0 0 1 1.5-1.6z" />
+              </svg>
+              <span>Ring meg</span>
             </MagneticLink>
 
             <QuickActions />

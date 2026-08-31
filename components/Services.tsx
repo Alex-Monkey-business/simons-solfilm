@@ -167,15 +167,16 @@ export function Services() {
       className="relative w-full bg-bg px-6 py-16 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-[1280px]">
-        <SectionHeading
-          className="mb-12 lg:mb-16"
-          support={
-            <>
-              Mest solfilm — til bil, bolig og næringsbygg. Så gjør jeg en del
-              annet ved siden av.
-            </>
-          }
-        >
+        {/* No support line here. The other two sections that use one carry a
+            fact their heading cannot — what kinds of jobs, what you are
+            looking at. This one said "Mest solfilm — til bil, bolig og
+            næringsbygg", which is the hero headline word for word one screen
+            further up, and then "så gjør jeg en del annet ved siden av",
+            which is the label on the subsection right below. Two big doors
+            and three small cards under "Andre tjenester" already rank the
+            work; a sentence saying so out loud was the layout talking about
+            itself. */}
+        <SectionHeading className="mb-12 lg:mb-16">
           Det jeg gjør.
         </SectionHeading>
 
@@ -228,8 +229,8 @@ export function Services() {
                   Dronebefaring
                 </h3>
                 <p className="mt-3 max-w-md text-base leading-relaxed text-text/85">
-                  Befaring av tak, fasade og steder du ikke kommer til.
-                  Tryggere og billigere enn lift.
+                  Befaring av tak, fasade og steder du ikke kommer til. Tryggere
+                  og billigere enn lift.
                 </p>
               </div>
               <div className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-text/90">
