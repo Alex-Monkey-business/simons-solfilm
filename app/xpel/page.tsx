@@ -109,6 +109,8 @@ const careGroups: CareGroup[] = [
       {
         name: "Vaskehanske",
         body: "Holder på masse såpevann. Fibrene kapsler inn skitten og løfter den vekk fra lakken.",
+        img: "vaskehanske",
+        alt: "XPEL Premium Wash Mitt i svart og hvitt",
       },
       {
         name: "Vaskebøtte",
@@ -212,7 +214,9 @@ export default function XpelPage() {
             der den hvite studiobakgrunnen er slått ut med flomfyll fra
             bildekanten (ikke terskel — terskel punkterer den hvite teksten på
             selve flaska). Alle skalert til samme høyde i kilden.
-            Vaskehansken mangler bilde: XPEL serverer ingen for den. */}
+            Hansken er den ene som MÅ komme transparent fra kilden: den har
+            hvite frynser mot hvit bakgrunn, så et utslag ville spist fibrene.
+            BigCommerce-varianten har ekte alfa på frynsekanten. */}
         <section
           id="bilpleie"
           className="w-full scroll-mt-28 px-6 pb-20 lg:px-10 lg:pb-32"
