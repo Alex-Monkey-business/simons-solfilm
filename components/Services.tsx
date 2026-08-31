@@ -187,7 +187,7 @@ export function Services() {
             and three small cards under "Andre tjenester" already rank the
             work; a sentence saying so out loud was the layout talking about
             itself. */}
-        <SectionHeading className="mb-12 lg:mb-16">
+        <SectionHeading number={1} className="mb-12 lg:mb-16">
           Det jeg gjør.
         </SectionHeading>
 

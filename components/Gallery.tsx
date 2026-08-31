@@ -230,6 +230,7 @@ export function Gallery() {
     >
       <div className="mx-auto max-w-[1280px]">
         <SectionHeading
+          number={2}
           className="mb-12 lg:mb-16"
           support={
             <>

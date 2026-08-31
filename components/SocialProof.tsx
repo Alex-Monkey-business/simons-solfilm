@@ -89,7 +89,7 @@ export function SocialProof() {
       <div className="mx-auto max-w-[1280px]">
         {/* No support paragraph here: the two numbers below say it, and saying
             it in words as well was bragging twice. */}
-        <SectionHeading className="mb-12 lg:mb-16">
+        <SectionHeading number={5} className="mb-12 lg:mb-16">
           Dette sier kundene mine.
         </SectionHeading>
 

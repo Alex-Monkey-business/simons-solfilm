@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { SectionRule } from "./SectionRule";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -14,24 +15,20 @@ export function SectionHeading({
   children,
   support,
   className = "",
+  number,
+  total = 6,
 }: {
   children: ReactNode;
   support?: ReactNode;
   className?: string;
+  number?: number;
+  total?: number;
 }) {
   return (
-    <div
-      className={`grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-10 ${className}`}
-    >
+    <div className={className}>
+      {number ? <SectionRule number={number} total={total} className="mb-7 lg:mb-9" /> : null}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-10">
       <div className="lg:col-span-7">
-        <motion.span
-          aria-hidden
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease }}
-          className="mb-7 block h-px w-16 origin-left bg-accent lg:mb-9"
-        />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,6 +50,7 @@ export function SectionHeading({
           {support}
         </motion.p>
       ) : null}
+      </div>
     </div>
   );
 }

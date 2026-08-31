@@ -69,6 +69,7 @@ export function BeforeAfter() {
     <section className="relative w-full bg-bg px-6 py-12 lg:px-10 lg:py-24">
       <div className="mx-auto max-w-[1280px]">
         <SectionHeading
+          number={3}
           className="mb-12 lg:mb-16"
           support={
             <>

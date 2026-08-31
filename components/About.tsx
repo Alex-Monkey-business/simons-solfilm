@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SectionRule } from "./SectionRule";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -10,16 +11,11 @@ export function About() {
       id="om"
       className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-40"
     >
+      <div className="mx-auto max-w-[1280px]">
+        <SectionRule number={4} total={6} className="mb-7 lg:mb-9" />
+      </div>
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-16 lg:grid-cols-12 lg:items-start lg:gap-12">
         <div className="lg:sticky lg:top-32 lg:col-span-5 lg:self-start">
-          <motion.span
-            aria-hidden
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, ease }}
-            className="mb-7 block h-px w-16 origin-left bg-accent lg:mb-9"
-          />
 
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
