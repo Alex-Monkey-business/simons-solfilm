@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SubPageHeader } from "@/components/SubPageHeader";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/Button";
@@ -17,7 +18,7 @@ const XPEL_URL = "https://www.xpel.com/";
 // omskrevet til noe han ikke har sagt: hver linje er hans setning strammet,
 // ikke en ny påstand. Produktnavnene står som de står på flaskene han selger
 // — Superior Car Care er XPELs eget navn på serien.
-type CareProduct = { name: string; body: string };
+type CareProduct = { name: string; body: string; img?: string; alt?: string };
 type CareGroup = { label: string; products: CareProduct[] };
 
 const careGroups: CareGroup[] = [
@@ -27,18 +28,26 @@ const careGroups: CareGroup[] = [
       {
         name: "Wash Solution",
         body: "Shampo som gir god glid, lukter godt og får bilen skinnende ren.",
+        img: "wash-solution",
+        alt: "Flaske XPEL Wash Solution",
       },
       {
         name: "Foam Soap",
         body: "Høyskummende shampo for skumkanon. Løser opp fastgrodd skitt på lakk, felger og motorrom.",
+        img: "foam-soap",
+        alt: "Flaske XPEL Foam Soap",
       },
       {
         name: "Waterless Wash",
         body: "Vasker uten slange eller bøtte. Kapsler inn partiklene så du unngår swirls, og etterlater en hydrofobisk hinne.",
+        img: "waterless-wash",
+        alt: "Flaske XPEL Waterless Wash",
       },
       {
         name: "Iron Remover",
         body: "Løser opp bremsestøv og flyverust som har brent seg fast. pH-nøytral, trygg på både lakk og PPF. Blir lilla når den virker.",
+        img: "iron-remover",
+        alt: "Sprayflaske XPEL Iron Remover",
       },
     ],
   },
@@ -48,10 +57,14 @@ const careGroups: CareGroup[] = [
       {
         name: "Interior Cleaner",
         body: "Fjerner smuss og flekker uten å trekke ut de naturlige oljene i materialene. Ingen striper eller skjolder.",
+        img: "interior-cleaner",
+        alt: "Sprayflaske XPEL Interior Cleaner",
       },
       {
         name: "Glass Cleaner",
         body: "Skinnende rene vinduer, speil og skjermer uten skjolder — også dusjveggen hjemme.",
+        img: "glass-cleaner",
+        alt: "Sprayflaske XPEL Glass Cleaner",
       },
     ],
   },
@@ -61,18 +74,26 @@ const careGroups: CareGroup[] = [
       {
         name: "Ceramic Boost",
         body: "Mikrotynt keramisk lag som frastøter vann og gir dypere farge. Alene som spray-coating, eller oppå en coating du har.",
+        img: "ceramic-boost",
+        alt: "Sprayflaske XPEL Ceramic Boost",
       },
       {
         name: "Detail Spray",
         body: "Tar lett støv og fingeravtrykk for en rask shine. Fungerer også som glidemiddel når du clay\u2019er.",
+        img: "detail-spray",
+        alt: "Flaske XPEL Detail Spray",
       },
       {
         name: "PPF Cleaner",
         body: "Trekker ut tjære, olje og insektsyre som har satt seg i folien, og gjenoppretter den klare looken den hadde som ny.",
+        img: "ppf-cleaner",
+        alt: "Sprayflaske XPEL PPF Cleaner",
       },
       {
         name: "Water Spot Remover",
         body: "Løser opp vannflekker og kalk etter regn, hardt springvann eller vask.",
+        img: "water-spot-remover",
+        alt: "Sprayflaske XPEL Water Spot Remover",
       },
     ],
   },
@@ -82,6 +103,8 @@ const careGroups: CareGroup[] = [
       {
         name: "Mikrofiberklut",
         body: "Suger opp vannet etter vasken i ett drag. Lofri og ripefri.",
+        img: "mikrofiberklut",
+        alt: "Gul XPEL mikrofiberklut",
       },
       {
         name: "Vaskehanske",
@@ -90,6 +113,8 @@ const careGroups: CareGroup[] = [
       {
         name: "Vaskebøtte",
         body: "Rist i bunnen skiller skitten fra vannet. Polstret lokk du kan sitte på, og hjul.",
+        img: "vaskebotte",
+        alt: "XPEL vaskebøtte-system med rist og lokk",
       },
     ],
   },
@@ -180,12 +205,14 @@ export default function XpelPage() {
             lokalet. Derfor: navnene som står på flaskene, og Simons egne ord
             fra Instagram kortet til én linje. Ingen priser og ingen kjøp-knapp;
             handlingen er å komme innom.
-            Ingen bilder her ennå med vilje. Simons oppstillingsbilde er
-            KI-generert og flasketypografien renner når den blir stor nok til å
-            lese. XPELs ekte packshots ligger klare i
-            _image-source/bilpleie/xpel-packshots/ (transparent PNG fra
-            brand.xpel.com) — seks av tretten. Resten hentes fra
-            forhandlerportalen, så settes de inn som én rad. */}
+            Bildene er XPELs egne packshots, ikke Simons KI-bilder — de var
+            fine på Instagram, men flasketypografien renner når den blir stor
+            nok til å lese. Kildene ligger i _image-source/bilpleie/: seks
+            transparente fra brand.xpel.com, seks fra butikkens BigCommerce-CDN
+            der den hvite studiobakgrunnen er slått ut med flomfyll fra
+            bildekanten (ikke terskel — terskel punkterer den hvite teksten på
+            selve flaska). Alle skalert til samme høyde i kilden.
+            Vaskehansken mangler bilde: XPEL serverer ingen for den. */}
         <section
           id="bilpleie"
           className="w-full scroll-mt-28 px-6 pb-20 lg:px-10 lg:pb-32"
@@ -212,14 +239,34 @@ export default function XpelPage() {
                       {group.products.map((product) => (
                         <div
                           key={product.name}
-                          className="border-t border-line py-6 first:border-t-0 last:pb-0"
+                          className="flex items-start gap-5 border-t border-line py-6 first:border-t-0 last:pb-0 lg:gap-6"
                         >
-                          <h3 className="font-display text-lg font-medium lg:text-xl">
-                            {product.name}
-                          </h3>
-                          <p className="mt-2 text-base leading-relaxed text-text-muted">
-                            {product.body}
-                          </p>
+                          {/* Fast boks med object-contain, ikke fast bredde:
+                              flaskene er høye og smale, kluten og bøtta brede.
+                              Boksen begrenser begge akser, så hver ting fyller
+                              den aksen den er størst i og ingenting dominerer
+                              raden. Bildene er transparente PNG-packshots fra
+                              XPEL, så de står rett på bakgrunnen uten ramme. */}
+                          <div className="flex h-28 w-16 shrink-0 items-center justify-center lg:h-36 lg:w-24">
+                            {product.img ? (
+                              <Image
+                                src={`/brand/xpel-care/${product.img}.webp`}
+                                alt={product.alt ?? product.name}
+                                width={160}
+                                height={160}
+                                sizes="(max-width: 1024px) 64px, 96px"
+                                className="max-h-full max-w-full object-contain"
+                              />
+                            ) : null}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="font-display text-lg font-medium lg:text-xl">
+                              {product.name}
+                            </h3>
+                            <p className="mt-2 text-base leading-relaxed text-text-muted">
+                              {product.body}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
