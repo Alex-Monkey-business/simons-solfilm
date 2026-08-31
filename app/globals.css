@@ -1,16 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  /* Surfaces — en fire-trinns skala, ikke tre.
-     Forsiden var sju seksjoner på samme #0b0b0c, så alt gikk i ett når man
-     scrollet. --bg-band gir annenhver seksjon et løft på ΔL* 2,9: synlig, men
-     ingen stripe. Kortene måtte samtidig opp fra #131316 til #1b1b1f, ellers
-     ville de forsvinne i båndet de står på (ΔL* 0,8). Nå leser de 6,9 mot
-     basis og 3,9 mot båndet. --bg-elev er hover-trinnet over kortet. */
+  /* Surfaces */
   --bg: #0b0b0c;
-  --bg-band: #131316;
-  --bg-card: #1b1b1f;
-  --bg-elev: #232329;
+  --bg-card: #131316;
+  --bg-elev: #1b1b1f;
   --line: rgba(255, 255, 255, 0.07);
   --line-strong: rgba(255, 255, 255, 0.13);
 
@@ -42,7 +36,6 @@
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg-band: var(--bg-band);
   --color-bg-card: var(--bg-card);
   --color-bg-elev: var(--bg-elev);
   --color-line: var(--line);

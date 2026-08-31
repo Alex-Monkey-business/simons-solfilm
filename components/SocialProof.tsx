@@ -85,7 +85,7 @@ function Stars() {
 
 export function SocialProof() {
   return (
-    <section className="relative w-full bg-bg-band px-6 py-12 lg:px-10 lg:py-24">
+    <section className="relative w-full bg-bg px-6 py-12 lg:px-10 lg:py-24">
       <div className="mx-auto max-w-[1280px]">
         {/* No support paragraph here: the two numbers below say it, and saying
             it in words as well was bragging twice. */}
