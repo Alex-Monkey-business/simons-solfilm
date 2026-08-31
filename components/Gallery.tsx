@@ -129,7 +129,7 @@ function Tile({
       viewport={{ once: true, amount: 0.12 }}
       variants={zoomOnEnter ? undefined : cardVariants}
       transition={zoomOnEnter ? { duration: 0.9, ease } : undefined}
-      className={`tile group relative aspect-[4/3] w-[72vw] max-w-[420px] shrink-0 snap-start overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:w-auto md:shrink ${item.className}`}
+      className={`tile group relative aspect-[4/3] w-[72vw] max-w-[420px] shrink-0 snap-start overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:w-auto md:max-w-none md:shrink ${item.className}`}
     >
       <Link
         href={item.href}
