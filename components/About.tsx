@@ -9,7 +9,11 @@ export function About() {
   return (
     <section
       id="om"
-      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-40"
+      // py-24, ikke py-40. Seksjonen hadde 320 px luft rundt 435 px innhold —
+      // forholdet 0,74 mot sidens norm på 0,15-0,21, altså fire ganger. Den
+      // leste som en tom flate mellom to fulle. 192 px total er samme
+      // absolutte luft som Før/etter og Anmeldelser, så rytmen holder.
+      className="relative w-full bg-bg px-6 py-16 lg:px-10 lg:py-24"
     >
       <div className="mx-auto max-w-[1280px]">
         <SectionRule number={4} total={6} className="mb-7 lg:mb-9" />
@@ -30,34 +34,6 @@ export function About() {
             </span>
           </motion.h2>
 
-          {/* One number, not a list. It began as four rows, then three. Each
-              of the others said something the paragraphs beside it already
-              said with more in them — the workshop's address, which is also
-              in the contact list and the footer, and the area covered, which
-              the last paragraph states as a promise rather than a fact. What
-              is left is the one thing the prose never says. */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease, delay: 0.15 }}
-            className="relative mt-12 py-6 lg:mt-14"
-          >
-            <motion.span
-              aria-hidden
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, ease, delay: 0.2 }}
-              className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-            />
-            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
-              Erfaring
-            </div>
-            <div className="mt-2 font-display text-4xl font-normal leading-none text-text lg:text-5xl">
-              20+ år
-            </div>
-          </motion.div>
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
@@ -98,6 +74,42 @@ export function About() {
           </div>
         </div>
       </div>
+
+      {/* Tallet avslutter seksjonen i full bredde i stedet for å dingle
+        nederst i den korte venstre kolonnen — der etterlot det et tomt
+        kvadrant, og hårstreken over det målte 505 px mot 1280 ellers.
+        Fortsatt ETT tall: avgjørelsen under står, den handlet om hvor mange
+        rader, ikke om hvor de står.
+
+        One number, not a list. It began as four rows, then three. Each
+            of the others said something the paragraphs beside it already
+            said with more in them — the workshop's address, which is also
+            in the contact list and the footer, and the area covered, which
+            the last paragraph states as a promise rather than a fact. What
+            is left is the one thing the prose never says. */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease, delay: 0.15 }}
+          className="relative mx-auto mt-16 max-w-[1280px] py-6 lg:mt-20"
+        >
+          <motion.span
+            aria-hidden
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease, delay: 0.2 }}
+            className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+          />
+          <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+            Erfaring
+          </div>
+          <div className="mt-2 font-display text-4xl font-normal leading-none text-text lg:text-5xl">
+            20+ år
+          </div>
+        </motion.div>
+
     </section>
   );
 }
