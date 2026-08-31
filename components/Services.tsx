@@ -184,7 +184,7 @@ export function Services() {
             næringsbygg", which is the hero headline word for word one screen
             further up, and then "så gjør jeg en del annet ved siden av",
             which is the label on the subsection right below. Two big doors
-            and three small cards under "Andre tjenester" already rank the
+            and the small cards under "Utenom solfilm" already rank the
             work; a sentence saying so out loud was the layout talking about
             itself. */}
         <SectionHeading number={1} className="mb-12 lg:mb-16">
@@ -197,7 +197,16 @@ export function Services() {
           ))}
         </div>
 
-        {/* Andre tjenester */}
+        {/* «Andre tjenester» ble feil da Bilpleieprodukter kom inn i lista:
+            fire av fem er tjenester, den siste er en vare han har på hylla.
+            «Utenom solfilm» er det ene som er sant for alle fem — de to store
+            dørene over ER solfilm, disse er ikke — og det bærer informasjon i
+            stedet for å være en samlesekk.
+
+            Den korte 32 px-streken til venstre for labelen står med vilje,
+            selv om seksjonsstreken går tvers over med aksent og nummer. En
+            underoverskrift SKAL se annerledes ut enn en seksjonsoverskrift;
+            det er hierarkiet, ikke et avvik. */}
         <div className="mt-16 lg:mt-24">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
@@ -207,7 +216,7 @@ export function Services() {
             className="mb-8 inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted lg:mb-10"
           >
             <span className="h-px w-8 bg-line-strong" />
-            <span>Andre tjenester</span>
+            <span>Utenom solfilm</span>
           </motion.div>
 
           {/* Drone gets the one moving image in this section — a wide, short
