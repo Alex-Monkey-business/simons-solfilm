@@ -296,7 +296,11 @@ export function Services() {
                   {s.href ? (
                     <Link
                       href={s.href}
-                      className="link-underline shrink-0 font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted hover:text-accent"
+                      // -my-3 sammen med min-h-[44px]: treffområdet vokser til
+                      // 44 px, men den grafiske plasseringen står stille, så
+                      // grunnlinja mot h3-en ikke flytter seg. Samme grep som
+                      // de sosiale lenkene i Contact alt bruker.
+                      className="link-underline -my-3 inline-flex shrink-0 items-center font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted hover:text-accent min-h-[44px]"
                       style={{ transition: "color 220ms var(--ease-out)" }}
                     >
                       {s.tag} ↗

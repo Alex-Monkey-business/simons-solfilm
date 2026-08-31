@@ -35,12 +35,15 @@ export function Footer() {
             <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
               Tjenester
             </div>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            {/* gap-0 fordi hver rad nå er 44 px høy for treffområdets
+                skyld — den innebygde luften erstatter gapet, så listen ser
+                like tett ut som før. */}
+            <ul className="mt-2 flex flex-col">
               {pages.map((p) => (
                 <li key={p.href}>
                   <Link
                     href={p.href}
-                    className="link-underline text-sm text-text-muted hover:text-text"
+                    className="link-underline -mx-2 inline-flex min-h-[44px] items-center px-2 text-sm text-text-muted hover:text-text"
                     style={{ transition: "color 220ms var(--ease-out)" }}
                   >
                     {p.label}
