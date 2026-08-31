@@ -82,7 +82,12 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease, delay: 0.2 }}
-            className="relative lg:col-span-5 lg:-mt-12"
+            // Ingen negativ toppmarg. Løftet på -48 px var laget da
+            // seksjonsstreken lå inne i venstre kolonne og ikke gikk under
+            // bildet. Nå går streken tvers over sida, og portrettet dekket
+            // nummeret «06 / 06» med 22 x 12 px. Streken er et systemelement
+            // som er likt i alle seks seksjonene, så løftet viker.
+            className="relative lg:col-span-5"
           >
             <div className="relative mx-auto aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card">
               <Image
