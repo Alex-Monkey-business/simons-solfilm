@@ -90,7 +90,7 @@ export default function XpelPage() {
                   </p>
                   <Link
                     href="/bilpleie"
-                    className="link-underline mt-4 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
+                    className="link-underline is-boxed -my-3 mt-1 inline-flex min-h-[44px] items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
                     style={{ transition: "color 220ms var(--ease-out)" }}
                   >
                     <span>Se produktene</span>
@@ -103,7 +103,7 @@ export default function XpelPage() {
                 href={XPEL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline mt-10 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-text"
+                className="link-underline is-boxed -my-3 mt-7 inline-flex min-h-[44px] items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-text"
                 style={{ transition: "color 220ms var(--ease-out)" }}
               >
                 <span>xpel.com</span>

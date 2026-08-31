@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "qa": "node scripts/qa.mjs",
+    "qa:prod": "node scripts/qa.mjs https://simonssolfilm.no"
   },
   "dependencies": {
     "framer-motion": "^12.39.0",
@@ -19,6 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "playwright-core": "^1.56.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
