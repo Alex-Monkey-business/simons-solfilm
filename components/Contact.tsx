@@ -59,12 +59,18 @@ export function Contact() {
       // py-28, ikke py-40. Luften var dimensjonert for telefonkortet og
       // portrettet; uten dem hadde seksjonen 320 px luft rundt 845 px
       // innhold (0,38 mot sidens norm 0,15-0,21).
-      className="relative w-full bg-bg px-6 py-16 lg:px-10 lg:py-28"
+      // Asymmetrisk med vilje: footeren legger selv til 112 px topppadding,
+      // så en like stor bunnpadding her ga 224 px mellom siste rad og
+      // footerlogoen. Toppen beholder sin luft mot seksjonsstreken.
+      className="relative w-full bg-bg px-6 pb-8 pt-16 lg:px-10 lg:pb-12 lg:pt-28"
     >
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <SectionRule number={6} total={6} className="mb-7 lg:mb-9" />
-        <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="lg:col-span-7">
+        {/* Overskrift og liste side om side. Da lista lå UNDER overskriften
+            sto begge i kolonne 1-7 og kolonne 8-12 var tom — 45 % av bredden
+            ubrukt, som leste som mer luft enn noe vertikalt gap. */}
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-6">
 
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -90,15 +96,13 @@ export function Contact() {
             </motion.p>
           </div>
 
-        </div>
 
-        <div className="mt-16 grid grid-cols-1 lg:mt-20 lg:grid-cols-12">
 
           {/* Google routes visitors the long way round because the access
               road is not in its map data. The coordinates put the pin in the
               right place; the note under Adresse does the rest, because no
               link can. */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-5 lg:col-start-8">
             {links.map((l, i) => (
               <div key={l.label}>
                 <motion.a
