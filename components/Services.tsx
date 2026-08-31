@@ -71,7 +71,7 @@ const secondary: Secondary[] = [
     description:
       "XPELs Superior Car Care-serie står på hylla i verkstedet — vask, interiør, glass og lakkpleie. Kom innom og test.",
     tag: "På verkstedet",
-    href: "/xpel#bilpleie",
+    href: "/bilpleie",
   },
 ];
 
