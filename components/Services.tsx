@@ -66,11 +66,15 @@ const secondary: Secondary[] = [
       "Trykk på arbeidstøy, profilklær og T-skjorter til bedrifter, lag og privatpersoner.",
     tag: "Bedrift & privat",
   },
+  // Tittelen må være en TING, ikke en tjeneste. «Bilpleie» blant
+  // «Lakkbeskyttelse» og «Lyktefolie» leser som noe han utfører, og det gjør
+  // han ikke — han selger serien fra lokalet. Tittelen bærer varen, taggen
+  // bærer rollen.
   {
-    title: "Bilpleie",
+    title: "Bilpleieprodukter",
     description:
       "XPELs Superior Car Care-serie står på hylla i verkstedet — vask, interiør, glass og lakkpleie. Kom innom og test.",
-    tag: "På verkstedet",
+    tag: "Forhandler",
     href: "/bilpleie",
   },
 ];
