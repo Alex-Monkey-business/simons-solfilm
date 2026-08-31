@@ -175,7 +175,7 @@ export function Services() {
   return (
     <section
       id="tjenester"
-      className="relative w-full bg-bg px-6 py-16 lg:px-10 lg:py-32"
+      className="relative w-full bg-bg-band px-6 py-16 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-[1280px]">
         {/* No support line here. The other two sections that use one carry a

@@ -10,7 +10,7 @@ const pages = [
 
 export function Footer() {
   return (
-    <footer className="relative w-full bg-bg px-6 pb-12 pt-20 lg:px-10 lg:pb-14 lg:pt-28">
+    <footer className="relative w-full bg-bg-band px-6 pb-12 pt-20 lg:px-10 lg:pb-14 lg:pt-28">
       <div className="mx-auto max-w-[1280px]">
         {/* No box — a hairline is enough to close the page. Wayfinding and
             the legal line, nothing else: this footer sits under a contact
