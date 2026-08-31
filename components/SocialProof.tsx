@@ -163,17 +163,16 @@ export function SocialProof() {
         {quotes.map((q, i) => (
           <motion.figure
             key={q.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="vis"
             viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: { opacity: 0, y: 20 }, vis: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease, delay: i * 0.1 }}
             className={`relative pt-8 ${i === 0 ? "mt-20 lg:mt-28" : "mt-12 lg:mt-14"}`}
           >
             <motion.span
               aria-hidden
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
+              variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
               transition={{ duration: 0.9, ease, delay: 0.15 + i * 0.1 }}
               className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
             />

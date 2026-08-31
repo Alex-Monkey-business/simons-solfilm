@@ -154,9 +154,10 @@ export function Contact() {
             {links.map((l, i) => (
               <div key={l.label}>
                 <motion.a
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial="hidden"
+                  whileInView="vis"
                   viewport={{ once: true, margin: "-60px" }}
+                  variants={{ hidden: { opacity: 0, y: 12 }, vis: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.6, ease, delay: 0.35 + i * 0.09 }}
                   href={l.href}
                   target={l.external ? "_blank" : undefined}
@@ -165,9 +166,7 @@ export function Contact() {
                 >
                   <motion.span
                     aria-hidden
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: "-60px" }}
+                    variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
                     transition={{ duration: 0.8, ease, delay: 0.4 + i * 0.09 }}
                     className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
                   />
@@ -204,17 +203,16 @@ export function Contact() {
             ))}
 
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="vis"
               viewport={{ once: true, margin: "-60px" }}
+              variants={{ hidden: { opacity: 0, y: 12 }, vis: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease, delay: 0.53 }}
               className="relative py-4"
             >
               <motion.span
                 aria-hidden
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
+                variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
                 transition={{ duration: 0.8, ease, delay: 0.58 }}
                 className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
               />

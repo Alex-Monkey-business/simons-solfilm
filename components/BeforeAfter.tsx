@@ -73,12 +73,12 @@ export function BeforeAfter() {
           className="mb-12 lg:mb-16"
           support={
             <>
-              Samme terrasse — uten og med frostet film. Innsynet forsvinner,
-              lyset blir igjen.
+              Dra i håndtaket. Samme terrasse, uten og med frostet film —
+              innsynet forsvinner, lyset blir igjen.
             </>
           }
         >
-          Dra for å se forskjellen.
+          Før og etter.
         </SectionHeading>
 
         {/* Slider */}

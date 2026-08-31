@@ -30,27 +30,37 @@ export function SectionRule({
 }) {
   const pad = (n: number) => String(n).padStart(2, "0");
   return (
-    <div className={`relative flex items-center gap-4 ${className}`}>
+    // Utløseren sitter på YTTERSTE container med vilje. Aksentsegmentet er
+    // scaleX(0) inne i en h-px overflow-hidden-boks, altså null areal — og et
+    // element uten areal utløser aldri IntersectionObserver, som aldri
+    // starter animasjonen. Vranglås: målt på 390 px sto alle seks
+    // aksentsegmentene på scaleX(0) for alltid, mens desktop slapp unna fordi
+    // elementene var i synsfeltet ved montering. Containeren her har både
+    // bredde og høyde (den rommer nummeret), så den kan ikke kollapse.
+    // Samme familie som «amount, not margin»-notatet i Gallery.tsx.
+    <motion.div
+      initial="hidden"
+      whileInView="vis"
+      viewport={{ once: true, amount: 0 }}
+      className={`relative flex items-center gap-4 ${className}`}
+    >
       <div className="relative h-px flex-1 overflow-hidden">
         <span aria-hidden className="absolute inset-0 bg-line-strong" />
         <motion.span
           aria-hidden
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
           transition={{ duration: 0.9, ease }}
           className="absolute left-0 top-0 h-px w-16 origin-left bg-accent"
         />
       </div>
       <motion.span
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-80px" }}
+        variants={{ hidden: { opacity: 0 }, vis: { opacity: 1 } }}
         transition={{ duration: 0.6, ease, delay: 0.25 }}
         className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint"
       >
-        {pad(number)}<span className="text-text-faint/50"> / {pad(total)}</span>
+        {pad(number)}
+        <span className="text-text-faint/50"> / {pad(total)}</span>
       </motion.span>
-    </div>
+    </motion.div>
   );
 }

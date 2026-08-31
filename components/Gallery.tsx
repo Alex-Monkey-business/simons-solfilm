@@ -270,12 +270,20 @@ export function Gallery() {
           ))}
         </div>
 
+        {/* Tumben var bg-accent på full bredde, altså samme form og farge som
+            seksjonsstreken rett under: aksent til venstre på en hårstrek. På
+            390 px måler tumben ~72 px og aksentsegmentet 64 — de var
+            uskillelige, og indikatoren leste som en seksjonsgrense.
+            Aksenten betyr «ny seksjon starter her». En rulleindikator er
+            posisjon, ikke merkevare, så den er nøytral nå. Sporet er også
+            trukket inn til 40 % og sentrert, så silhuetten skiller seg fra en
+            strek som går tvers over. */}
         <div
           aria-hidden
-          className="relative mt-6 h-0.5 w-full overflow-hidden rounded-full bg-line-strong md:hidden"
+          className="relative mx-auto mt-6 h-0.5 w-2/5 overflow-hidden rounded-full bg-line md:hidden"
         >
           <div
-            className="absolute inset-y-0 rounded-full bg-accent"
+            className="absolute inset-y-0 rounded-full bg-text-muted"
             style={{
               width: `${rail.width * 100}%`,
               left: `${rail.offset * (100 - rail.width * 100)}%`,

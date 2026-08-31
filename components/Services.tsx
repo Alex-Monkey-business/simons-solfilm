@@ -254,19 +254,25 @@ export function Services() {
               so they read as a list now, with the rule drawing in per row. */}
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
             {secondary.map((s, i) => (
+              // Raden er utløseren, ikke streken. En h-px med scaleX(0) har
+              // null areal, og et element uten areal gir aldri
+              // IntersectionObserver noe å måle terskelen mot — så streken
+              // ble aldri animert inn. På mobil sto den på scaleX(0) for
+              // alltid; desktop slapp unna fordi raden var i synsfeltet ved
+              // montering. Variants lar raden, som har både bredde og høyde,
+              // drive streken.
               <motion.div
                 key={s.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial="hidden"
+                whileInView="vis"
                 viewport={{ once: true, margin: "-60px" }}
+                variants={{ hidden: { opacity: 0, y: 14 }, vis: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.6, ease, delay: (i % 2) * 0.08 }}
                 className="relative py-7 lg:py-8"
               >
                 <motion.span
                   aria-hidden
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
                   transition={{
                     duration: 0.8,
                     ease,
