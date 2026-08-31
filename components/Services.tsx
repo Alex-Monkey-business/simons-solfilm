@@ -66,6 +66,13 @@ const secondary: Secondary[] = [
       "Trykk på arbeidstøy, profilklær og T-skjorter til bedrifter, lag og privatpersoner.",
     tag: "Bedrift & privat",
   },
+  {
+    title: "Bilpleie",
+    description:
+      "XPELs Superior Car Care-serie står på hylla i verkstedet — vask, interiør, glass og lakkpleie. Kom innom og test.",
+    tag: "På verkstedet",
+    href: "/xpel#bilpleie",
+  },
 ];
 
 const ease = [0.23, 1, 0.32, 1] as const;
