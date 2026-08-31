@@ -8,6 +8,10 @@ const ease = [0.23, 1, 0.32, 1] as const;
 
 const PHONE_DISPLAY = site.phone.display;
 
+// Ingen strek over radene. Hver rad har en mono-label i versaler og 102 px
+// luft — labelen markerer alt radstarten, så streken sa det samme to ganger.
+// En strek fortjener plassen når den markerer en grense øyet ikke kan slutte
+// seg til selv. Fire stablede rader er ikke det.
 const links = [
   // Every row is `what it is / the identifier`. Telefon er nå en rad som de
   // andre, ikke et 730x380-kort: tallet i kortet var 80 px høyt, så 79 % av
@@ -108,12 +112,6 @@ export function Contact() {
                   rel={l.external ? "noopener noreferrer" : undefined}
                   className="contact-row group relative flex items-baseline justify-between gap-4 py-6"
                 >
-                  <motion.span
-                    aria-hidden
-                    variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
-                    transition={{ duration: 0.8, ease, delay: 0.4 + i * 0.09 }}
-                    className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-                  />
                   <div>
                     <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
                       {l.label}
@@ -154,12 +152,6 @@ export function Contact() {
               transition={{ duration: 0.6, ease, delay: 0.53 }}
               className="relative py-4"
             >
-              <motion.span
-                aria-hidden
-                variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
-                transition={{ duration: 0.8, ease, delay: 0.58 }}
-                className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-              />
               <div className="pt-2 font-mono text-[12px] uppercase tracking-[0.22em] text-text-faint">
                 Følg
               </div>

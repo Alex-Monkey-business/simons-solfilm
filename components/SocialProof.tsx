@@ -170,12 +170,18 @@ export function SocialProof() {
             transition={{ duration: 0.8, ease, delay: i * 0.1 }}
             className={`relative pt-8 ${i === 0 ? "mt-20 lg:mt-28" : "mt-12 lg:mt-14"}`}
           >
-            <motion.span
-              aria-hidden
-              variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
-              transition={{ duration: 0.9, ease, delay: 0.15 + i * 0.1 }}
-              className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
-            />
+            {/* Bare det første sitatet. Streken markerer overgangen fra
+                tallkortene over til sitatene — en reell endring i innholdstype.
+                Mellom to sitater gjør den ingen jobb: attribusjonslinja og
+                kursiven skiller dem alt. */}
+            {i === 0 ? (
+              <motion.span
+                aria-hidden
+                variants={{ hidden: { scaleX: 0 }, vis: { scaleX: 1 } }}
+                transition={{ duration: 0.9, ease, delay: 0.15 }}
+                className="absolute inset-x-0 top-0 h-px origin-left bg-line-strong"
+              />
+            ) : null}
             <blockquote className="max-w-4xl text-balance font-display-italic text-[clamp(1.25rem,2.4vw,1.75rem)] leading-[1.4] text-text">
               {q.text}
             </blockquote>
