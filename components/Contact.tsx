@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { SectionRule } from "./SectionRule";
-import Image from "next/image";
 import { site } from "@/lib/site";
 
 const ease = [0.23, 1, 0.32, 1] as const;
@@ -10,10 +9,17 @@ const ease = [0.23, 1, 0.32, 1] as const;
 const PHONE_DISPLAY = site.phone.display;
 
 const links = [
-  // Every row is `what it is / the identifier`. A texting row broke that
-  // twice over: a phone number is already textable, and it sits in 80px serif
-  // directly above, so the row carried an instruction where a value belongs.
-  // The hero keeps an explicit Send SMS button for anyone who wants it there.
+  // Every row is `what it is / the identifier`. Telefon er nå en rad som de
+  // andre, ikke et 730x380-kort: tallet i kortet var 80 px høyt, så 79 % av
+  // kortet var tomt — og nummeret står alt tre steder på sida (nav-knappen,
+  // hero-CTA-en og her). Regelen over er dessuten grunnen: «Telefon /
+  // 974 74 347» ER what-it-is / the-identifier. Kortet var unntaket.
+  {
+    label: "Telefon",
+    value: PHONE_DISPLAY,
+    href: site.phone.href,
+    external: false,
+  },
   {
     label: "Adresse",
     value: `${site.address.street}, ${site.address.city}`,
@@ -46,11 +52,14 @@ export function Contact() {
   return (
     <section
       id="kontakt"
-      className="relative w-full bg-bg px-6 py-20 lg:px-10 lg:py-40"
+      // py-28, ikke py-40. Luften var dimensjonert for telefonkortet og
+      // portrettet; uten dem hadde seksjonen 320 px luft rundt 845 px
+      // innhold (0,38 mot sidens norm 0,15-0,21).
+      className="relative w-full bg-bg px-6 py-16 lg:px-10 lg:py-28"
     >
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <SectionRule number={6} total={6} className="mb-7 lg:mb-9" />
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12">
           <div className="lg:col-span-7">
 
             <motion.h2
@@ -77,85 +86,15 @@ export function Contact() {
             </motion.p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease, delay: 0.2 }}
-            // Ingen negativ toppmarg. Løftet på -48 px var laget da
-            // seksjonsstreken lå inne i venstre kolonne og ikke gikk under
-            // bildet. Nå går streken tvers over sida, og portrettet dekket
-            // nummeret «06 / 06» med 22 x 12 px. Streken er et systemelement
-            // som er likt i alle seks seksjonene, så løftet viker.
-            className="relative lg:col-span-5"
-          >
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card">
-              <Image
-                src="/brand/simon-transparent.webp"
-                alt="Simon — håndverkeren bak Simons Solfilm"
-                fill
-                sizes="(min-width: 1024px) 420px, 100vw"
-                className="object-cover object-bottom"
-              />
-            </div>
-          </motion.div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-10">
-          {/* The heaviest object on the page, and the only box left in this
-              section. That is the point — it is the one thing to press.
-              justify-between belongs to the tall desktop card only: on a
-              phone it tore the three lines apart and parked the meta line
-              closer to the SMS row below than to the number it describes.
-              self-start stops the grid stretching the card to the height of
-              the links column — 743px of card with justify-between left a
-              264px void on either side of the number. The height is set
-              here rather than taken from the links column: matching that
-              column is what produced the 743px card in the first place. */}
-          <motion.a
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease, delay: 0.25 }}
-            href={site.phone.href}
-            className="press lift group relative flex flex-col justify-start gap-6 overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:col-span-7 lg:min-h-[380px] lg:justify-between lg:gap-0 lg:self-start lg:p-12"
-          >
-            <div className="font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
-              Ring meg
-            </div>
-            {/* Animated as one block, deliberately. A per-character stagger
-                looked good on desktop but left digits stuck at opacity 0 on a
-                phone — and a phone number missing a digit is worse than no
-                animation at all. */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, ease, delay: 0.3 }}
-              className="font-display text-[clamp(2.25rem,6vw,5rem)] font-normal leading-none tracking-tight text-text"
-            >
-              {PHONE_DISPLAY}
-            </motion.div>
-            {/* No hours line. "Hverdager · Etter avtale" said two things that
-                cancel each other out, and neither was a fact anyone here had
-                checked. If Simon has real opening hours they belong here — as
-                the hours they actually are. */}
-            <div className="flex items-center justify-end font-mono text-[12px] uppercase tracking-[0.22em] text-text-muted">
-              <span
-                aria-hidden
-                className="text-accent transition-transform duration-300 group-hover:translate-x-1"
-                style={{ transitionTimingFunction: "var(--ease-out)" }}
-              >
-                →
-              </span>
-            </div>
-          </motion.a>
+        <div className="mt-16 grid grid-cols-1 lg:mt-20 lg:grid-cols-12">
 
           {/* Google routes visitors the long way round because the access
               road is not in its map data. The coordinates put the pin in the
               right place; the note under Adresse does the rest, because no
               link can. */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-7">
             {links.map((l, i) => (
               <div key={l.label}>
                 <motion.a
