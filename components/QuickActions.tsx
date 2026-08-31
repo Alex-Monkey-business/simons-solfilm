@@ -71,7 +71,13 @@ export function QuickActions({
   lead?: ReactNode;
 }) {
   return (
-    <div className={`flex flex-wrap gap-2 ${className}`}>
+    // A 2x2 grid on a phone, one row from sm up — not flex-wrap the whole
+    // way. Wrapping is width-dependent, and at 430px (iPhone 15 Pro Max) the
+    // four buttons broke 3 + 1, leaving Veibeskrivelse alone on its own line.
+    // The grid removes the guesswork: two columns below 640px where all four
+    // cannot fit on one line, one row above it where they can (516px of
+    // buttons in 592px of content). No width produces an orphan.
+    <div className={`grid grid-cols-2 gap-2 sm:flex sm:flex-wrap ${className}`}>
       {lead}
       {actions.map((a, i) => (
         <motion.a
