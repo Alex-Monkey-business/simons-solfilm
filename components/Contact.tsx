@@ -56,13 +56,17 @@ export function Contact() {
   return (
     <section
       id="kontakt"
-      // py-28, ikke py-40. Luften var dimensjonert for telefonkortet og
-      // portrettet; uten dem hadde seksjonen 320 px luft rundt 845 px
-      // innhold (0,38 mot sidens norm 0,15-0,21).
-      // Asymmetrisk med vilje: footeren legger selv til 112 px topppadding,
-      // så en like stor bunnpadding her ga 224 px mellom siste rad og
-      // footerlogoen. Toppen beholder sin luft mot seksjonsstreken.
-      className="relative w-full bg-bg px-6 pb-8 pt-16 lg:px-10 lg:pb-12 lg:pt-28"
+      // Luften var dimensjonert for telefonkortet og portrettet; uten dem
+      // hadde seksjonen 320 px luft rundt 845 px innhold (0,38).
+      // Toppen er nå pt-24 = sidens desktop-rytme (Om, Før/etter, Kundene
+      // bruker alle py-24). pt-28 ga kontakt 16 px mer topppadding enn hver
+      // andre seksjon uten at noe her fortjente det, og med bare 516 px
+      // innhold slo de 16 pikslene ut: luft:innhold lå på 0,31, over sidens
+      // norm 0,15-0,27.
+      // Bunnen er asymmetrisk med vilje: footeren legger selv til 112 px
+      // topppadding, så en like stor bunnpadding her ga 224 px mellom siste
+      // rad og footerlogoen.
+      className="relative w-full bg-bg px-6 pb-8 pt-16 lg:px-10 lg:pb-8 lg:pt-24"
     >
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <SectionRule number={6} total={6} className="mb-7 lg:mb-9" />
