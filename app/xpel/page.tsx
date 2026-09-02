@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "XPEL, merket jeg jobber med — Simons Solfilm",
   description:
-    "Jeg monterer XPEL som solfilm, lakkbeskyttelse og lyktefolie, og holder kurs for dem. Kort om hva XPEL er, og hvorfor monteringen betyr like mye som folien.",
+    "Jeg monterer XPEL på bil som solfilm, lakkbeskyttelse og lyktefolie, og holder kurs for dem. Kort om hva XPEL er, og hvorfor monteringen betyr like mye som folien.",
   alternates: { canonical: "/xpel" },
 };
 
@@ -29,14 +29,15 @@ export default function XpelPage() {
             {/* «Folien jeg bruker» var to ting galt: sida dekker også
                 bilpleieserien, som ikke er folie — og formuleringen gjorde
                 XPEL til en fotnote om materialvalg. XPEL er avsenderen bak
-                alt på sida: solfilmen, lakkbeskyttelsen og produktene på
-                hylla. Da må overskriften rekke over alle tre. */}
+                alt på sida: solfilmen til bil, lakkbeskyttelsen og produktene
+                på hylla. Da må overskriften rekke over alle tre. Bygg-solfilmen
+                er et annet merke og hører ikke hjemme her. */}
             <h1 className="max-w-3xl font-display text-[clamp(2.75rem,7.5vw,6rem)] font-normal leading-[1] text-text">
               Merket jeg jobber med.
             </h1>
             <p className="mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg">
-              Alt jeg legger på bil og bygg er XPEL, og bilpleieserien deres
-              står på hylla i verkstedet. Jeg holder kurs for dem, så det er
+              Alt jeg legger på bilen er XPEL — solfilm, lakkbeskyttelse og
+              lyktefolie — og bilpleieserien deres står på hylla i verkstedet. Jeg holder kurs for dem, så det er
               faget jeg lærer bort til andre montører.
             </p>
           </div>
@@ -83,17 +84,18 @@ export default function XpelPage() {
                     Hvor jeg bruker den
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-text-muted">
-                    Solfilm på rutene, på bil og bygg. Lakkbeskyttelse og
-                    lyktefolie på bilen. Jeg jobber jevnlig med Mercedes AMG,
-                    Porsche og Ferrari.
+                    Solfilm på bilrutene, lakkbeskyttelse på lakken og folie
+                    på lyktene. Jeg jobber jevnlig med Mercedes AMG, Porsche
+                    og Ferrari. Solfilmen til bygg er et annet merke.
                   </p>
-                  {/* Teksten nevner tre steder; før lenket bare det ene. */}
+                  {/* Bygg-lenka er tatt ut med vilje: solfilm til bygg er
+                      ikke XPEL (Simon, 2. sep). Bare det XPEL faktisk dekker
+                      lenkes herfra. */}
                   {/* Ingen negative marger her: med tre lenker som bryter over
                       to linjer la -my-3 radene oppå hverandre. */}
                   <div className="mt-2 flex flex-wrap gap-x-8">
                     {[
                       { href: "/solfilm-bil", label: "Solfilm til bil" },
-                      { href: "/solfilm-bygg", label: "Solfilm til bygg" },
                       { href: "/lakkbeskyttelse", label: "Lakkbeskyttelse og lyktefolie" },
                     ].map((l) => (
                       <Link

@@ -57,10 +57,14 @@ const primary: Primary[] = [
 // mens solfilm er GLASSET. Samme kunde, samme bil, samme besøk.
 //
 // Fellesnevneren er bevisst IKKE XPEL, selv om alle tre er XPEL-produkter:
-// solfilmen er også XPEL, så merket skiller ikke denne gruppa fra de to
-// dørene over — det ligger over alle fem. Brukt som gruppelabel ville det
-// sagt at solfilmen ikke er XPEL. XPEL er avsender, ikke kategori — og sies
-// én gang, i linja under dørene, med lenke til /xpel.
+// solfilmen til bil er også XPEL, så merket skiller ikke denne gruppa fra
+// dør 01. Brukt som gruppelabel her ville det sagt at bilsolfilmen ikke er
+// XPEL. XPEL er avsender, ikke kategori — og sies én gang, i linja under
+// dørene, med lenke til /xpel.
+//
+// Presist per Simon (2. sep): XPEL dekker ALT TIL BILEN — solfilm til bil,
+// lakk, lykter, bilpleie. Solfilm til BYGG er et annet merke. Derfor «Alt
+// til bilen er XPEL», ikke «filmen og produktene».
 //
 // To dører i rad to, ikke én med to utganger: forsøket med hovedlenke +
 // bilpleie-lenke inne i samme kort ga hover-i-hover, og det var ikke til å
@@ -305,7 +309,7 @@ export function Services() {
             className="link-underline is-boxed -my-3 inline-flex min-h-[44px] items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
             style={{ transition: "color 220ms var(--ease-out)" }}
           >
-            <span>Filmen og produktene er XPEL</span>
+            <span>Alt til bilen er XPEL</span>
             <span aria-hidden>→</span>
           </Link>
         </motion.div>
