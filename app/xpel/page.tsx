@@ -85,8 +85,9 @@ export default function XpelPage() {
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-text-muted">
                     Solfilm på bilrutene, lakkbeskyttelse på lakken og folie
-                    på lyktene. Jeg jobber jevnlig med Mercedes AMG, Porsche
-                    og Ferrari. Solfilmen til bygg er et annet merke.
+                    på lyktene. Alt fra veteranbiler og arbeidsbiler til
+                    sportsbiler — og en god del dyre biler, fordi jobben blir
+                    gjort ordentlig. Solfilmen til bygg er et annet merke.
                   </p>
                   {/* Bygg-lenka er tatt ut med vilje: solfilm til bygg er
                       ikke XPEL (Simon, 2. sep). Bare det XPEL faktisk dekker

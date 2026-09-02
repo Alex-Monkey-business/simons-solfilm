@@ -247,7 +247,9 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     filmTypes: [
       {
         name: "Lakkbeskyttelse (PPF)",
-        body: "Gjennomsiktig film på lakken. Jeg jobber jevnlig med Mercedes AMG, Porsche og Ferrari.",
+        // Ikke merkeliste: «Mercedes AMG, Porsche og Ferrari» sa eksklusivt.
+        // Simon tar alt, og ferdighetene gjør at de dyre bilene også kommer.
+        body: "Gjennomsiktig film på lakken. Alt fra veteranbil og arbeidsbil til sportsbil.",
       },
       {
         name: "Lyktefolie, klar",
