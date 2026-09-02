@@ -13,9 +13,15 @@ import { site } from "@/lib/site";
 const ease = [0.23, 1, 0.32, 1] as const;
 
 export function ServiceDetail({ data }: { data: ServiceDetailData }) {
-  // The other service page. Without this the only way off this page was the
-  // back link or the phone number.
-  const sibling = Object.values(serviceDetails).find(
+  // De andre dørene. Uten disse var eneste vei bort fra sida tilbake-lenka
+  // eller telefonnummeret.
+  //
+  // Var `.find()` da det fantes to sider: den ga «den ene andre», som var
+  // riktig så lenge det BARE var én. Med tre dører pekte hver side på den
+  // første som ikke var den selv, så både Bygg og Lakkbeskyttelse sendte deg
+  // til Bil og aldri til hverandre. `.filter()` viser alle de faktiske
+  // alternativene.
+  const siblings = Object.values(serviceDetails).filter(
     (s) => s.slug !== data.slug,
   );
 
@@ -82,8 +88,12 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         {/* Benefits */}
         <section className="w-full px-6 py-28 lg:px-10 lg:py-40">
           <div className="mx-auto max-w-[1280px]">
+            {/* «Derfor solfilm.» sto hardkodet her og fulgte med til
+                /lakkbeskyttelse, som ikke handler om solfilm i det hele tatt.
+                Samme grep som filmTypesHeading: default for de to solfilm-
+                sidene, overstyrt der ordet er feil. */}
             <h2 className="mb-14 max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-20">
-              Derfor solfilm.
+              {data.benefitsHeading ?? "Derfor solfilm."}
             </h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {data.benefits.map((b, i) => (
@@ -112,7 +122,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
           <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h2 className="mb-10 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
-                Filmtyper jeg jobber med.
+                {data.filmTypesHeading ?? "Filmtyper jeg jobber med."}
               </h2>
               <div className="flex flex-col">
                 {data.filmTypes.map((f, i) => (
@@ -222,7 +232,40 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         {/* CTA */}
         <section className="w-full px-6 pb-28 lg:px-10 lg:pb-40">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col items-start justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12">
+            {/* Står FØR «Ring meg»: lå den under, hadde leseren alt fått sin
+                avslutning og scrollet ut. Bilpleie var nevnt på tre sider og
+                nåbar fra én — distribusjon før størrelse.
+
+                Varen, ikke en dør. Den får kortform i stedet for radform
+                nettopp fordi den IKKE er en tjeneste — samme skille som
+                bærer «Bilpleieprodukter»/«Forhandler» på forsiden. Lagt som
+                rad ville den lest som en fjerde tjeneste. */}
+            {data.related ? (
+              <div className="rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10">
+                <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+                  {data.related.label}
+                </div>
+                <h2 className="mt-3 font-display text-2xl font-medium leading-tight lg:text-3xl">
+                  {data.related.title}
+                </h2>
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-text-muted">
+                  {data.related.body}
+                </p>
+                <Link
+                  href={data.related.href}
+                  className="link-underline is-boxed -mx-2 -my-3 mt-5 inline-flex min-h-[44px] items-center gap-2 px-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
+                  style={{ transition: "color 220ms var(--ease-out)" }}
+                >
+                  <span>{data.related.cta}</span>
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+            ) : null}
+
+
+            <div
+              className={`flex flex-col items-start justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12 ${data.related ? "mt-5" : ""}`}
+            >
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
                   Ring meg, så tar vi en prat.
@@ -242,30 +285,36 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               </div>
             </div>
 
-            {sibling ? (
-              <Link
-                href={`/${sibling.slug}`}
-                className="contact-row group relative mt-14 flex items-baseline justify-between gap-6 py-7 lg:mt-20"
-              >
-                <span className="absolute inset-x-0 top-0 h-px bg-line-strong" />
-                <span>
-                  <span className="block font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
-                    Neste tjeneste
-                  </span>
-                  <span
-                    className="mt-2 block font-display text-2xl font-medium text-text group-hover:text-accent lg:text-3xl"
-                    style={{ transition: "color 220ms var(--ease-out)" }}
+            {siblings.length > 0 ? (
+              <div className="mt-14 lg:mt-20">
+                {/* Labelen står én gang over lista. Da det var én søsterside
+                    bar hver rad sin egen «Neste tjeneste»; med to rader ville
+                    den samme labelen stått to ganger rett under hverandre. */}
+                <div className="mb-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+                  Andre tjenester
+                </div>
+                {siblings.map((sib) => (
+                  <Link
+                    key={sib.slug}
+                    href={`/${sib.slug}`}
+                    className="contact-row group relative flex items-baseline justify-between gap-6 py-7"
                   >
-                    {sibling.title} {sibling.titleAccent}
-                  </span>
-                </span>
-                <span
-                  aria-hidden
-                  className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
-                >
-                  →
-                </span>
-              </Link>
+                    <span className="absolute inset-x-0 top-0 h-px bg-line-strong" />
+                    <span
+                      className="font-display text-2xl font-medium text-text group-hover:text-accent lg:text-3xl"
+                      style={{ transition: "color 220ms var(--ease-out)" }}
+                    >
+                      {sib.title} {sib.titleAccent}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
+                    >
+                      →
+                    </span>
+                  </Link>
+                ))}
+              </div>
             ) : null}
           </div>
         </section>

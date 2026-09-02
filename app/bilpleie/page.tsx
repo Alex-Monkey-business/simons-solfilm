@@ -7,7 +7,7 @@ import { Button } from "@/components/Button";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Bilpleie fra XPEL — på verkstedet i Larvik | Simons Solfilm",
+  title: "Bilpleie fra XPEL i Larvik — Simons Solfilm",
   description:
     "XPELs Superior Car Care-serie står på hylla i verkstedet mitt på Hegdal i Larvik. Vask, interiør, glass, lakkpleie og utstyr. Jeg selger den ikke på nett — kom innom og test.",
   alternates: { canonical: "/bilpleie" },
@@ -157,9 +157,10 @@ export default function BilpleiePage() {
               <div className="mt-14 flex flex-col gap-12 lg:mt-16">
                 {careGroups.map((group) => (
                   <div key={group.label}>
-                    <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+                    {/* h2, ikke div: sida gikk fra h1 rett til tretten h3. */}
+                    <h2 className="font-mono text-[12px] font-normal uppercase tracking-[0.2em] text-text-faint">
                       {group.label}
-                    </div>
+                    </h2>
                     <div className="mt-2 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12">
                       {group.products.map((product) => (
                         <div
@@ -223,6 +224,40 @@ export default function BilpleiePage() {
                   <span>Om XPEL</span>
                 </Button>
               </div>
+            </div>
+
+            {/* Sida var en blindvei: eneste utganger var telefon og XPEL.
+                Samme radform som «Andre tjenester» på tjenestesidene. Labelen
+                er «Tjenester» uten «andre» — bilpleie er ikke en tjeneste, så
+                de to under er ikke «de andre», de er tjenestene. */}
+            <div className="mt-14 lg:mt-20">
+              <div className="mb-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
+                Tjenester
+              </div>
+              {[
+                { href: "/lakkbeskyttelse", title: "Lakkbeskyttelse og lyktefolie" },
+                { href: "/solfilm-bil", title: "Solfilm til bil" },
+              ].map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="contact-row group relative flex items-baseline justify-between gap-6 py-7"
+                >
+                  <span className="absolute inset-x-0 top-0 h-px bg-line-strong" />
+                  <span
+                    className="font-display text-2xl font-medium text-text group-hover:text-accent lg:text-3xl"
+                    style={{ transition: "color 220ms var(--ease-out)" }}
+                  >
+                    {s.title}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="contact-arrow shrink-0 font-mono text-sm text-text-faint"
+                  >
+                    →
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

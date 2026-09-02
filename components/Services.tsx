@@ -39,43 +39,73 @@ const primary: Primary[] = [
     number: "02",
     title: "Solfilm til bygg",
     tagline: "Bolig, kontor, næringsbygg",
+    // Åpnet før med de samme fire ordene som døra til venstre («Jeg monterer
+    // solfilm på»), og punktraden var en synonymliste av dens. To kort med
+    // samme første setning leses som ett kort to ganger. Nå sier denne det
+    // bygg-kunden faktisk sammenligner med — nye glass og tung solskjerming —
+    // og punktene er hentet fra det som alt står på /solfilm-bygg.
     description:
-      "Jeg monterer solfilm på bolig, kontor, butikk og næringsbygg. Mindre varme og mindre innsyn — uten at du må bytte vinduer eller henge opp tung solskjerming.",
-    points: ["Reduserer varme", "Demper innsyn", "Bolig & næring"],
+      "Filmen går rett på vinduene du allerede har, så du slipper både nye glass og tung solskjerming. Mindre varme inn, og mindre innsyn.",
+    points: ["Uten nye vinduer", "Mindre blending", "Hele Vestfold"],
     href: "/solfilm-bygg",
   },
 ];
 
+// Rad to. Lakkbeskyttelse, lyktefolie og bilpleieproduktene lå før som tre
+// separate rader i samlesekken under de to store dørene. De hører sammen:
+// alle tre er bilens OVERFLATE — lakken, lyktene, det du vasker den med —
+// mens solfilm er GLASSET. Samme kunde, samme bil, samme besøk.
+//
+// Fellesnevneren er bevisst IKKE XPEL, selv om alle tre er XPEL-produkter:
+// solfilmen er også XPEL, så merket skiller ikke denne gruppa fra de to
+// dørene over — det ligger over alle fem. Brukt som gruppelabel ville det
+// sagt at solfilmen ikke er XPEL. XPEL er avsender, ikke kategori — og sies
+// én gang, i linja under dørene, med lenke til /xpel.
+//
+// To dører i rad to, ikke én med to utganger: forsøket med hovedlenke +
+// bilpleie-lenke inne i samme kort ga hover-i-hover, og det var ikke til å
+// skjønne hva som var klikkbart. Nå er hvert kort én lenke. Raden er lavere
+// enn de to over og delt 2:1, så firmaet fortsatt heter Simons Solfilm.
+type RowTwo = {
+  number: string;
+  tagline: string;
+  title: string;
+  description: string;
+  href: string;
+  span: string;
+};
+
+const rowTwo: RowTwo[] = [
+  {
+    number: "03",
+    tagline: "Lakk, lykter",
+    title: "Lakkbeskyttelse og lyktefolie",
+    description:
+      "Gjennomsiktig film som tar steinsprut og slitasje for lakken, og folie på lyktene i klar eller sotet variant.",
+    href: "/lakkbeskyttelse",
+    span: "xl:col-span-2",
+  },
+  {
+    number: "04",
+    tagline: "Vask, interiør, lakkpleie",
+    title: "Bilpleieprodukter",
+    description:
+      "Serien står på hylla i verkstedet. Ikke på nett — kom innom og test.",
+    href: "/bilpleie",
+    span: "",
+  },
+];
+
+// «Andre tjenester» ble i forrige runde byttet ut med «Utenom solfilm» fordi
+// fire av fem var tjenester og den femte var en vare på hylla. Nå som varen
+// har flyttet til døra over, er begge de gjenværende faktisk tjenester — og
+// da er «Andre tjenester» presist igjen i stedet for en negasjon.
 const secondary: Secondary[] = [
-  {
-    title: "Lakkbeskyttelse / PPF",
-    description:
-      "Usynlig film som tar støtene for lakken — steinsprut, slitasje og småskader. Jobber jevnlig med Mercedes AMG, Porsche og Ferrari.",
-    tag: "XPEL-godkjent",
-    href: "/xpel",
-  },
-  {
-    title: "Lyktefolie",
-    description:
-      "Klar eller sotet variant for et mer tilpasset uttrykk — og beskyttelse mot riper og steinsprut.",
-    tag: "Klar / Sotet",
-  },
   {
     title: "Trykk på klær",
     description:
       "Trykk på arbeidstøy, profilklær og T-skjorter til bedrifter, lag og privatpersoner.",
     tag: "Bedrift & privat",
-  },
-  // Tittelen må være en TING, ikke en tjeneste. «Bilpleie» blant
-  // «Lakkbeskyttelse» og «Lyktefolie» leser som noe han utfører, og det gjør
-  // han ikke — han selger serien fra lokalet. Tittelen bærer varen, taggen
-  // bærer rollen.
-  {
-    title: "Bilpleieprodukter",
-    description:
-      "XPELs Superior Car Care-serie står på hylla i verkstedet — vask, interiør, glass og lakkpleie. Kom innom og test.",
-    tag: "Forhandler",
-    href: "/bilpleie",
   },
 ];
 
@@ -138,10 +168,14 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
       }
       className="door group relative flex min-h-[300px] flex-col justify-between rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:min-h-[420px] lg:min-h-[480px] lg:p-10"
     >
-      <div className="flex items-start justify-between">
-        <span className="font-mono text-xs text-text-faint lg:text-sm">
-          {s.number}
-        </span>
+      {/* Taglinen lå i dataen uten å bli rendret. Den er det eneste stedet
+          dørene har egne ord — «Personbil, firmabil, anleggsmaskin» mot
+          «Bolig, kontor, næringsbygg» — og den står der øyet lander først. */}
+      <div className="flex items-start justify-between gap-6">
+        <p className="flex items-baseline gap-4 font-mono text-xs text-text-faint lg:text-sm">
+          <span>{s.number}</span>
+          <span className="text-text-muted">{s.tagline}</span>
+        </p>
         <span
           aria-hidden
           className="door-arrow font-mono text-sm text-text-faint"
@@ -150,7 +184,10 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
         </span>
       </div>
 
-      <div>
+      {/* mt-8 er for mobil: der er innholdet høyere enn min-h, så
+          justify-between har ingen slakk og toppraden lå an mot tittelen. På
+          desktop spiser marginen bare av tomrommet og synes ikke. */}
+      <div className="mt-8">
         <h3 className="font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
           {s.title}
         </h3>
@@ -171,6 +208,53 @@ function ServiceDoor({ s, i }: { s: Primary; i: number }) {
   );
 }
 
+// Samme kortspråk som de to store dørene — `door` gir hover-streken og
+// pila — men vannrett og uten min-height, så den blir lav av seg selv. Ingen
+// tilt: 3D-vippen leser som en gimmick på et kort som er tre ganger bredere
+// enn det er høyt, og de to store eier alt den effekten er verdt.
+// Samme kortspråk som de to store dørene — `door` gir hover-streken og
+// pila — men uten min-height, så raden blir lav av seg selv. Ingen tilt: de
+// to store eier alt den effekten er verdt. Kursiv tittel: samme familie,
+// lavere rang. Beskrivelsen er skjult på mobil, der raden ellers ble to
+// kort til som så ut som de over.
+function RowTwoDoor({ d, i }: { d: RowTwo; i: number }) {
+  return (
+    <motion.a
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.85, ease, delay: 0.24 + i * 0.12 }}
+      href={d.href}
+      className={`door group relative flex flex-col justify-between rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10 ${d.span}`}
+    >
+      <div className="flex items-start justify-between gap-6">
+        <p className="flex items-baseline gap-4 font-mono text-xs text-text-faint lg:text-sm">
+          <span>{d.number}</span>
+          <span className="text-text-muted">{d.tagline}</span>
+        </p>
+        <span
+          aria-hidden
+          className="door-arrow font-mono text-sm text-text-faint"
+        >
+          ↗
+        </span>
+      </div>
+      <div className="mt-6">
+        <h3 className="font-display-italic text-3xl font-medium leading-[1.05] lg:text-4xl">
+          {d.title}
+        </h3>
+        <span
+          aria-hidden
+          className="door-rule mt-5 block h-px w-full origin-left bg-accent"
+        />
+        <p className="mt-5 hidden max-w-xl text-base leading-relaxed text-text-muted md:block">
+          {d.description}
+        </p>
+      </div>
+    </motion.a>
+  );
+}
+
 export function Services() {
   return (
     <section
@@ -183,10 +267,10 @@ export function Services() {
             looking at. This one said "Mest solfilm — til bil, bolig og
             næringsbygg", which is the hero headline word for word one screen
             further up, and then "så gjør jeg en del annet ved siden av",
-            which is the label on the subsection right below. Two big doors
-            and the small cards under "Utenom solfilm" already rank the
-            work; a sentence saying so out loud was the layout talking about
-            itself. */}
+            which is the label on the subsection right below. Two big doors,
+            a wide third one and the rows under "Andre tjenester" already rank
+            the work; a sentence saying so out loud was the layout talking
+            about itself. */}
         <SectionHeading number={1} className="mb-12 lg:mb-16">
           Det jeg gjør.
         </SectionHeading>
@@ -197,11 +281,36 @@ export function Services() {
           ))}
         </div>
 
-        {/* «Andre tjenester» ble feil da Bilpleieprodukter kom inn i lista:
-            fire av fem er tjenester, den siste er en vare han har på hylla.
-            «Utenom solfilm» er det ene som er sant for alle fem — de to store
-            dørene over ER solfilm, disse er ikke — og det bærer informasjon i
-            stedet for å være en samlesekk.
+        {/* 2:1 først fra xl. Ved 1024 er tredjedelen 219 px innhold, og
+            «Bilpleieprodukter» er ett ord på 244 px — det stakk 25 px ut av
+            kortet. Målt, ikke gjettet. Under xl deler de raden likt. */}
+        <div className="mt-4 grid grid-cols-1 gap-4 md:mt-5 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+          {rowTwo.map((d, i) => (
+            <RowTwoDoor key={d.number} d={d} i={i} />
+          ))}
+        </div>
+
+        {/* Avsenderen, sagt én gang for alle fire dørene. Se kommentaren
+            over `rowTwo` for hvorfor den ikke står på noe enkeltkort. Var
+            også forsidens eneste lenke til /xpel utenom meny og footer. */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease, delay: 0.5 }}
+          className="mt-6 flex justify-start md:mt-7 md:justify-end"
+        >
+          <Link
+            href="/xpel"
+            className="link-underline is-boxed -my-3 inline-flex min-h-[44px] items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
+            style={{ transition: "color 220ms var(--ease-out)" }}
+          >
+            <span>Filmen og produktene er XPEL</span>
+            <span aria-hidden>→</span>
+          </Link>
+        </motion.div>
+
+        {/* Begrunnelsen for labelen står ved `secondary` øverst i fila.
 
             Den korte 32 px-streken til venstre for labelen står med vilje,
             selv om seksjonsstreken går tvers over med aksent og nummer. En
@@ -216,7 +325,7 @@ export function Services() {
             className="mb-8 inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted lg:mb-10"
           >
             <span className="h-px w-8 bg-line-strong" />
-            <span>Utenom solfilm</span>
+            <span>Andre tjenester</span>
           </motion.div>
 
           {/* Drone gets the one moving image in this section — a wide, short
@@ -259,9 +368,13 @@ export function Services() {
             </div>
           </motion.div>
 
-          {/* The remaining four were five identical boxes. They are a list —
-              so they read as a list now, with the rule drawing in per row. */}
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+          {/* Var fem identiske bokser, så fire rader i to kolonner. Nå står
+              bare Trykk på klær igjen her — de tre andre flyttet til døra
+              over. Ett element i `md:grid-cols-2` ville stått som en halv rad
+              med tom høyre kolonne, så lista er én kolonne til den vokser
+              igjen. Radformen og streken per rad beholdes: den bærer
+              hierarkiet mot dørene, uansett hvor mange rader det er. */}
+          <div className="mt-4 grid grid-cols-1 md:gap-x-12">
             {secondary.map((s, i) => (
               // Raden er utløseren, ikke streken. En h-px med scaleX(0) har
               // null areal, og et element uten areal gir aldri

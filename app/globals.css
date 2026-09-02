@@ -230,7 +230,8 @@ body {
     color: var(--accent);
   }
 }
-.door:focus-visible .door-rule {
+.door:focus-visible .door-rule,
+.door:focus-within .door-rule {
   transform: scaleX(1);
 }
 @media (prefers-reduced-motion: reduce) {

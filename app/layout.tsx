@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Simons Solfilm — Solfilm, lakkbeskyttelse & drone i Larvik",
   description:
-    "Lokal håndverker i Larvik. Solfilm til bil, bygg og hytte. Lakkbeskyttelse (PPF), lyktefolie og takbefaring med drone. 100% anbefaling på Facebook.",
+    "Solfilm til bil og bygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie og bilpleieprodukter fra XPEL, takbefaring med drone. 100 % anbefaling på Facebook.",
   metadataBase: new URL(site.url),
   // No title/description here on purpose: Next falls back to each page's own
   // title and description, so the service pages share correctly too.

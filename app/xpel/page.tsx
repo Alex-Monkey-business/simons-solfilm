@@ -6,9 +6,9 @@ import { Button } from "@/components/Button";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "XPEL — folien jeg bruker | Simons Solfilm",
+  title: "XPEL, merket jeg jobber med — Simons Solfilm",
   description:
-    "Jeg monterer XPEL både som solfilm og lakkbeskyttelse, og holder kurs for dem. Kort om hva XPEL er, og hvorfor monteringen betyr like mye som folien.",
+    "Jeg monterer XPEL som solfilm, lakkbeskyttelse og lyktefolie, og holder kurs for dem. Kort om hva XPEL er, og hvorfor monteringen betyr like mye som folien.",
   alternates: { canonical: "/xpel" },
 };
 
@@ -26,12 +26,18 @@ export default function XpelPage() {
               aria-hidden
               className="mb-7 block h-px w-16 bg-accent lg:mb-9"
             />
+            {/* «Folien jeg bruker» var to ting galt: sida dekker også
+                bilpleieserien, som ikke er folie — og formuleringen gjorde
+                XPEL til en fotnote om materialvalg. XPEL er avsenderen bak
+                alt på sida: solfilmen, lakkbeskyttelsen og produktene på
+                hylla. Da må overskriften rekke over alle tre. */}
             <h1 className="max-w-3xl font-display text-[clamp(2.75rem,7.5vw,6rem)] font-normal leading-[1] text-text">
-              Folien jeg bruker.
+              Merket jeg jobber med.
             </h1>
             <p className="mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg">
-              Jeg monterer XPEL både som solfilm og lakkbeskyttelse. Her er det
-              korte om hva det er.
+              Alt jeg legger på bil og bygg er XPEL, og bilpleieserien deres
+              står på hylla i verkstedet. Jeg holder kurs for dem, så det er
+              faget jeg lærer bort til andre montører.
             </p>
           </div>
         </section>
@@ -68,16 +74,39 @@ export default function XpelPage() {
                   </p>
                 </div>
 
+                {/* Denne seksjonen eide før hele beskrivelsen av
+                    lakkbeskyttelse. Den bor nå på /lakkbeskyttelse, som er
+                    døra folk faktisk skal gå inn. Her holder det å si hvor
+                    merket brukes, og peke videre. */}
                 <div className="border-t border-line py-7">
                   <h2 className="font-display text-xl font-medium lg:text-2xl">
-                    Hva jeg bruker den til
+                    Hvor jeg bruker den
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-text-muted">
-                    Solfilm på rutene, lakkbeskyttelse på lakken.
-                    Lakkbeskyttelsen er gjennomsiktig film som tar steinsprut,
-                    slitasje og småskader for lakken. Jeg jobber jevnlig med
-                    Mercedes AMG, Porsche og Ferrari.
+                    Solfilm på rutene, på bil og bygg. Lakkbeskyttelse og
+                    lyktefolie på bilen. Jeg jobber jevnlig med Mercedes AMG,
+                    Porsche og Ferrari.
                   </p>
+                  {/* Teksten nevner tre steder; før lenket bare det ene. */}
+                  {/* Ingen negative marger her: med tre lenker som bryter over
+                      to linjer la -my-3 radene oppå hverandre. */}
+                  <div className="mt-2 flex flex-wrap gap-x-8">
+                    {[
+                      { href: "/solfilm-bil", label: "Solfilm til bil" },
+                      { href: "/solfilm-bygg", label: "Solfilm til bygg" },
+                      { href: "/lakkbeskyttelse", label: "Lakkbeskyttelse og lyktefolie" },
+                    ].map((l) => (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        className="link-underline is-boxed inline-flex min-h-[44px] items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted hover:text-accent"
+                        style={{ transition: "color 220ms var(--ease-out)" }}
+                      >
+                        <span>{l.label}</span>
+                        <span aria-hidden>→</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
                 <div className="border-t border-line py-7">
                   <h2 className="font-display text-xl font-medium lg:text-2xl">
