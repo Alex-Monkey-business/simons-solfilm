@@ -25,9 +25,40 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
     (s) => s.slug !== data.slug,
   );
 
+  // Strukturerte data per tjenesteside: Service med provider, og FAQPage av
+  // spørsmålene som alt står på sida. Ingenting her som ikke er synlig tekst.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${site.url}/${data.slug}#service`,
+        name: `${data.title} ${data.titleAccent}`.trim(),
+        description: data.intro,
+        url: `${site.url}/${data.slug}`,
+        image: `${site.url}${data.heroImage}`,
+        provider: { "@id": `${site.url}/#business` },
+        areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${site.url}/${data.slug}#faq`,
+        mainEntity: data.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+
   return (
     <>
       <SubPageHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <main id="innhold" className="bg-bg">
         {/* Hero */}

@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Simons Solfilm — Solfilm, lakkbeskyttelse & drone i Larvik",
   description:
-    "Solfilm til bil og bygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie og bilpleieprodukter fra XPEL, takbefaring med drone. 100 % anbefaling på Facebook.",
+    "Simons Solfilm drives av Simon Rønning i Larvik. Solfilm til bil og bygg, lakkbeskyttelse (PPF), lyktefolie og bilpleie fra XPEL. 100 % anbefaling på Facebook.",
   metadataBase: new URL(site.url),
   // No title/description here on purpose: Next falls back to each page's own
   // title and description, so the service pages share correctly too.
@@ -55,50 +55,97 @@ export const metadata: Metadata = {
 // hours are deliberately absent ("hverdager, etter avtale" has no schema
 // equivalent), and so is aggregateRating: Google disallows a business marking
 // up its own review scores.
+// Én graf, ikke løse blokker: WebSite gir Google sidenavnet (den gamle
+// oppføringen het «Simon's Solfilm Larvik»), LocalBusiness er bedriften, og
+// Person er Simon — folk søker på navnet hans, og det sto ingen steder på
+// den nye siden. foundingDate 2008 er fra Simons eget gamle nettsted
+// («Firmaet ble startet i 2008»); bekreft med ham ved anledning.
+const businessId = `${site.url}/#business`;
+const personId = `${site.url}/#simon`;
+
 const localBusiness = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Simons Solfilm",
-  description:
-    "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, dronebefaring og trykk på klær.",
-  url: site.url,
-  image: `${site.url}/og.jpg`,
-  telephone: site.phone.e164,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    postalCode: site.address.postal,
-    addressLocality: site.address.city,
-    addressCountry: "NO",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: site.address.lat,
-    longitude: site.address.lng,
-  },
-  hasMap: site.address.maps,
-  areaServed: { "@type": "AdministrativeArea", name: "Vestfold" },
-  sameAs: [
-    site.social.instagram,
-    site.social.facebook,
-    site.social.youtube,
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: "Simons Solfilm",
+      alternateName: ["Simon's Solfilm", "Simons Solfilm Larvik"],
+      inLanguage: "nb-NO",
+      publisher: { "@id": businessId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Simon Rønning",
+      jobTitle: "Innehaver og montør",
+      worksFor: { "@id": businessId },
+      knowsAbout: [
+        "Solfilm til bil",
+        "Solfilm til bygg",
+        "Lakkbeskyttelse (PPF)",
+        "Lyktefolie",
+        "XPEL",
+      ],
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": businessId,
+      name: "Simons Solfilm",
+      alternateName: "Simon's Solfilm",
+      description:
+        "Solfilm til bil, bolig og næringsbygg i Larvik. Lakkbeskyttelse (PPF), lyktefolie, bilpleieprodukter fra XPEL, dronebefaring og trykk på klær. Drives av Simon Rønning.",
+      url: site.url,
+      image: `${site.url}/og.jpg`,
+      logo: `${site.url}/brand/logo-wordmark.svg`,
+      telephone: site.phone.e164,
+      email: site.email,
+      founder: { "@id": personId },
+      employee: { "@id": personId },
+      foundingDate: "2008",
+      brand: { "@type": "Brand", name: "XPEL" },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.street,
+        postalCode: site.address.postal,
+        addressLocality: site.address.city,
+        addressRegion: "Vestfold",
+        addressCountry: "NO",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.address.lat,
+        longitude: site.address.lng,
+      },
+      hasMap: site.address.maps,
+      areaServed: [
+        { "@type": "City", name: "Larvik" },
+        { "@type": "AdministrativeArea", name: "Vestfold" },
+      ],
+      sameAs: [
+        site.social.instagram,
+        site.social.facebook,
+        site.social.youtube,
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Tjenester",
+        itemListElement: [
+          ["Solfilm til bil", "/solfilm-bil"],
+          ["Solfilm til bygg", "/solfilm-bygg"],
+          ["Lakkbeskyttelse / PPF", "/lakkbeskyttelse"],
+          ["Lyktefolie", "/lakkbeskyttelse"],
+          ["Bilpleieprodukter fra XPEL", "/bilpleie"],
+          ["Dronebefaring", "/#tjenester"],
+          ["Trykk på klær", "/#tjenester"],
+        ].map(([name, path]) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name, url: `${site.url}${path}` },
+        })),
+      },
+    },
   ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Tjenester",
-    itemListElement: [
-      "Solfilm til bil",
-      "Solfilm til bygg",
-      "Lakkbeskyttelse / PPF",
-      "Lyktefolie",
-      "Dronebefaring",
-      "Trykk på klær",
-    ].map((name) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name },
-    })),
-  },
 };
 
 export default function RootLayout({

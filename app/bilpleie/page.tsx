@@ -121,9 +121,42 @@ const careGroups: CareGroup[] = [
   },
 ];
 
+// Produktlista som strukturerte data, så «hvor får jeg XPEL-bilpleie i
+// Larvik» kan svares med denne sida. Bare navn og tekst som alt står på sida.
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${site.url}/bilpleie#produkter`,
+  name: "XPEL Superior Car Care hos Simons Solfilm",
+  itemListElement: careGroups
+    .flatMap((g) => g.products)
+    .map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        description: p.body,
+        brand: { "@type": "Brand", name: "XPEL" },
+        ...(p.img
+          ? { image: `${site.url}/brand/xpel-care/${p.img}.webp` }
+          : {}),
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStoreOnly",
+          seller: { "@id": `${site.url}/#business` },
+        },
+      },
+    })),
+};
+
 export default function BilpleiePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <SubPageHeader />
 
       <main id="innhold" className="bg-bg">

@@ -20,3 +20,41 @@
   for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Det gamle nettstedet (2008–2016, statiske .htm-sider) ligger fortsatt i
+# Googles indeks — «Simon's Solfilm Larvik», 9 års erfaring, Nanset-adresse.
+# URL-ene svarte 404 etter relanseringen. 301 sender folk og lenkeverdi til
+# riktig side og lar Google bytte ut oppføringen i stedet for å slippe den.
+# Kilder: Wayback CDX + DuckDuckGo site:-søk, 2. sep 2026.
+#
+# /Div biler/ugg-shoe*.html er spam fra et gammelt hack og skal fortsette å
+# svare 404 — ingen regel, ingen omdirigering.
+[[redirects]]
+  from = "/kontaktinfo.htm"
+  to = "/#kontakt"
+  status = 301
+
+[[redirects]]
+  from = "/solfilmtilbil.htm"
+  to = "/solfilm-bil"
+  status = 301
+
+[[redirects]]
+  from = "/vindusfilm.htm"
+  to = "/solfilm-bygg"
+  status = 301
+
+[[redirects]]
+  from = "/sikkerhetsfilm.htm"
+  to = "/solfilm-bygg"
+  status = 301
+
+[[redirects]]
+  from = "/spesialfilm.htm"
+  to = "/solfilm-bygg"
+  status = 301
+
+[[redirects]]
+  from = "/index.htm"
+  to = "/"
+  status = 301

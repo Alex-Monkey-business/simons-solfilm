@@ -51,6 +51,10 @@ export function About() {
             className="relative mt-10 lg:mt-12"
           >
             <div className="relative aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card">
+              {/* Illustrasjon, ikke foto — Alex vil bytte til et ekte
+                  telefonbilde av Simon når det finnes (2. sep). Interim-
+                  alternativet som ble vist lokalt: porche_behind.webp med
+                  objectPosition 78% 50%, stående utsnitt mot logoveggen. */}
               <Image
                 src="/brand/simon-transparent.webp"
                 alt="Simon — håndverkeren bak Simons Solfilm"
@@ -72,8 +76,8 @@ export function About() {
               transition={{ duration: 0.8, ease }}
               className="text-text"
             >
-              Jeg gjør jobben selv, fra start til slutt. Jeg holder også kurs
-              for XPEL, så det er faget jeg lærer bort til andre montører.
+              Jeg heter Simon Rønning og gjør jobben selv, fra start til
+              slutt. Jeg holder også kurs for XPEL, så det er faget jeg lærer bort til andre montører.
               Verkstedet mitt holder til i et nytt bygg på Hegdal industriområde
               i Larvik.
             </motion.p>
