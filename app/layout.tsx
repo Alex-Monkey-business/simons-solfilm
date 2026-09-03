@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   description:
     "Simons Solfilm drives av Simon Rønning i Larvik. Solfilm til bil og bygg, lakkbeskyttelse (PPF), lyktefolie og bilpleie fra XPEL. 100 % anbefaling på Facebook.",
   metadataBase: new URL(site.url),
+  // Google Search Console, verifisert via HTML-tag fordi DNS ligger hos
+  // Uniweb/one.com uten at vi har innlogging (sep 2026). Token er knyttet
+  // til Alex' Google-konto; Simon legges til som eier inne i Search Console.
+  verification: { google: "vdyUgtobH5hE8gwfV9QtO11FZmrWYyaEvTFLI2gThTw" },
   // No title/description here on purpose: Next falls back to each page's own
   // title and description, so the service pages share correctly too.
   openGraph: {
