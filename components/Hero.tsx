@@ -69,9 +69,15 @@ export function Hero() {
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
+    /* On a phone the hero is the whole first screen, and the text sits at
+       the two ends of it: headline up against the wall and the sign, the
+       actions down on the floor. The gap between them is where the car is —
+       the portrait frame puts it across the middle 45–70 %. With a
+       content-driven height (557 px at 390 wide) the car sat straight behind
+       the headline and the body copy and the video read as a dark texture. */
     <section
       ref={ref}
-      className="relative w-full overflow-hidden bg-bg pt-28 lg:min-h-[min(92svh,880px)] lg:pt-32"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-bg pt-28 lg:min-h-[min(92svh,880px)] lg:pt-32"
     >
       <motion.div
         style={{ y: photoY }}
@@ -145,7 +151,7 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY }}
-        className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-7 px-6 pb-12 lg:min-h-[calc(min(92svh,880px)-8rem)] lg:justify-center lg:gap-14 lg:px-10 lg:pb-28"
+        className="relative z-10 mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1280px] flex-col justify-between gap-7 px-6 pb-10 lg:min-h-[calc(min(92svh,880px)-8rem)] lg:justify-center lg:gap-14 lg:px-10 lg:pb-28"
       >
         <div className="mt-8 max-w-4xl lg:mt-0">
           <motion.div

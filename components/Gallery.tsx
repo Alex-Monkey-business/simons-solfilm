@@ -283,20 +283,32 @@ export function Gallery() {
           ))}
         </div>
 
-        <div className="mt-5 flex items-center justify-between gap-4 md:hidden">
+        {/* Position and two text buttons, nothing else. The first cut had
+            arrow glyphs in round buttons and a «Sveip for flere jobber» hint;
+            arrows are icons in a site that has none, and the counter already
+            says there is more. */}
+        <div className="mt-4 flex items-center justify-between gap-4 md:hidden">
           <p className="text-sm text-text-muted" aria-live="polite" aria-atomic="true">
-            {activeIndex + 1} / {items.length} <span className="ml-2">Sveip for flere jobber</span>
+            {activeIndex + 1} / {items.length}
           </p>
-          <div className="flex gap-2">
-            <button type="button" aria-label="Forrige prosjekt" aria-controls="prosjektbilder"
-              disabled={activeIndex === 0} onClick={() => move(-1)}
-              className="size-11 rounded-full border border-line-strong bg-bg-card text-text transition-colors hover:border-accent disabled:opacity-30">
-              <span aria-hidden>←</span>
+          <div className="-mr-3 flex">
+            <button
+              type="button"
+              aria-controls="prosjektbilder"
+              disabled={activeIndex === 0}
+              onClick={() => move(-1)}
+              className="min-h-[44px] px-3 text-sm text-text transition-colors hover:text-accent disabled:text-text-faint disabled:opacity-60"
+            >
+              Forrige
             </button>
-            <button type="button" aria-label="Neste prosjekt" aria-controls="prosjektbilder"
-              disabled={activeIndex === items.length - 1} onClick={() => move(1)}
-              className="size-11 rounded-full border border-line-strong bg-bg-card text-text transition-colors hover:border-accent disabled:opacity-30">
-              <span aria-hidden>→</span>
+            <button
+              type="button"
+              aria-controls="prosjektbilder"
+              disabled={activeIndex === items.length - 1}
+              onClick={() => move(1)}
+              className="min-h-[44px] px-3 text-sm text-text transition-colors hover:text-accent disabled:text-text-faint disabled:opacity-60"
+            >
+              Neste
             </button>
           </div>
         </div>
