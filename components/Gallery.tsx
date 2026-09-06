@@ -190,16 +190,28 @@ export function Gallery() {
   // is the same hairline the section headings and contact rows use, with the
   // travelled part in the accent.
   const railRef = useRef<HTMLDivElement>(null);
-  const [rail, setRail] = useState({ width: 1, offset: 0 });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const move = (direction: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const next = Math.max(0, Math.min(items.length - 1, activeIndex + direction));
+    const card = el.children[next] as HTMLElement;
+    const first = el.children[0] as HTMLElement;
+    el.scrollTo({
+      left: card.offsetLeft - first.offsetLeft,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  };
   useEffect(() => {
     const el = railRef.current;
     if (!el) return;
     const update = () => {
       const span = el.scrollWidth - el.clientWidth;
-      setRail({
-        width: el.clientWidth / el.scrollWidth,
-        offset: span > 0 ? el.scrollLeft / span : 0,
-      });
+      const first = el.children[0] as HTMLElement;
+      const step = (el.children[1] as HTMLElement).offsetLeft - first.offsetLeft;
+      setActiveIndex(span > 0 && el.scrollLeft >= span - 2
+        ? items.length - 1
+        : Math.max(0, Math.min(items.length - 1, Math.round(el.scrollLeft / (step || 1)))));
     };
     update();
     el.addEventListener("scroll", update, { passive: true });
@@ -257,6 +269,7 @@ export function Gallery() {
             you could drag inside the carousel. */}
         <div
           ref={railRef}
+          id="prosjektbilder"
           className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto overflow-y-hidden px-6 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-12 md:gap-5 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, i) => (
@@ -270,26 +283,22 @@ export function Gallery() {
           ))}
         </div>
 
-        {/* Tumben var bg-accent på full bredde, altså samme form og farge som
-            seksjonsstreken rett under: aksent til venstre på en hårstrek. På
-            390 px måler tumben ~72 px og aksentsegmentet 64 — de var
-            uskillelige, og indikatoren leste som en seksjonsgrense.
-            Aksenten betyr «ny seksjon starter her». En rulleindikator er
-            posisjon, ikke merkevare, så den er nøytral nå. Sporet er også
-            trukket inn til 40 % og sentrert, så silhuetten skiller seg fra en
-            strek som går tvers over. */}
-        <div
-          aria-hidden
-          className="relative mx-auto mt-6 h-0.5 w-2/5 overflow-hidden rounded-full bg-line md:hidden"
-        >
-          <div
-            className="absolute inset-y-0 rounded-full bg-text-muted"
-            style={{
-              width: `${rail.width * 100}%`,
-              left: `${rail.offset * (100 - rail.width * 100)}%`,
-              transition: "left 90ms linear",
-            }}
-          />
+        <div className="mt-5 flex items-center justify-between gap-4 md:hidden">
+          <p className="text-sm text-text-muted" aria-live="polite" aria-atomic="true">
+            {activeIndex + 1} / {items.length} <span className="ml-2">Sveip for flere jobber</span>
+          </p>
+          <div className="flex gap-2">
+            <button type="button" aria-label="Forrige prosjekt" aria-controls="prosjektbilder"
+              disabled={activeIndex === 0} onClick={() => move(-1)}
+              className="size-11 rounded-full border border-line-strong bg-bg-card text-text transition-colors hover:border-accent disabled:opacity-30">
+              <span aria-hidden>←</span>
+            </button>
+            <button type="button" aria-label="Neste prosjekt" aria-controls="prosjektbilder"
+              disabled={activeIndex === items.length - 1} onClick={() => move(1)}
+              className="size-11 rounded-full border border-line-strong bg-bg-card text-text transition-colors hover:border-accent disabled:opacity-30">
+              <span aria-hidden>→</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -62,19 +62,20 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
       <main id="innhold" className="bg-bg">
         {/* Hero */}
-        <section className="relative w-full overflow-hidden px-6 pt-32 lg:px-10 lg:pt-40">
-          <div className="mx-auto max-w-[1280px]">
+        <section className="relative w-full overflow-hidden px-6 pt-28 lg:px-10 lg:pt-40">
+          <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
+            <div className="min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease, delay: 0.1 }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3 py-1.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted"
+              className="mb-5 inline-flex lg:mb-8 items-center gap-2.5 rounded-full border border-line-strong px-3 py-1.5 font-mono text-[12px] uppercase tracking-[0.2em] text-text-muted"
             >
               <span className="size-1.5 rounded-full bg-accent" />
               <span>{data.eyebrow}</span>
             </motion.div>
 
-            <h1 className="max-w-3xl font-display text-[clamp(2.75rem,7.5vw,6rem)] font-normal leading-[1] text-text">
+            <h1 className="max-w-3xl font-display text-[clamp(2.75rem,5.2vw,4.75rem)] text-balance font-normal leading-[1] text-text">
               <motion.span
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -93,7 +94,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease, delay: 0.35 }}
-              className="mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg"
+              className="mt-5 lg:mt-8 max-w-xl text-balance text-base leading-relaxed text-text-muted lg:text-lg"
             >
               {data.intro}
             </motion.p>
@@ -107,17 +108,19 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               </Button>
             </div>
 
+            </div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, ease, delay: 0.45 }}
-              className="relative mt-14 aspect-[16/10] w-full overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card md:aspect-[21/9]"
+              className="relative aspect-[16/10] w-full overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card lg:aspect-[4/5] lg:max-h-[640px]"
             >
               <Image
                 src={data.heroImage}
                 alt={data.heroAlt}
                 fill
-                sizes="(max-width: 1280px) 100vw, 1280px"
+                sizes="(min-width: 1360px) 655px, (min-width: 1024px) 50vw, 100vw"
                 priority
                 className="object-cover"
               />
@@ -126,13 +129,13 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* Benefits */}
-        <section className="w-full px-6 py-28 lg:px-10 lg:py-40">
+        <section className="w-full px-6 py-20 lg:px-10 lg:py-28">
           <div className="mx-auto max-w-[1280px]">
             {/* «Derfor solfilm.» sto hardkodet her og fulgte med til
                 /lakkbeskyttelse, som ikke handler om solfilm i det hele tatt.
                 Samme grep som filmTypesHeading: default for de to solfilm-
                 sidene, overstyrt der ordet er feil. */}
-            <h2 className="mb-14 max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-20">
+            <h2 className="mb-10 max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-12">
               {data.benefitsHeading ?? "Derfor solfilm."}
             </h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -158,7 +161,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* Film types + specs */}
-        <section className="w-full px-6 pb-28 lg:px-10 lg:pb-40">
+        <section className="w-full px-6 pb-20 lg:px-10 lg:pb-28">
           <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h2 className="mb-10 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
@@ -213,9 +216,9 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* Process */}
-        <section className="w-full bg-bg-card/30 px-6 py-28 lg:px-10 lg:py-40">
+        <section className="w-full bg-bg-card/30 px-6 py-20 lg:px-10 lg:py-28">
           <div className="mx-auto max-w-[1280px]">
-            <h2 className="mb-14 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-20">
+            <h2 className="mb-10 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-12">
               Slik gjør jeg det.
             </h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -242,7 +245,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* FAQ */}
-        <section className="w-full px-6 py-28 lg:px-10 lg:py-40">
+        <section className="w-full px-6 py-20 lg:px-10 lg:py-28">
           <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 lg:grid-cols-12">
             <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:col-span-4">
               Vanlige spørsmål.
@@ -270,7 +273,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* CTA */}
-        <section className="w-full px-6 pb-28 lg:px-10 lg:pb-40">
+        <section className="w-full px-6 pb-20 lg:px-10 lg:pb-28">
           <div className="mx-auto max-w-[1280px]">
             {/* Står FØR «Ring meg»: lå den under, hadde leseren alt fått sin
                 avslutning og scrollet ut. Bilpleie var nevnt på tre sider og

@@ -71,7 +71,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative w-full overflow-hidden bg-bg pt-40 lg:min-h-[min(92svh,880px)] lg:pt-32"
+      className="relative w-full overflow-hidden bg-bg pt-28 lg:min-h-[min(92svh,880px)] lg:pt-32"
     >
       <motion.div
         style={{ y: photoY }}
@@ -145,7 +145,7 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY }}
-        className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-12 px-6 pb-20 lg:min-h-[calc(min(92svh,880px)-8rem)] lg:justify-center lg:gap-14 lg:px-10 lg:pb-28"
+        className="relative z-10 mx-auto flex max-w-[1280px] flex-col gap-7 px-6 pb-12 lg:min-h-[calc(min(92svh,880px)-8rem)] lg:justify-center lg:gap-14 lg:px-10 lg:pb-28"
       >
         <div className="mt-8 max-w-4xl lg:mt-0">
           <motion.div
@@ -199,7 +199,7 @@ export function Hero() {
             column on a phone and therefore looked right there, but on a wide
             screen it left the call button floating mid-frame, aligned to
             nothing. */}
-        <div className="flex flex-col gap-10 lg:max-w-2xl lg:gap-8">
+        <div className="flex flex-col gap-6 lg:max-w-2xl lg:gap-8">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
