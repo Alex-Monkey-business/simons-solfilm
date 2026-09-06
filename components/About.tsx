@@ -87,9 +87,9 @@ export function About() {
               viewport={{ once: true, margin: "-180px" }}
               transition={{ duration: 0.8, ease }}
             >
-              Jeg er nøye med detaljene — kantene skal sitte, og ingen jobb er
-              for vanskelig. For meg handler det om å gi ærlige råd, finne
-              riktig løsning, og levere noe jeg kan stå inne for.
+              Jeg er nøye med detaljene — fra valg av film til den siste
+              kanten. For meg handler det om å gi ærlige råd, finne
+              riktig løsning og levere noe jeg kan stå inne for.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -97,8 +97,8 @@ export function About() {
               viewport={{ once: true, margin: "-240px" }}
               transition={{ duration: 0.8, ease }}
             >
-              Hos meg er det ingen lærling som tar over og ingen kundeservice du
-              må gjennom først. Trenger du at jeg kommer hjem eller ut på en
+              Du har kontakt med meg hele veien, og jeg gjør monteringen selv.
+              Trenger du at jeg kommer hjem eller ut på en
               byggeplass, ordner jeg det — næringskunder kjører jeg ut til over
               hele Vestfold.
             </motion.p>

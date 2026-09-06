@@ -4,6 +4,7 @@ export type ServiceDetail = {
   title: string;
   titleAccent: string;
   intro: string;
+  enquiryHelp: string;
   heroImage: string;
   heroAlt: string;
   benefits: { title: string; body: string }[];
@@ -40,6 +41,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     intro:
       "Jeg legger solfilm på bil for deg som vil ha mindre varme, et interiør som holder seg og et penere uttrykk. Vi finner filmtypen sammen — tilpasset bilen, bruken din og hvor mørkt du vil ha det. Send meg gjerne et bilde av bilen, så får du pris raskt.",
     heroImage: "/brand/pics_work/blue_mercedes.webp",
+    enquiryHelp: "Send gjerne et bilde, bilmodell og årsmodell. Fortell hvilke ruter du vil ha film på, så kan jeg gi deg et tilbud.",
     heroAlt: "Bil med solfilm montert av Simon",
     benefits: [
       {
@@ -48,7 +50,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
       {
         title: "Beskyttelse mot innsyn",
-        body: "Vanskeligere for tyver å se det dyre verktøyet i firmabilen eller stereoanlegget i privatbilen.",
+        body: "Tonede ruter gjør det vanskeligere å se inn i bilen og gir mer privatliv i baksetet.",
       },
       {
         title: "Skåner interiøret",
@@ -104,6 +106,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     ],
     faq: [
       {
+        q: "Hva trenger du for å gi meg pris?",
+        a: "Send bilmodell, årsmodell og hvilke ruter du ønsker film på. Legg gjerne ved et bilde, og si fra om det sitter film på rutene fra før.",
+      },
+      {
         q: "Hvor mørk film kan jeg ha?",
         a: "På bakruter og bakvinduer kan du gå så mørkt du vil. Frontruter og førerruter har egne krav — jeg veileder deg slik at det blir lovlig.",
       },
@@ -135,6 +141,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     intro:
       "Jeg legger solfilm på bolig, kontor, butikk og næringsbygg. Det gir mindre varme, mindre innsyn og bedre komfort — uten at du må bytte vinduer eller sette opp tung solskjerming. Næringskunder kjører jeg ut til over hele Vestfold.",
     heroImage: "/brand/pics_work/stainless_steel_office_building.webp",
+    enquiryHelp: "Send bilder, omtrentlige vindusmål og hvor bygget ligger. Fortell om du ønsker mindre varme, mindre blending eller skjerming mot innsyn.",
     heroAlt: "Næringsbygg med solfilm",
     benefits: [
       {
@@ -220,6 +227,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     intro:
       "Jeg legger gjennomsiktig film på lakken som tar steinsprut, slitasje og småskader, og folie på lyktene i klar eller sotet variant. Jeg bruker XPEL og holder kurs for dem, så det er faget jeg lærer bort til andre montører. Send meg gjerne et bilde av bilen, så får du pris raskt.",
     heroImage: "/brand/pics_work/porche_behind.webp",
+    enquiryHelp: "Send gjerne et bilde, bilmodell og årsmodell. Fortell hvilke deler av bilen du vil beskytte, så finner vi et passende omfang.",
     heroAlt: "Porsche 911 i Simons verksted med lakkbeskyttelse på fronten",
     benefits: [
       {

@@ -206,7 +206,8 @@ export function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.85 }}
             className="max-w-md text-balance text-base leading-relaxed text-text-muted lg:text-lg"
           >
-            Kontakt meg. Send gjerne et bilde, så får du pris raskt.
+            Verksted på Hegdal i Larvik. Send gjerne et bilde og fortell hva
+            du ønsker, så hjelper jeg deg med løsning og pris.
           </motion.p>
 
           {/* One row, four buttons, same height. The call button was its own

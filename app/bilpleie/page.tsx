@@ -38,7 +38,7 @@ const careGroups: CareGroup[] = [
       },
       {
         name: "Waterless Wash",
-        body: "Vasker uten slange eller bøtte. Kapsler inn partiklene så du unngår swirls, og etterlater en hydrofobisk hinne.",
+        body: "Vasker uten slange eller bøtte. Kapsler inn smusspartiklene og etterlater en vannavvisende overflate.",
         img: "waterless-wash",
         alt: "Flaske XPEL Waterless Wash",
       },
@@ -78,13 +78,13 @@ const careGroups: CareGroup[] = [
       },
       {
         name: "Detail Spray",
-        body: "Tar lett støv og fingeravtrykk for en rask shine. Fungerer også som glidemiddel når du clay\u2019er.",
+        body: "Fjerner lett støv og fingeravtrykk og gir raskt glans. Kan også brukes som glidemiddel ved rengjøring med renseleire.",
         img: "detail-spray",
         alt: "Flaske XPEL Detail Spray",
       },
       {
         name: "PPF Cleaner",
-        body: "Trekker ut tjære, olje og insektsyre som har satt seg i folien, og gjenoppretter den klare looken den hadde som ny.",
+        body: "Fjerner tjære, olje og insektrester som har satt seg i folien, og hjelper med å holde overflaten klar og ren.",
         img: "ppf-cleaner",
         alt: "Sprayflaske XPEL PPF Cleaner",
       },
@@ -183,8 +183,8 @@ export default function BilpleiePage() {
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted lg:text-lg">
                 Som montør av XPELs solfilm og PPF har jeg fått inn Superior
-                Car Care-produktene deres. Jeg selger dem ikke på nett — står
-                du på Hegdal er det bare å komme innom og teste dem ut.
+                Car Care-produktene deres. Du kjøper dem på verkstedet på
+                Hegdal i Larvik. Kom innom, så hjelper jeg deg å velge og teste.
               </p>
 
               <div className="mt-14 flex flex-col gap-12 lg:mt-16">

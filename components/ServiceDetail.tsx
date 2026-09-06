@@ -98,6 +98,15 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
               {data.intro}
             </motion.p>
 
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={`sms:${site.phone.e164}`} size="sm" className="min-h-[44px]">
+                Send melding
+              </Button>
+              <Button href={`mailto:${site.email}`} variant="secondary" size="sm" className="min-h-[44px]">
+                Send e-post
+              </Button>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -299,19 +308,22 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
             >
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
-                  Ring meg, så tar vi en prat.
+                  Vil du ha et pristilbud?
                 </h2>
                 <p className="mt-4 max-w-md text-base leading-relaxed text-text-muted">
-                  Send meg et bilde, så får du pris raskt.
+                  {data.enquiryHelp}
                 </p>
               </div>
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+              <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto">
                 <Button href={site.phone.href} variant="primary">
                   <span>Ring meg</span>
                   <span aria-hidden>→</span>
                 </Button>
-                <Button href="/#kontakt" variant="secondary">
-                  <span>Kontakt</span>
+                <Button href={`sms:${site.phone.e164}`} variant="secondary">
+                  <span>Send melding</span>
+                </Button>
+                <Button href={`mailto:${site.email}`} variant="secondary">
+                  <span>Send e-post</span>
                 </Button>
               </div>
             </div>
