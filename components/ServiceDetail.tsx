@@ -9,6 +9,7 @@ import { SubPageHeader } from "./SubPageHeader";
 import { serviceDetails } from "./serviceDetails";
 import type { ServiceDetail as ServiceDetailData } from "./serviceDetails";
 import { site } from "@/lib/site";
+import styles from "./TextPanels.module.css";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -138,7 +139,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
             <h2 className="mb-10 max-w-2xl font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-12">
               {data.benefitsHeading ?? "Derfor solfilm."}
             </h2>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className={styles.benefits}>
               {data.benefits.map((b, i) => (
                 <motion.div
                   key={b.title}
@@ -146,7 +147,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.7, ease, delay: (i % 2) * 0.08 }}
-                  className="rounded-[var(--r-card)] border border-line bg-bg-card p-7 lg:p-9"
+                  className={styles.benefit}
                 >
                   <h3 className="font-display text-xl font-medium lg:text-2xl">
                     {b.title}
@@ -190,7 +191,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
             <div className="lg:col-span-4 lg:col-start-9">
               <div className="lg:sticky lg:top-28">
-                <div className="rounded-[var(--r-card)] border border-line bg-bg-card p-7 lg:p-8">
+                <div className={styles.facts}>
                   <div className="mb-6 font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                     Kort fortalt
                   </div>
@@ -216,12 +217,12 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         </section>
 
         {/* Process */}
-        <section className="w-full bg-bg-card/30 px-6 py-20 lg:px-10 lg:py-28">
+        <section className="w-full px-6 py-20 lg:px-10 lg:py-28">
           <div className="mx-auto max-w-[1280px]">
             <h2 className="mb-10 font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight lg:mb-12">
               Slik gjør jeg det.
             </h2>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className={styles.process}>
               {data.process.map((p, i) => (
                 <motion.div
                   key={p.step}
@@ -229,10 +230,10 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, ease, delay: i * 0.08 }}
-                  className="rounded-[var(--r-card)] border border-line bg-bg p-6 lg:p-7"
+                  className={styles.step}
                 >
-                  <div className="font-mono text-sm text-accent">{p.step}</div>
-                  <h3 className="mt-4 font-display text-lg font-medium lg:text-xl">
+                  <div className={styles.number}>{p.step}</div>
+                  <h3 className="font-display text-lg font-medium lg:text-xl">
                     {p.title}
                   </h3>
                   <p className="mt-2.5 text-base leading-relaxed text-text-muted">
@@ -275,16 +276,8 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
         {/* CTA */}
         <section className="w-full px-6 pb-20 lg:px-10 lg:pb-28">
           <div className="mx-auto max-w-[1280px]">
-            {/* Står FØR «Ring meg»: lå den under, hadde leseren alt fått sin
-                avslutning og scrollet ut. Bilpleie var nevnt på tre sider og
-                nåbar fra én — distribusjon før størrelse.
-
-                Varen, ikke en dør. Den får kortform i stedet for radform
-                nettopp fordi den IKKE er en tjeneste — samme skille som
-                bærer «Bilpleieprodukter»/«Forhandler» på forsiden. Lagt som
-                rad ville den lest som en fjerde tjeneste. */}
             {data.related ? (
-              <div className="rounded-[var(--r-card)] border border-line bg-bg-card p-8 lg:p-10">
+              <div className={styles.related}>
                 <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-faint">
                   {data.related.label}
                 </div>
@@ -307,7 +300,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
 
             <div
-              className={`flex flex-col items-start justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12 ${data.related ? "mt-5" : ""}`}
+              className={`${styles.contact} ${data.related ? "mt-8" : ""}`}
             >
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">

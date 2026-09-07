@@ -1,3 +1,4 @@
+import panelStyles from "@/components/TextPanels.module.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -238,7 +239,7 @@ export default function BilpleiePage() {
 
         <section className="w-full px-6 pb-28 lg:px-10 lg:pb-40">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col items-start justify-between gap-8 rounded-[var(--r-card)] border border-line bg-bg-card p-8 md:flex-row md:items-center lg:p-12">
+            <div className={panelStyles.contact}>
               <div>
                 <h2 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight">
                   Usikker på hva du trenger?

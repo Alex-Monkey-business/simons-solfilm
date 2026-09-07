@@ -1,0 +1,57 @@
+.grid { display: grid; gap: 14px; }
+.card { position: relative; display: block; min-width: 0; overflow: hidden; border: 1px solid #373028; border-radius: 24px; color: var(--text); }
+.car { background: #1c1915; }
+.art { height: 130px; position: relative; overflow: hidden; margin: 0 22px; border-bottom: 1px solid #ffffff12; }
+.label { position: absolute; top: 20px; left: 0; font: 11px var(--font-geist-mono), monospace; letter-spacing: .15em; color: #ada293; }
+.glass { position: absolute; width: 112px; height: 80px; border: 1px solid #be9d7466; transform: skewX(-17deg); border-radius: 12px 12px 3px 3px; top: 28px; box-shadow: inset 0 1px #ffffff22; }
+.glass:nth-of-type(2) { right: 97px; background: linear-gradient(125deg,#c5b9a64a,#4f493c22); }
+.glass:nth-of-type(3) { right: 53px; top: 35px; background: linear-gradient(125deg,#76614caa,#27211b99); }
+.glass:nth-of-type(4) { right: 9px; top: 42px; background: linear-gradient(125deg,#352d25,#10100f); border-color: #e58536aa; }
+.copy { padding: 22px 24px 24px; }
+.card h3, .shop h3, .row h3 { font-family: var(--font-fraunces), Georgia, serif; font-weight: 400; letter-spacing: -.035em; line-height: 1.12; }
+.card h3 { font-size: 31px; margin: 0 0 12px; }
+.card h3 em { color: var(--accent-warm); font-weight: 400; }
+.card p { color: #bdb6ac; font-size: 15px; line-height: 1.65; margin: 0 0 18px; max-width: 42ch; }
+.action { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 42px; font-size: 13px; font-weight: 500; }
+.arrow { flex: 0 0 24px; width: 24px; height: 24px; color: var(--accent); margin: 0 9px; transition: transform .2s ease; }
+.building { background: #1b1e1c; border-color: #383c36; }
+.building .copy { padding-top: 26px; }
+.building h3 { padding-right: 54px; font-size: 29px; }
+.building p { color: #b9beb6; }
+.glassDetail { position: absolute; top: 26px; right: 24px; width: 42px; height: 56px; border: 1px solid #bfc7b166; border-radius: 3px; background: linear-gradient(90deg,#b8c0b266 49%,#cbd1c255 49%,#cbd1c255 51%,#dde0d9bb 51%); box-shadow: inset 0 1px #ffffff30; }
+.ppf { background: #141416; border-color: #303033; }
+.ppf .copy { padding-top: 27px; }
+.ppf h3 { font-size: 26px; padding-right: 52px; }
+.ppf p { max-width: 26ch; font-size: 14px; }
+.peel { position: absolute; right: 23px; top: 26px; width: 42px; height: 56px; background: linear-gradient(140deg,#91918b55,#242425 70%); border: 1px solid #ffffff38; border-radius: 4px 20px 4px 4px; transform: rotate(14deg); }
+.peel::after { content: ''; position: absolute; right: -1px; top: -1px; width: 22px; height: 24px; background: linear-gradient(45deg,#666963,#ced1c2); border-radius: 0 18px 0 6px; box-shadow: -4px 5px 9px #0007; }
+.shop { min-width: 0; padding: 22px 4px; border-bottom: 1px solid #343230; display: flex; gap: 12px; align-items: center; justify-content: space-between; color: var(--text); }
+.shop h3 { font-size: 24px; margin-bottom: 6px; }
+.shop p, .row p { font-size: 14px; line-height: 1.65; color: var(--text-muted); }
+.other { margin-top: 32px; }
+.row { padding: 18px 0; border-bottom: 1px solid #262624; }
+.row h3 { font-size: 21px; margin-bottom: 5px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card:hover .arrow, .shop:hover .arrow { transform: translateX(3px); }
+}
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  .car { grid-row: span 2; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; }
+  .car .art { height: 190px; }
+  .car .glass { top: 58px; }
+  .car .glass:nth-of-type(3) { top: 65px; }
+  .car .glass:nth-of-type(4) { top: 72px; }
+  .car .copy { padding: 32px; }
+  .car h3 { font-size: clamp(36px,4vw,56px); }
+  .car p { font-size: 17px; }
+  .shop { grid-column: 1 / -1; }
+  .other { margin-top: 48px; }
+  .otherGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 359px) {
+  .copy { padding-left: 20px; padding-right: 20px; }
+  .building h3 { font-size: 25px; }
+  .ppf h3 { font-size: 23px; padding-right: 42px; }
+  .glassDetail, .peel { right: 18px; width: 34px; height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) { .arrow { transition: none; } }
