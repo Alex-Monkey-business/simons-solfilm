@@ -5,6 +5,7 @@ import "lenis/dist/lenis.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { MotionProvider } from "@/components/MotionProvider";
 import { site } from "@/lib/site";
+import { Sporing } from "@/components/Sporing";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -166,6 +167,7 @@ export default function RootLayout({
         <a href="#innhold" className="skip-link">
           Hopp til innhold
         </a>
+        <Sporing />
         <SmoothScroll />
         <MotionProvider>{children}</MotionProvider>
         <script
