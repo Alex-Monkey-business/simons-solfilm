@@ -12,6 +12,7 @@ const pages = [
   { label: "Lakkbeskyttelse og lyktefolie", href: "/lakkbeskyttelse" },
   { label: "Bilpleie", href: "/bilpleie" },
   { label: "XPEL", href: "/xpel" },
+  { label: "Er solfilm lovlig?", href: "/solfilm-og-loven" },
 ];
 
 // Ingen ikoner: merkelogoer er ikoner, og de er utelatt her med vilje.

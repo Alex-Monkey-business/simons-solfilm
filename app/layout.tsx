@@ -128,7 +128,12 @@ const localBusiness = {
         { "@type": "City", name: "Larvik" },
         { "@type": "AdministrativeArea", name: "Vestfold" },
       ],
+      // Google-oppføringen hører hjemme her, ikke bare i `hasMap`. For en
+      // lokal bedrift er den det sterkeste entitetssignalet som finnes: det
+      // er den som knytter nettstedet til bedriften Google alt kjenner fra
+      // kartet og anmeldelsene.
       sameAs: [
+        site.social.googleMaps,
         site.social.instagram,
         site.social.facebook,
         site.social.youtube,
