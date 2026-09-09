@@ -177,7 +177,7 @@ export default function RootLayout({
         <MotionProvider>{children}</MotionProvider>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, "\\u003c") }}
         />
       </body>
     </html>

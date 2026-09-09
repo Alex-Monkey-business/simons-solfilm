@@ -58,7 +58,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
       <SubPageHeader />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <main id="innhold" className="bg-bg">
