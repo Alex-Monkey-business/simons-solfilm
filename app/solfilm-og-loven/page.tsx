@@ -37,7 +37,7 @@ const sporsmal = [
   },
   {
     q: "Kan du sjekke bilen min før vi bestemmer noe?",
-    a: "Ja. Send meg et bilde av bilen, så sier jeg hva som er mulig og hva jeg ikke kommer til å gjøre. Jeg legger ikke film der forskriften ikke tillater det.",
+    a: "Ja. Send meg et bilde av bilen, så sier jeg hva som er mulig, og du får svaret før du bestemmer deg.",
   },
 ];
 
@@ -121,7 +121,7 @@ export default function SolfilmOgLovenPage() {
                     som solfilter innenfor en oppgitt standard — det er glasset
                     bilen ble godkjent med. Forbudet gjelder film som legges på
                     i ettertid. Derfor kan en bil ha mørkere ruter foran fra
-                    fabrikken enn det jeg har lov til å montere.
+                    fabrikken enn det som er tillatt å montere i ettertid.
                   </p>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function SolfilmOgLovenPage() {
                 Dette er et sammendrag av forskriften slik den står, ikke
                 juridisk rådgivning. Det er Statens vegvesen som vurderer
                 kjøretøyet ved kontroll. Er du i tvil, les paragrafen i lenka
-                over — eller ring meg, så sier jeg hva jeg gjør og ikke gjør.
+                over, eller ta kontakt hvis du vil snakke gjennom bilen din.
               </p>
             </div>
           </div>
