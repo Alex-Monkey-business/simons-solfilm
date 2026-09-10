@@ -18,10 +18,6 @@ export function Services() {
 
         <div className={styles.grid}>
           <Link href="/solfilm-bil" className={`${styles.card} ${styles.car}`}>
-            <div className={styles.art} aria-hidden="true">
-              <span className={styles.label}>Bil</span>
-              <span className={styles.glass} /><span className={styles.glass} /><span className={styles.glass} />
-            </div>
             <div className={styles.copy}>
               <h3>Solfilm til <em>bil.</em></h3>
               <p>Mindre varme og innsyn. Jeg hjelper deg å velge film som passer bilen din.</p>
@@ -30,7 +26,6 @@ export function Services() {
           </Link>
 
           <Link href="/solfilm-bygg" className={`${styles.card} ${styles.building}`}>
-            <span className={styles.glassDetail} aria-hidden="true" />
             <div className={styles.copy}>
               <h3>Solfilm til<br /><em>bolig og bygg.</em></h3>
               <p>Mindre varme, blending eller innsyn — med film på vinduene du allerede har.</p>
@@ -39,7 +34,6 @@ export function Services() {
           </Link>
 
           <Link href="/lakkbeskyttelse" className={`${styles.card} ${styles.ppf}`}>
-            <span className={styles.peel} aria-hidden="true" />
             <div className={styles.copy}>
               <h3>Lakkbeskyttelse<br />og lyktefolie.</h3>
               <p>Et beskyttende lag på bilens utsatte flater.</p>
@@ -61,9 +55,17 @@ export function Services() {
         <div className={styles.other}>
           <div className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted">Andre tjenester</div>
           <div className={styles.otherGrid}>
-            <div className={styles.row}>
-              <h3>Dronebefaring</h3>
-              <p>Oversikt over tak, fasade og steder som er vanskelige å komme til.</p>
+            <div className={styles.drone}>
+              <video autoPlay muted loop playsInline preload="metadata"
+                poster="/brand/videoes/drone-poster.webp" aria-hidden="true" tabIndex={-1}>
+                {/* Bare fra 768: telefonen har alt hero-videoen, her holder posteren. */}
+                <source src="/brand/videoes/drone.mp4" type="video/mp4" media="(min-width: 768px)" />
+              </video>
+              <div className={styles.droneCopy}>
+                <h3>Dronebefaring</h3>
+                <p>Oversikt over tak, fasade og steder som er vanskelige å komme til.</p>
+                <span>Tak &amp; solcelle</span>
+              </div>
             </div>
             <div className={styles.row}>
               <h3>Trykk på klær</h3>
