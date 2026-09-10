@@ -58,8 +58,7 @@ export function Services() {
             <div className={styles.drone}>
               <video autoPlay muted loop playsInline preload="metadata"
                 poster="/brand/videoes/drone-poster.webp" aria-hidden="true" tabIndex={-1}>
-                {/* Bare fra 768: telefonen har alt hero-videoen, her holder posteren. */}
-                <source src="/brand/videoes/drone.mp4" type="video/mp4" media="(min-width: 768px)" />
+                <source src="/brand/videoes/drone.mp4" type="video/mp4" />
               </video>
               <div className={styles.droneCopy}>
                 <h3>Dronebefaring</h3>
