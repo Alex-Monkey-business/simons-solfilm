@@ -147,7 +147,7 @@ export default function SolfilmOgLovenPage() {
                 Kjøretøyforskriften{" "}
                 <Link
                   href={LOVDATA_31_3}
-                  className="underline underline-offset-4"
+                  className="-my-3 -mx-1 inline-flex min-h-[44px] items-center px-1 underline underline-offset-4"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -156,7 +156,7 @@ export default function SolfilmOgLovenPage() {
                 . For biler godkjent etter EU-reglene gjelder{" "}
                 <Link
                   href={LOVDATA_31_2}
-                  className="underline underline-offset-4"
+                  className="-my-3 -mx-1 inline-flex min-h-[44px] items-center px-1 underline underline-offset-4"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -198,7 +198,7 @@ export default function SolfilmOgLovenPage() {
                 <Button href={site.phone.href}>Ring {site.phone.display}</Button>
                 <Link
                   href="/solfilm-bil"
-                  className="text-base underline underline-offset-4"
+                  className="inline-flex min-h-[44px] items-center px-1 text-base underline underline-offset-4"
                 >
                   Solfilm til bil
                 </Link>
