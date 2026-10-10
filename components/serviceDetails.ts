@@ -68,7 +68,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
       {
         name: "Mørkhetsgrad etter ønske",
-        body: "Fra lett tonet til helt mørkt. Vi velger en grad som passer bilen og holder seg innenfor regelverket på frontrutene.",
+        body: "Fra lett tonet til helt mørkt. Vi velger en grad som passer bilen og hvordan du bruker den.",
       },
       {
         name: "UV-beskyttelse",
@@ -111,7 +111,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
       {
         q: "Hvor mørk film kan jeg ha?",
-        a: "På bakruter og bakvinduer kan du gå så mørkt du vil. Frontruter og førerruter har egne krav — jeg veileder deg slik at det blir lovlig.",
+        a: "Forskriften forbyr påklebet film på frontruta og sidevinduene foran, uansett hvor lys den er. Bakruta og sidevinduene bak omfattes ikke av forbudet. Paragrafen står ordrett på siden «Er solfilm lovlig?».",
       },
       {
         q: "Hvor lang tid tar det?",
