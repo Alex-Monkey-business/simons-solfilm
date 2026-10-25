@@ -24,14 +24,15 @@ const PHOTO_MASK =
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  // The loop is 1.5 MB against the portrait still's 177 kB, so a phone never
-  // fetches it: the <video> is only mounted once we know we are on a wide
-  // viewport, and never for someone who asked for less motion. The still
-  // underneath is the poster either way, so there is no empty frame to cover.
+  // The loop is 1.4–2.7 MB against a still of about 55 kB, so the <video> is
+  // mounted only after the page has finished loading: it must not compete with
+  // the still, fonts and scripts for the first screen. Never mounted for
+  // someone who asked for less motion. The still underneath is the poster
+  // either way, so there is no empty frame to cover.
   // Two encodes, not one crop. A phone shows roughly the middle 35% of a 16:9
-  // frame, so the mobile file is cropped to 448x720 in the encode itself and
-  // spends none of its bits on pixels the viewport throws away — 1.2 MB
-  // instead of the 2.6 MB desktop file.
+  // frame, so the mobile file is cropped to 540x960 in the encode itself and
+  // spends none of its bits on pixels the viewport throws away — 1.4 MB
+  // instead of the 2.7 MB desktop file.
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -47,10 +48,19 @@ export function Hero() {
             ? "/brand/videoes/hero-loop.mp4"
             : "/brand/videoes/hero-loop-mobil.mp4",
       );
-    update();
-    wide.addEventListener("change", update);
-    still.addEventListener("change", update);
+    let idle = 0;
+    const start = () => {
+      idle = window.setTimeout(() => {
+        update();
+        wide.addEventListener("change", update);
+        still.addEventListener("change", update);
+      }, 300);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
     return () => {
+      window.clearTimeout(idle);
+      window.removeEventListener("load", start);
       wide.removeEventListener("change", update);
       still.removeEventListener("change", update);
     };

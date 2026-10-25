@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LazyVideo } from "./LazyVideo";
 import { SectionHeading } from "./SectionHeading";
 import styles from "./Services.module.css";
 
@@ -56,10 +57,7 @@ export function Services() {
           <div className="font-mono text-[12px] uppercase tracking-[0.18em] text-text-muted">Andre tjenester</div>
           <div className={styles.otherGrid}>
             <div className={styles.drone}>
-              <video autoPlay muted loop playsInline preload="metadata"
-                poster="/brand/videoes/drone-poster.webp" aria-hidden="true" tabIndex={-1}>
-                <source src="/brand/videoes/drone.mp4" type="video/mp4" />
-              </video>
+              <LazyVideo src="/brand/videoes/drone.mp4" poster="/brand/videoes/drone-poster.webp" />
               <div className={styles.droneCopy}>
                 <h3>Dronebefaring</h3>
                 <p>Oversikt over tak, fasade og steder som er vanskelige å komme til.</p>
