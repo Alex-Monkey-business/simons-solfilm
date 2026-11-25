@@ -276,6 +276,26 @@ body {
   }
 }
 
+/* The «Ny» badge on recent jobs: the dot breathes slowly, and holds still for
+   anyone who asked for less motion. */
+.tile-new-dot {
+  animation: tile-new 2.4s ease-in-out infinite;
+}
+@keyframes tile-new {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile-new-dot {
+    animation: none;
+  }
+}
+
 /* Contact rows — no box, so the arrow carries the affordance. */
 .contact-arrow {
   transition: transform 320ms var(--ease-out), color 320ms ease;

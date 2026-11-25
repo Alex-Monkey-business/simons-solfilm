@@ -1,3 +1,17 @@
+// En video i toppen av en tjenesteside, i stedet for stillbildet. Stående
+// format, uten lyd. `quote` er Simons egne ord fra innlegget videoen kom fra.
+export type HeroVideo = {
+  src: string;
+  poster: string;
+  alt: string;
+  quote: string;
+  meta: string;
+  length: string;
+  // Et lite stillbilde som ligger halvveis foran videoen på brede skjermer,
+  // så toppen viser to jobber og ikke bare én.
+  aside?: { src: string; alt: string; label: string };
+};
+
 export type ServiceDetail = {
   slug: string;
   eyebrow: string;
@@ -7,6 +21,9 @@ export type ServiceDetail = {
   enquiryHelp: string;
   heroImage: string;
   heroAlt: string;
+  // Valgfri. Med den viser toppen video; heroImage brukes da fortsatt i de
+  // strukturerte dataene.
+  heroVideo?: HeroVideo;
   benefits: { title: string; body: string }[];
   filmTypes: { name: string; body: string }[];
   // «Filmtyper jeg jobber med.» er riktig for de tre solfilm- og
@@ -143,6 +160,21 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     heroImage: "/brand/pics_work/stainless_steel_office_building.webp",
     enquiryHelp: "Send bilder, omtrentlige vindusmål og hvor bygget ligger. Fortell om du ønsker mindre varme, mindre blending eller skjerming mot innsyn.",
     heroAlt: "Næringsbygg med solfilm",
+    // Fra Simons Instagram, 14. oktober 2026. Lyden der er lånt fra en annen
+    // konto, så fila her er kodet om uten lydspor (scripts/encode-video.swift).
+    heroVideo: {
+      src: "/brand/videoes/bolig-solfilm.mp4",
+      poster: "/brand/videoes/bolig-solfilm-poster.webp",
+      alt: "Simon monterer solfilm på fire stuevinduer i en bolig, vist i hurtigfilm",
+      quote: "Solfilm på husruter for å hindre innsyn og stoppe varme.",
+      meta: "Bolig · oktober 2026",
+      length: "1 min",
+      aside: {
+        src: "/brand/pics_work/frosted_terrase.webp",
+        alt: "Terrasse med frostet film på glasset",
+        label: "Frostet film",
+      },
+    },
     benefits: [
       {
         title: "Reduserer varme",

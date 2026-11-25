@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, buttonClass } from "./Button";
 import { Footer } from "./Footer";
+import { HeroVideo } from "./HeroVideo";
 import { SubPageHeader } from "./SubPageHeader";
 import { serviceDetails } from "./serviceDetails";
 import type { ServiceDetail as ServiceDetailData } from "./serviceDetails";
@@ -111,6 +112,16 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
             </div>
 
+            {data.heroVideo ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.9, ease, delay: 0.45 }}
+                className="w-full"
+              >
+                <HeroVideo video={data.heroVideo} />
+              </motion.div>
+            ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -126,6 +137,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 className="object-cover"
               />
             </motion.div>
+            )}
           </div>
         </section>
 
