@@ -1,15 +1,31 @@
-// En video i toppen av en tjenesteside, i stedet for stillbildet. Stående
-// format, uten lyd. `quote` er Simons egne ord fra innlegget videoen kom fra.
-export type HeroVideo = {
+// En stående video av en jobb, uten lyd. Vises i en VideoTile.
+export type JobVideo = {
   src: string;
   poster: string;
   alt: string;
-  quote: string;
+  caption: string;
   meta: string;
   length: string;
+};
+
+// Videoen i toppen av en tjenesteside, i stedet for stillbildet.
+export type HeroVideo = JobVideo & {
   // Et lite stillbilde som ligger halvveis foran videoen på brede skjermer,
   // så toppen viser to jobber og ikke bare én.
   aside?: { src: string; alt: string; label: string };
+};
+
+// Fra Simons Instagram, 14. oktober 2026. Lyden der er lånt fra en annen
+// konto, så fila her er kodet om uten lydspor (scripts/encode-video.swift).
+// Simon skrev «husruter» i innlegget; teksten her er omskrevet til vanlig
+// norsk og står derfor ikke som sitat.
+export const boligVideo: JobVideo = {
+  src: "/brand/videoes/bolig-solfilm.mp4",
+  poster: "/brand/videoes/bolig-solfilm-poster.webp",
+  alt: "Simon monterer solfilm på fire stuevinduer i en bolig, vist i hurtigfilm",
+  caption: "Solfilm på vinduene, mot innsyn og varme.",
+  meta: "Bolig · oktober 2026",
+  length: "1 min",
 };
 
 export type ServiceDetail = {
@@ -21,6 +37,10 @@ export type ServiceDetail = {
   enquiryHelp: string;
   heroImage: string;
   heroAlt: string;
+  // Hvor motivet ligger når ruta har en annen form enn bildet. Toppbildet er
+  // nesten kvadratisk på desktop, og et liggende bilde av en bil mister da
+  // den ene enden.
+  heroPosition?: string;
   // Valgfri. Med den viser toppen video; heroImage brukes da fortsatt i de
   // strukturerte dataene.
   heroVideo?: HeroVideo;
@@ -57,9 +77,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     titleAccent: "bil",
     intro:
       "Jeg legger solfilm på bil for deg som vil ha mindre varme, et interiør som holder seg og et penere uttrykk. Vi finner filmtypen sammen — tilpasset bilen, bruken din og hvor mørkt du vil ha det. Send meg gjerne et bilde av bilen, så får du pris raskt.",
-    heroImage: "/brand/pics_work/blue_mercedes.webp",
+    heroImage: "/brand/pics_work/corvette_orange.webp",
+    heroPosition: "40% center",
     enquiryHelp: "Send gjerne et bilde, bilmodell og årsmodell. Fortell hvilke ruter du vil ha film på, så kan jeg gi deg et tilbud.",
-    heroAlt: "Bil med solfilm montert av Simon",
+    heroAlt: "Oransje Corvette med solfilm og lyktefolie, montert av Simon",
     benefits: [
       {
         title: "Mindre varme",
@@ -160,15 +181,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     heroImage: "/brand/pics_work/stainless_steel_office_building.webp",
     enquiryHelp: "Send bilder, omtrentlige vindusmål og hvor bygget ligger. Fortell om du ønsker mindre varme, mindre blending eller skjerming mot innsyn.",
     heroAlt: "Næringsbygg med solfilm",
-    // Fra Simons Instagram, 14. oktober 2026. Lyden der er lånt fra en annen
-    // konto, så fila her er kodet om uten lydspor (scripts/encode-video.swift).
     heroVideo: {
-      src: "/brand/videoes/bolig-solfilm.mp4",
-      poster: "/brand/videoes/bolig-solfilm-poster.webp",
-      alt: "Simon monterer solfilm på fire stuevinduer i en bolig, vist i hurtigfilm",
-      quote: "Solfilm på husruter for å hindre innsyn og stoppe varme.",
-      meta: "Bolig · oktober 2026",
-      length: "1 min",
+      ...boligVideo,
       aside: {
         src: "/brand/pics_work/frosted_terrase.webp",
         alt: "Terrasse med frostet film på glasset",
