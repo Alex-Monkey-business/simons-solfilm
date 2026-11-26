@@ -135,6 +135,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 sizes="(min-width: 1360px) 655px, (min-width: 1024px) 50vw, 100vw"
                 priority
                 className="object-cover"
+                style={data.heroPosition ? { objectPosition: data.heroPosition } : undefined}
               />
             </motion.div>
             )}
