@@ -41,9 +41,14 @@ export function About() {
           og viser nettopp det. Fra lg ligger video og portrett sammen i
           venstre kolonne, og teksten til høyre. `contents` løser opp de to
           kolonnene på mobil, så `order` kan flette innholdet; fra lg er de
-          vanlige kolonner igjen. */}
+          vanlige kolonner igjen.
+
+          Mellom lg og xl (1024–1279 px, typisk iPad liggende) får venstre
+          kolonne seks spor og videoen 260 px. Med fem spor og 300 px ble det
+          bare 41 px igjen til portrettet på 1024. Fra xl er det plass til
+          oppsettet med luft mellom kolonnene. */}
       <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-y-12 lg:grid-cols-12 lg:items-start lg:gap-12">
-        <div className="contents lg:col-span-5 lg:mt-12 lg:flex lg:items-end lg:gap-5">
+        <div className="contents lg:col-span-6 lg:mt-12 lg:flex lg:items-end lg:gap-5 xl:col-span-5">
           {/* Det første ekte opptaket av Simon i denne seksjonen. Portrettet
               ved siden av er en illustrasjon. */}
           <motion.div
@@ -51,7 +56,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease, delay: 0.15 }}
-            className="order-3 w-full max-w-[420px] lg:order-none lg:w-[300px] lg:shrink-0"
+            className="order-3 w-full max-w-[420px] lg:order-none lg:w-[260px] lg:shrink-0 xl:w-[300px]"
           >
             <VideoTile video={boligVideo} />
           </motion.div>
@@ -69,7 +74,7 @@ export function About() {
             transition={{ duration: 1, ease, delay: 0.15 }}
             className="relative order-1 mt-10 lg:order-none lg:mt-0 lg:min-w-0 lg:flex-1"
           >
-            <div className="relative aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card">
+            <div className="relative aspect-[3/4] w-full max-w-[420px] overflow-hidden rounded-[var(--r-card)] border border-line bg-bg-card lg:max-w-[220px]">
               {/* Illustrasjon, ikke foto — Alex vil bytte til et ekte
                   telefonbilde av Simon når det finnes (2. sep). Interim-
                   alternativet som ble vist lokalt: porche_behind.webp med
@@ -78,7 +83,7 @@ export function About() {
                 src="/brand/simon-transparent.webp"
                 alt="Simon — håndverkeren bak Simons Solfilm"
                 fill
-                sizes="(min-width: 1024px) 200px, 100vw"
+                sizes="(min-width: 1024px) 220px, 100vw"
                 className="object-cover object-bottom"
               />
             </div>
